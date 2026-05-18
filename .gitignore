@@ -1,0 +1,11 @@
+node_modules
+dist
+coverage
+.cache
+.vite
+*.tsbuildinfo
+.DS_Store
+scripts/update-data.js
+scripts/update-data.d.ts
+src/types.js
+src/types.d.ts
