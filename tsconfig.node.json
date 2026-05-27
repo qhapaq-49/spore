@@ -1,13 +1,23 @@
 {
   "compilerOptions": {
     "composite": true,
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM"],
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "types": ["node"],
     "noEmit": true
   },
-  "include": ["vite.config.ts", "scripts/**/*.ts", "src/types.ts"]
+  "include": [
+    "vite.config.ts",
+    "scripts/**/*.ts",
+    "src/data/**/*.ts",
+    "src/lib/calculate.ts",
+    "src/lib/input.ts",
+    "src/types.ts"
+  ]
 }

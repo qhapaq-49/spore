@@ -1,0 +1,3022 @@
+{
+  "generatedAt": "2026-05-27T11:29:33.269Z",
+  "modelVersion": "all-species-monte-carlo-v2",
+  "source": {
+    "name": "Neroli's Lab",
+    "url": "https://github.com/nerolis-lab/nerolis-lab.git",
+    "commit": "b9221b606d75647706163633e4a9818079b93a9f"
+  },
+  "simulation": {
+    "seed": 1374560294,
+    "sampleSize": 10000,
+    "quantileCount": 251,
+    "targetSpecies": [
+      "BULBASAUR",
+      "IVYSAUR",
+      "VENUSAUR",
+      "CHARMANDER",
+      "CHARMELEON",
+      "CHARIZARD",
+      "SQUIRTLE",
+      "WARTORTLE",
+      "BLASTOISE",
+      "CATERPIE",
+      "METAPOD",
+      "BUTTERFREE",
+      "RATTATA",
+      "RATICATE",
+      "EKANS",
+      "ARBOK",
+      "PIKACHU_HALLOWEEN",
+      "PIKACHU",
+      "PIKACHU_HOLIDAY",
+      "RAICHU",
+      "SANDSHREW",
+      "SANDSLASH",
+      "CLEFAIRY",
+      "CLEFABLE",
+      "VULPIX",
+      "VULPIX_ALOLAN",
+      "NINETALES",
+      "NINETALES_ALOLAN",
+      "JIGGLYPUFF",
+      "WIGGLYTUFF",
+      "DIGLETT",
+      "DUGTRIO",
+      "MEOWTH",
+      "PERSIAN",
+      "PSYDUCK",
+      "GOLDUCK",
+      "MANKEY",
+      "PRIMEAPE",
+      "GROWLITHE",
+      "ARCANINE",
+      "BELLSPROUT",
+      "WEEPINBELL",
+      "VICTREEBEL",
+      "GEODUDE",
+      "GRAVELER",
+      "GOLEM",
+      "SLOWPOKE",
+      "SLOWBRO",
+      "MAGNEMITE",
+      "MAGNETON",
+      "FARFETCHD",
+      "DODUO",
+      "DODRIO",
+      "GASTLY",
+      "HAUNTER",
+      "GENGAR",
+      "ONIX",
+      "CUBONE",
+      "MAROWAK",
+      "CHANSEY",
+      "KANGASKHAN",
+      "MR_MIME",
+      "PINSIR",
+      "DITTO",
+      "EEVEE",
+      "EEVEE_HALLOWEEN",
+      "EEVEE_HOLIDAY",
+      "VAPOREON",
+      "JOLTEON",
+      "FLAREON",
+      "DRATINI",
+      "DRAGONAIR",
+      "DRAGONITE",
+      "CHIKORITA",
+      "BAYLEEF",
+      "MEGANIUM",
+      "CYNDAQUIL",
+      "QUILAVA",
+      "TYPHLOSION",
+      "TOTODILE",
+      "CROCONAW",
+      "FERALIGATR",
+      "PICHU",
+      "CLEFFA",
+      "IGGLYBUFF",
+      "TOGEPI",
+      "TOGETIC",
+      "NATU",
+      "XATU",
+      "MAREEP",
+      "FLAAFFY",
+      "AMPHAROS",
+      "SUDOWOODO",
+      "WOOPER",
+      "WOOPER_PALDEAN",
+      "QUAGSIRE",
+      "ESPEON",
+      "UMBREON",
+      "MURKROW",
+      "SLOWKING",
+      "WOBBUFFET",
+      "STEELIX",
+      "SHUCKLE",
+      "HERACROSS",
+      "SNEASEL",
+      "DELIBIRD",
+      "HOUNDOUR",
+      "HOUNDOOM",
+      "BLISSEY",
+      "RAIKOU",
+      "ENTEI",
+      "SUICUNE",
+      "LARVITAR",
+      "PUPITAR",
+      "TYRANITAR",
+      "TREECKO",
+      "GROVYLE",
+      "SCEPTILE",
+      "TORCHIC",
+      "COMBUSKEN",
+      "BLAZIKEN",
+      "MUDKIP",
+      "MARSHTOMP",
+      "SWAMPERT",
+      "RALTS",
+      "KIRLIA",
+      "GARDEVOIR",
+      "SLAKOTH",
+      "VIGOROTH",
+      "SLAKING",
+      "SABLEYE",
+      "MAWILE",
+      "ARON",
+      "LAIRON",
+      "AGGRON",
+      "PLUSLE",
+      "MINUN",
+      "GULPIN",
+      "SWALOT",
+      "TRAPINCH",
+      "VIBRAVA",
+      "FLYGON",
+      "SWABLU",
+      "ALTARIA",
+      "SHUPPET",
+      "BANETTE",
+      "ABSOL",
+      "WYNAUT",
+      "SPHEAL",
+      "SPHEAL_HOLIDAY",
+      "SEALEO",
+      "WALREIN",
+      "BAGON",
+      "SHELGON",
+      "SALAMENCE",
+      "LATIAS",
+      "SHINX",
+      "LUXIO",
+      "LUXRAY",
+      "DRIFLOON",
+      "DRIFBLIM",
+      "HONCHKROW",
+      "BONSLY",
+      "MIME_JR",
+      "HAPPINY",
+      "SPIRITOMB",
+      "RIOLU",
+      "LUCARIO",
+      "CROAGUNK",
+      "TOXICROAK",
+      "SNOVER",
+      "ABOMASNOW",
+      "WEAVILE",
+      "MAGNEZONE",
+      "TOGEKISS",
+      "LEAFEON",
+      "GLACEON",
+      "GALLADE",
+      "CRESSELIA",
+      "DARKRAI",
+      "MUNNA",
+      "MUSHARNA",
+      "DWEBBLE",
+      "CRUSTLE",
+      "RUFFLET",
+      "BRAVIARY",
+      "TYRUNT",
+      "TYRANTRUM",
+      "SYLVEON",
+      "DEDENNE",
+      "PUMPKABOO_LARGE",
+      "PUMPKABOO_SMALL",
+      "PUMPKABOO_JUMBO",
+      "PUMPKABOO_MEDIUM",
+      "GOURGEIST_LARGE",
+      "GOURGEIST_SMALL",
+      "GOURGEIST_JUMBO",
+      "GOURGEIST_MEDIUM",
+      "NOIBAT",
+      "NOIVERN",
+      "GRUBBIN",
+      "CHARJABUG",
+      "VIKAVOLT",
+      "CUTIEFLY",
+      "RIBOMBEE",
+      "STUFFUL",
+      "BEWEAR",
+      "COMFEY",
+      "TOGEDEMARU",
+      "MIMIKYU",
+      "DRAMPA",
+      "CRAMORANT",
+      "TOXEL",
+      "TOXTRICITY_AMPED",
+      "TOXTRICITY_LOW_KEY",
+      "SPRIGATITO",
+      "FLORAGATO",
+      "MEOWSCARADA",
+      "FUECOCO",
+      "CROCALOR",
+      "SKELEDIRGE",
+      "QUAXLY",
+      "QUAXWELL",
+      "QUAQUAVAL",
+      "PAWMI",
+      "PAWMO",
+      "PAWMOT",
+      "CETODDLE",
+      "CETITAN",
+      "CLODSIRE"
+    ],
+    "levels": [
+      30,
+      50,
+      60
+    ],
+    "assumptions": [
+      "全ポケモンを種族ごとのJSONに分割して生成",
+      "せいかくは25種を等確率",
+      "食材2枠目はA:B=1:2、3枠目は3食材なら等確率、2食材ならA:B=1:2",
+      "サブスキルtierは白49.4%/青35.1%/金15.5%の推定ロール、同tier内は等確率、重複なし",
+      "フレンドレベルによる金スキル保証は未反映",
+      "睡眠EXP・リサーチEXP・ゆめのかけら等はスロットを消費するが生産値には直接加点しない",
+      "比較条件は通常げんき、FB0%、キャンプoff、通常マップ、EX off、他のおてボ0"
+    ]
+  },
+  "species": {
+    "BULBASAUR": {
+      "speciesId": "BULBASAUR",
+      "scenarioIds": [
+        "BULBASAUR-lv30-fav-on",
+        "BULBASAUR-lv30-fav-off",
+        "BULBASAUR-lv50-fav-on",
+        "BULBASAUR-lv50-fav-off",
+        "BULBASAUR-lv60-fav-on",
+        "BULBASAUR-lv60-fav-off"
+      ],
+      "path": "species/BULBASAUR.json"
+    },
+    "IVYSAUR": {
+      "speciesId": "IVYSAUR",
+      "scenarioIds": [
+        "IVYSAUR-lv30-fav-on",
+        "IVYSAUR-lv30-fav-off",
+        "IVYSAUR-lv50-fav-on",
+        "IVYSAUR-lv50-fav-off",
+        "IVYSAUR-lv60-fav-on",
+        "IVYSAUR-lv60-fav-off"
+      ],
+      "path": "species/IVYSAUR.json"
+    },
+    "VENUSAUR": {
+      "speciesId": "VENUSAUR",
+      "scenarioIds": [
+        "VENUSAUR-lv30-fav-on",
+        "VENUSAUR-lv30-fav-off",
+        "VENUSAUR-lv50-fav-on",
+        "VENUSAUR-lv50-fav-off",
+        "VENUSAUR-lv60-fav-on",
+        "VENUSAUR-lv60-fav-off"
+      ],
+      "path": "species/VENUSAUR.json"
+    },
+    "CHARMANDER": {
+      "speciesId": "CHARMANDER",
+      "scenarioIds": [
+        "CHARMANDER-lv30-fav-on",
+        "CHARMANDER-lv30-fav-off",
+        "CHARMANDER-lv50-fav-on",
+        "CHARMANDER-lv50-fav-off",
+        "CHARMANDER-lv60-fav-on",
+        "CHARMANDER-lv60-fav-off"
+      ],
+      "path": "species/CHARMANDER.json"
+    },
+    "CHARMELEON": {
+      "speciesId": "CHARMELEON",
+      "scenarioIds": [
+        "CHARMELEON-lv30-fav-on",
+        "CHARMELEON-lv30-fav-off",
+        "CHARMELEON-lv50-fav-on",
+        "CHARMELEON-lv50-fav-off",
+        "CHARMELEON-lv60-fav-on",
+        "CHARMELEON-lv60-fav-off"
+      ],
+      "path": "species/CHARMELEON.json"
+    },
+    "CHARIZARD": {
+      "speciesId": "CHARIZARD",
+      "scenarioIds": [
+        "CHARIZARD-lv30-fav-on",
+        "CHARIZARD-lv30-fav-off",
+        "CHARIZARD-lv50-fav-on",
+        "CHARIZARD-lv50-fav-off",
+        "CHARIZARD-lv60-fav-on",
+        "CHARIZARD-lv60-fav-off"
+      ],
+      "path": "species/CHARIZARD.json"
+    },
+    "SQUIRTLE": {
+      "speciesId": "SQUIRTLE",
+      "scenarioIds": [
+        "SQUIRTLE-lv30-fav-on",
+        "SQUIRTLE-lv30-fav-off",
+        "SQUIRTLE-lv50-fav-on",
+        "SQUIRTLE-lv50-fav-off",
+        "SQUIRTLE-lv60-fav-on",
+        "SQUIRTLE-lv60-fav-off"
+      ],
+      "path": "species/SQUIRTLE.json"
+    },
+    "WARTORTLE": {
+      "speciesId": "WARTORTLE",
+      "scenarioIds": [
+        "WARTORTLE-lv30-fav-on",
+        "WARTORTLE-lv30-fav-off",
+        "WARTORTLE-lv50-fav-on",
+        "WARTORTLE-lv50-fav-off",
+        "WARTORTLE-lv60-fav-on",
+        "WARTORTLE-lv60-fav-off"
+      ],
+      "path": "species/WARTORTLE.json"
+    },
+    "BLASTOISE": {
+      "speciesId": "BLASTOISE",
+      "scenarioIds": [
+        "BLASTOISE-lv30-fav-on",
+        "BLASTOISE-lv30-fav-off",
+        "BLASTOISE-lv50-fav-on",
+        "BLASTOISE-lv50-fav-off",
+        "BLASTOISE-lv60-fav-on",
+        "BLASTOISE-lv60-fav-off"
+      ],
+      "path": "species/BLASTOISE.json"
+    },
+    "CATERPIE": {
+      "speciesId": "CATERPIE",
+      "scenarioIds": [
+        "CATERPIE-lv30-fav-on",
+        "CATERPIE-lv30-fav-off",
+        "CATERPIE-lv50-fav-on",
+        "CATERPIE-lv50-fav-off",
+        "CATERPIE-lv60-fav-on",
+        "CATERPIE-lv60-fav-off"
+      ],
+      "path": "species/CATERPIE.json"
+    },
+    "METAPOD": {
+      "speciesId": "METAPOD",
+      "scenarioIds": [
+        "METAPOD-lv30-fav-on",
+        "METAPOD-lv30-fav-off",
+        "METAPOD-lv50-fav-on",
+        "METAPOD-lv50-fav-off",
+        "METAPOD-lv60-fav-on",
+        "METAPOD-lv60-fav-off"
+      ],
+      "path": "species/METAPOD.json"
+    },
+    "BUTTERFREE": {
+      "speciesId": "BUTTERFREE",
+      "scenarioIds": [
+        "BUTTERFREE-lv30-fav-on",
+        "BUTTERFREE-lv30-fav-off",
+        "BUTTERFREE-lv50-fav-on",
+        "BUTTERFREE-lv50-fav-off",
+        "BUTTERFREE-lv60-fav-on",
+        "BUTTERFREE-lv60-fav-off"
+      ],
+      "path": "species/BUTTERFREE.json"
+    },
+    "RATTATA": {
+      "speciesId": "RATTATA",
+      "scenarioIds": [
+        "RATTATA-lv30-fav-on",
+        "RATTATA-lv30-fav-off",
+        "RATTATA-lv50-fav-on",
+        "RATTATA-lv50-fav-off",
+        "RATTATA-lv60-fav-on",
+        "RATTATA-lv60-fav-off"
+      ],
+      "path": "species/RATTATA.json"
+    },
+    "RATICATE": {
+      "speciesId": "RATICATE",
+      "scenarioIds": [
+        "RATICATE-lv30-fav-on",
+        "RATICATE-lv30-fav-off",
+        "RATICATE-lv50-fav-on",
+        "RATICATE-lv50-fav-off",
+        "RATICATE-lv60-fav-on",
+        "RATICATE-lv60-fav-off"
+      ],
+      "path": "species/RATICATE.json"
+    },
+    "EKANS": {
+      "speciesId": "EKANS",
+      "scenarioIds": [
+        "EKANS-lv30-fav-on",
+        "EKANS-lv30-fav-off",
+        "EKANS-lv50-fav-on",
+        "EKANS-lv50-fav-off",
+        "EKANS-lv60-fav-on",
+        "EKANS-lv60-fav-off"
+      ],
+      "path": "species/EKANS.json"
+    },
+    "ARBOK": {
+      "speciesId": "ARBOK",
+      "scenarioIds": [
+        "ARBOK-lv30-fav-on",
+        "ARBOK-lv30-fav-off",
+        "ARBOK-lv50-fav-on",
+        "ARBOK-lv50-fav-off",
+        "ARBOK-lv60-fav-on",
+        "ARBOK-lv60-fav-off"
+      ],
+      "path": "species/ARBOK.json"
+    },
+    "PIKACHU_HALLOWEEN": {
+      "speciesId": "PIKACHU_HALLOWEEN",
+      "scenarioIds": [
+        "PIKACHU_HALLOWEEN-lv30-fav-on",
+        "PIKACHU_HALLOWEEN-lv30-fav-off",
+        "PIKACHU_HALLOWEEN-lv50-fav-on",
+        "PIKACHU_HALLOWEEN-lv50-fav-off",
+        "PIKACHU_HALLOWEEN-lv60-fav-on",
+        "PIKACHU_HALLOWEEN-lv60-fav-off"
+      ],
+      "path": "species/PIKACHU_HALLOWEEN.json"
+    },
+    "PIKACHU": {
+      "speciesId": "PIKACHU",
+      "scenarioIds": [
+        "PIKACHU-lv30-fav-on",
+        "PIKACHU-lv30-fav-off",
+        "PIKACHU-lv50-fav-on",
+        "PIKACHU-lv50-fav-off",
+        "PIKACHU-lv60-fav-on",
+        "PIKACHU-lv60-fav-off"
+      ],
+      "path": "species/PIKACHU.json"
+    },
+    "PIKACHU_HOLIDAY": {
+      "speciesId": "PIKACHU_HOLIDAY",
+      "scenarioIds": [
+        "PIKACHU_HOLIDAY-lv30-fav-on",
+        "PIKACHU_HOLIDAY-lv30-fav-off",
+        "PIKACHU_HOLIDAY-lv50-fav-on",
+        "PIKACHU_HOLIDAY-lv50-fav-off",
+        "PIKACHU_HOLIDAY-lv60-fav-on",
+        "PIKACHU_HOLIDAY-lv60-fav-off"
+      ],
+      "path": "species/PIKACHU_HOLIDAY.json"
+    },
+    "RAICHU": {
+      "speciesId": "RAICHU",
+      "scenarioIds": [
+        "RAICHU-lv30-fav-on",
+        "RAICHU-lv30-fav-off",
+        "RAICHU-lv50-fav-on",
+        "RAICHU-lv50-fav-off",
+        "RAICHU-lv60-fav-on",
+        "RAICHU-lv60-fav-off"
+      ],
+      "path": "species/RAICHU.json"
+    },
+    "SANDSHREW": {
+      "speciesId": "SANDSHREW",
+      "scenarioIds": [
+        "SANDSHREW-lv30-fav-on",
+        "SANDSHREW-lv30-fav-off",
+        "SANDSHREW-lv50-fav-on",
+        "SANDSHREW-lv50-fav-off",
+        "SANDSHREW-lv60-fav-on",
+        "SANDSHREW-lv60-fav-off"
+      ],
+      "path": "species/SANDSHREW.json"
+    },
+    "SANDSLASH": {
+      "speciesId": "SANDSLASH",
+      "scenarioIds": [
+        "SANDSLASH-lv30-fav-on",
+        "SANDSLASH-lv30-fav-off",
+        "SANDSLASH-lv50-fav-on",
+        "SANDSLASH-lv50-fav-off",
+        "SANDSLASH-lv60-fav-on",
+        "SANDSLASH-lv60-fav-off"
+      ],
+      "path": "species/SANDSLASH.json"
+    },
+    "CLEFAIRY": {
+      "speciesId": "CLEFAIRY",
+      "scenarioIds": [
+        "CLEFAIRY-lv30-fav-on",
+        "CLEFAIRY-lv30-fav-off",
+        "CLEFAIRY-lv50-fav-on",
+        "CLEFAIRY-lv50-fav-off",
+        "CLEFAIRY-lv60-fav-on",
+        "CLEFAIRY-lv60-fav-off"
+      ],
+      "path": "species/CLEFAIRY.json"
+    },
+    "CLEFABLE": {
+      "speciesId": "CLEFABLE",
+      "scenarioIds": [
+        "CLEFABLE-lv30-fav-on",
+        "CLEFABLE-lv30-fav-off",
+        "CLEFABLE-lv50-fav-on",
+        "CLEFABLE-lv50-fav-off",
+        "CLEFABLE-lv60-fav-on",
+        "CLEFABLE-lv60-fav-off"
+      ],
+      "path": "species/CLEFABLE.json"
+    },
+    "VULPIX": {
+      "speciesId": "VULPIX",
+      "scenarioIds": [
+        "VULPIX-lv30-fav-on",
+        "VULPIX-lv30-fav-off",
+        "VULPIX-lv50-fav-on",
+        "VULPIX-lv50-fav-off",
+        "VULPIX-lv60-fav-on",
+        "VULPIX-lv60-fav-off"
+      ],
+      "path": "species/VULPIX.json"
+    },
+    "VULPIX_ALOLAN": {
+      "speciesId": "VULPIX_ALOLAN",
+      "scenarioIds": [
+        "VULPIX_ALOLAN-lv30-fav-on",
+        "VULPIX_ALOLAN-lv30-fav-off",
+        "VULPIX_ALOLAN-lv50-fav-on",
+        "VULPIX_ALOLAN-lv50-fav-off",
+        "VULPIX_ALOLAN-lv60-fav-on",
+        "VULPIX_ALOLAN-lv60-fav-off"
+      ],
+      "path": "species/VULPIX_ALOLAN.json"
+    },
+    "NINETALES": {
+      "speciesId": "NINETALES",
+      "scenarioIds": [
+        "NINETALES-lv30-fav-on",
+        "NINETALES-lv30-fav-off",
+        "NINETALES-lv50-fav-on",
+        "NINETALES-lv50-fav-off",
+        "NINETALES-lv60-fav-on",
+        "NINETALES-lv60-fav-off"
+      ],
+      "path": "species/NINETALES.json"
+    },
+    "NINETALES_ALOLAN": {
+      "speciesId": "NINETALES_ALOLAN",
+      "scenarioIds": [
+        "NINETALES_ALOLAN-lv30-fav-on",
+        "NINETALES_ALOLAN-lv30-fav-off",
+        "NINETALES_ALOLAN-lv50-fav-on",
+        "NINETALES_ALOLAN-lv50-fav-off",
+        "NINETALES_ALOLAN-lv60-fav-on",
+        "NINETALES_ALOLAN-lv60-fav-off"
+      ],
+      "path": "species/NINETALES_ALOLAN.json"
+    },
+    "JIGGLYPUFF": {
+      "speciesId": "JIGGLYPUFF",
+      "scenarioIds": [
+        "JIGGLYPUFF-lv30-fav-on",
+        "JIGGLYPUFF-lv30-fav-off",
+        "JIGGLYPUFF-lv50-fav-on",
+        "JIGGLYPUFF-lv50-fav-off",
+        "JIGGLYPUFF-lv60-fav-on",
+        "JIGGLYPUFF-lv60-fav-off"
+      ],
+      "path": "species/JIGGLYPUFF.json"
+    },
+    "WIGGLYTUFF": {
+      "speciesId": "WIGGLYTUFF",
+      "scenarioIds": [
+        "WIGGLYTUFF-lv30-fav-on",
+        "WIGGLYTUFF-lv30-fav-off",
+        "WIGGLYTUFF-lv50-fav-on",
+        "WIGGLYTUFF-lv50-fav-off",
+        "WIGGLYTUFF-lv60-fav-on",
+        "WIGGLYTUFF-lv60-fav-off"
+      ],
+      "path": "species/WIGGLYTUFF.json"
+    },
+    "DIGLETT": {
+      "speciesId": "DIGLETT",
+      "scenarioIds": [
+        "DIGLETT-lv30-fav-on",
+        "DIGLETT-lv30-fav-off",
+        "DIGLETT-lv50-fav-on",
+        "DIGLETT-lv50-fav-off",
+        "DIGLETT-lv60-fav-on",
+        "DIGLETT-lv60-fav-off"
+      ],
+      "path": "species/DIGLETT.json"
+    },
+    "DUGTRIO": {
+      "speciesId": "DUGTRIO",
+      "scenarioIds": [
+        "DUGTRIO-lv30-fav-on",
+        "DUGTRIO-lv30-fav-off",
+        "DUGTRIO-lv50-fav-on",
+        "DUGTRIO-lv50-fav-off",
+        "DUGTRIO-lv60-fav-on",
+        "DUGTRIO-lv60-fav-off"
+      ],
+      "path": "species/DUGTRIO.json"
+    },
+    "MEOWTH": {
+      "speciesId": "MEOWTH",
+      "scenarioIds": [
+        "MEOWTH-lv30-fav-on",
+        "MEOWTH-lv30-fav-off",
+        "MEOWTH-lv50-fav-on",
+        "MEOWTH-lv50-fav-off",
+        "MEOWTH-lv60-fav-on",
+        "MEOWTH-lv60-fav-off"
+      ],
+      "path": "species/MEOWTH.json"
+    },
+    "PERSIAN": {
+      "speciesId": "PERSIAN",
+      "scenarioIds": [
+        "PERSIAN-lv30-fav-on",
+        "PERSIAN-lv30-fav-off",
+        "PERSIAN-lv50-fav-on",
+        "PERSIAN-lv50-fav-off",
+        "PERSIAN-lv60-fav-on",
+        "PERSIAN-lv60-fav-off"
+      ],
+      "path": "species/PERSIAN.json"
+    },
+    "PSYDUCK": {
+      "speciesId": "PSYDUCK",
+      "scenarioIds": [
+        "PSYDUCK-lv30-fav-on",
+        "PSYDUCK-lv30-fav-off",
+        "PSYDUCK-lv50-fav-on",
+        "PSYDUCK-lv50-fav-off",
+        "PSYDUCK-lv60-fav-on",
+        "PSYDUCK-lv60-fav-off"
+      ],
+      "path": "species/PSYDUCK.json"
+    },
+    "GOLDUCK": {
+      "speciesId": "GOLDUCK",
+      "scenarioIds": [
+        "GOLDUCK-lv30-fav-on",
+        "GOLDUCK-lv30-fav-off",
+        "GOLDUCK-lv50-fav-on",
+        "GOLDUCK-lv50-fav-off",
+        "GOLDUCK-lv60-fav-on",
+        "GOLDUCK-lv60-fav-off"
+      ],
+      "path": "species/GOLDUCK.json"
+    },
+    "MANKEY": {
+      "speciesId": "MANKEY",
+      "scenarioIds": [
+        "MANKEY-lv30-fav-on",
+        "MANKEY-lv30-fav-off",
+        "MANKEY-lv50-fav-on",
+        "MANKEY-lv50-fav-off",
+        "MANKEY-lv60-fav-on",
+        "MANKEY-lv60-fav-off"
+      ],
+      "path": "species/MANKEY.json"
+    },
+    "PRIMEAPE": {
+      "speciesId": "PRIMEAPE",
+      "scenarioIds": [
+        "PRIMEAPE-lv30-fav-on",
+        "PRIMEAPE-lv30-fav-off",
+        "PRIMEAPE-lv50-fav-on",
+        "PRIMEAPE-lv50-fav-off",
+        "PRIMEAPE-lv60-fav-on",
+        "PRIMEAPE-lv60-fav-off"
+      ],
+      "path": "species/PRIMEAPE.json"
+    },
+    "GROWLITHE": {
+      "speciesId": "GROWLITHE",
+      "scenarioIds": [
+        "GROWLITHE-lv30-fav-on",
+        "GROWLITHE-lv30-fav-off",
+        "GROWLITHE-lv50-fav-on",
+        "GROWLITHE-lv50-fav-off",
+        "GROWLITHE-lv60-fav-on",
+        "GROWLITHE-lv60-fav-off"
+      ],
+      "path": "species/GROWLITHE.json"
+    },
+    "ARCANINE": {
+      "speciesId": "ARCANINE",
+      "scenarioIds": [
+        "ARCANINE-lv30-fav-on",
+        "ARCANINE-lv30-fav-off",
+        "ARCANINE-lv50-fav-on",
+        "ARCANINE-lv50-fav-off",
+        "ARCANINE-lv60-fav-on",
+        "ARCANINE-lv60-fav-off"
+      ],
+      "path": "species/ARCANINE.json"
+    },
+    "BELLSPROUT": {
+      "speciesId": "BELLSPROUT",
+      "scenarioIds": [
+        "BELLSPROUT-lv30-fav-on",
+        "BELLSPROUT-lv30-fav-off",
+        "BELLSPROUT-lv50-fav-on",
+        "BELLSPROUT-lv50-fav-off",
+        "BELLSPROUT-lv60-fav-on",
+        "BELLSPROUT-lv60-fav-off"
+      ],
+      "path": "species/BELLSPROUT.json"
+    },
+    "WEEPINBELL": {
+      "speciesId": "WEEPINBELL",
+      "scenarioIds": [
+        "WEEPINBELL-lv30-fav-on",
+        "WEEPINBELL-lv30-fav-off",
+        "WEEPINBELL-lv50-fav-on",
+        "WEEPINBELL-lv50-fav-off",
+        "WEEPINBELL-lv60-fav-on",
+        "WEEPINBELL-lv60-fav-off"
+      ],
+      "path": "species/WEEPINBELL.json"
+    },
+    "VICTREEBEL": {
+      "speciesId": "VICTREEBEL",
+      "scenarioIds": [
+        "VICTREEBEL-lv30-fav-on",
+        "VICTREEBEL-lv30-fav-off",
+        "VICTREEBEL-lv50-fav-on",
+        "VICTREEBEL-lv50-fav-off",
+        "VICTREEBEL-lv60-fav-on",
+        "VICTREEBEL-lv60-fav-off"
+      ],
+      "path": "species/VICTREEBEL.json"
+    },
+    "GEODUDE": {
+      "speciesId": "GEODUDE",
+      "scenarioIds": [
+        "GEODUDE-lv30-fav-on",
+        "GEODUDE-lv30-fav-off",
+        "GEODUDE-lv50-fav-on",
+        "GEODUDE-lv50-fav-off",
+        "GEODUDE-lv60-fav-on",
+        "GEODUDE-lv60-fav-off"
+      ],
+      "path": "species/GEODUDE.json"
+    },
+    "GRAVELER": {
+      "speciesId": "GRAVELER",
+      "scenarioIds": [
+        "GRAVELER-lv30-fav-on",
+        "GRAVELER-lv30-fav-off",
+        "GRAVELER-lv50-fav-on",
+        "GRAVELER-lv50-fav-off",
+        "GRAVELER-lv60-fav-on",
+        "GRAVELER-lv60-fav-off"
+      ],
+      "path": "species/GRAVELER.json"
+    },
+    "GOLEM": {
+      "speciesId": "GOLEM",
+      "scenarioIds": [
+        "GOLEM-lv30-fav-on",
+        "GOLEM-lv30-fav-off",
+        "GOLEM-lv50-fav-on",
+        "GOLEM-lv50-fav-off",
+        "GOLEM-lv60-fav-on",
+        "GOLEM-lv60-fav-off"
+      ],
+      "path": "species/GOLEM.json"
+    },
+    "SLOWPOKE": {
+      "speciesId": "SLOWPOKE",
+      "scenarioIds": [
+        "SLOWPOKE-lv30-fav-on",
+        "SLOWPOKE-lv30-fav-off",
+        "SLOWPOKE-lv50-fav-on",
+        "SLOWPOKE-lv50-fav-off",
+        "SLOWPOKE-lv60-fav-on",
+        "SLOWPOKE-lv60-fav-off"
+      ],
+      "path": "species/SLOWPOKE.json"
+    },
+    "SLOWBRO": {
+      "speciesId": "SLOWBRO",
+      "scenarioIds": [
+        "SLOWBRO-lv30-fav-on",
+        "SLOWBRO-lv30-fav-off",
+        "SLOWBRO-lv50-fav-on",
+        "SLOWBRO-lv50-fav-off",
+        "SLOWBRO-lv60-fav-on",
+        "SLOWBRO-lv60-fav-off"
+      ],
+      "path": "species/SLOWBRO.json"
+    },
+    "MAGNEMITE": {
+      "speciesId": "MAGNEMITE",
+      "scenarioIds": [
+        "MAGNEMITE-lv30-fav-on",
+        "MAGNEMITE-lv30-fav-off",
+        "MAGNEMITE-lv50-fav-on",
+        "MAGNEMITE-lv50-fav-off",
+        "MAGNEMITE-lv60-fav-on",
+        "MAGNEMITE-lv60-fav-off"
+      ],
+      "path": "species/MAGNEMITE.json"
+    },
+    "MAGNETON": {
+      "speciesId": "MAGNETON",
+      "scenarioIds": [
+        "MAGNETON-lv30-fav-on",
+        "MAGNETON-lv30-fav-off",
+        "MAGNETON-lv50-fav-on",
+        "MAGNETON-lv50-fav-off",
+        "MAGNETON-lv60-fav-on",
+        "MAGNETON-lv60-fav-off"
+      ],
+      "path": "species/MAGNETON.json"
+    },
+    "FARFETCHD": {
+      "speciesId": "FARFETCHD",
+      "scenarioIds": [
+        "FARFETCHD-lv30-fav-on",
+        "FARFETCHD-lv30-fav-off",
+        "FARFETCHD-lv50-fav-on",
+        "FARFETCHD-lv50-fav-off",
+        "FARFETCHD-lv60-fav-on",
+        "FARFETCHD-lv60-fav-off"
+      ],
+      "path": "species/FARFETCHD.json"
+    },
+    "DODUO": {
+      "speciesId": "DODUO",
+      "scenarioIds": [
+        "DODUO-lv30-fav-on",
+        "DODUO-lv30-fav-off",
+        "DODUO-lv50-fav-on",
+        "DODUO-lv50-fav-off",
+        "DODUO-lv60-fav-on",
+        "DODUO-lv60-fav-off"
+      ],
+      "path": "species/DODUO.json"
+    },
+    "DODRIO": {
+      "speciesId": "DODRIO",
+      "scenarioIds": [
+        "DODRIO-lv30-fav-on",
+        "DODRIO-lv30-fav-off",
+        "DODRIO-lv50-fav-on",
+        "DODRIO-lv50-fav-off",
+        "DODRIO-lv60-fav-on",
+        "DODRIO-lv60-fav-off"
+      ],
+      "path": "species/DODRIO.json"
+    },
+    "GASTLY": {
+      "speciesId": "GASTLY",
+      "scenarioIds": [
+        "GASTLY-lv30-fav-on",
+        "GASTLY-lv30-fav-off",
+        "GASTLY-lv50-fav-on",
+        "GASTLY-lv50-fav-off",
+        "GASTLY-lv60-fav-on",
+        "GASTLY-lv60-fav-off"
+      ],
+      "path": "species/GASTLY.json"
+    },
+    "HAUNTER": {
+      "speciesId": "HAUNTER",
+      "scenarioIds": [
+        "HAUNTER-lv30-fav-on",
+        "HAUNTER-lv30-fav-off",
+        "HAUNTER-lv50-fav-on",
+        "HAUNTER-lv50-fav-off",
+        "HAUNTER-lv60-fav-on",
+        "HAUNTER-lv60-fav-off"
+      ],
+      "path": "species/HAUNTER.json"
+    },
+    "GENGAR": {
+      "speciesId": "GENGAR",
+      "scenarioIds": [
+        "GENGAR-lv30-fav-on",
+        "GENGAR-lv30-fav-off",
+        "GENGAR-lv50-fav-on",
+        "GENGAR-lv50-fav-off",
+        "GENGAR-lv60-fav-on",
+        "GENGAR-lv60-fav-off"
+      ],
+      "path": "species/GENGAR.json"
+    },
+    "ONIX": {
+      "speciesId": "ONIX",
+      "scenarioIds": [
+        "ONIX-lv30-fav-on",
+        "ONIX-lv30-fav-off",
+        "ONIX-lv50-fav-on",
+        "ONIX-lv50-fav-off",
+        "ONIX-lv60-fav-on",
+        "ONIX-lv60-fav-off"
+      ],
+      "path": "species/ONIX.json"
+    },
+    "CUBONE": {
+      "speciesId": "CUBONE",
+      "scenarioIds": [
+        "CUBONE-lv30-fav-on",
+        "CUBONE-lv30-fav-off",
+        "CUBONE-lv50-fav-on",
+        "CUBONE-lv50-fav-off",
+        "CUBONE-lv60-fav-on",
+        "CUBONE-lv60-fav-off"
+      ],
+      "path": "species/CUBONE.json"
+    },
+    "MAROWAK": {
+      "speciesId": "MAROWAK",
+      "scenarioIds": [
+        "MAROWAK-lv30-fav-on",
+        "MAROWAK-lv30-fav-off",
+        "MAROWAK-lv50-fav-on",
+        "MAROWAK-lv50-fav-off",
+        "MAROWAK-lv60-fav-on",
+        "MAROWAK-lv60-fav-off"
+      ],
+      "path": "species/MAROWAK.json"
+    },
+    "CHANSEY": {
+      "speciesId": "CHANSEY",
+      "scenarioIds": [
+        "CHANSEY-lv30-fav-on",
+        "CHANSEY-lv30-fav-off",
+        "CHANSEY-lv50-fav-on",
+        "CHANSEY-lv50-fav-off",
+        "CHANSEY-lv60-fav-on",
+        "CHANSEY-lv60-fav-off"
+      ],
+      "path": "species/CHANSEY.json"
+    },
+    "KANGASKHAN": {
+      "speciesId": "KANGASKHAN",
+      "scenarioIds": [
+        "KANGASKHAN-lv30-fav-on",
+        "KANGASKHAN-lv30-fav-off",
+        "KANGASKHAN-lv50-fav-on",
+        "KANGASKHAN-lv50-fav-off",
+        "KANGASKHAN-lv60-fav-on",
+        "KANGASKHAN-lv60-fav-off"
+      ],
+      "path": "species/KANGASKHAN.json"
+    },
+    "MR_MIME": {
+      "speciesId": "MR_MIME",
+      "scenarioIds": [
+        "MR_MIME-lv30-fav-on",
+        "MR_MIME-lv30-fav-off",
+        "MR_MIME-lv50-fav-on",
+        "MR_MIME-lv50-fav-off",
+        "MR_MIME-lv60-fav-on",
+        "MR_MIME-lv60-fav-off"
+      ],
+      "path": "species/MR_MIME.json"
+    },
+    "PINSIR": {
+      "speciesId": "PINSIR",
+      "scenarioIds": [
+        "PINSIR-lv30-fav-on",
+        "PINSIR-lv30-fav-off",
+        "PINSIR-lv50-fav-on",
+        "PINSIR-lv50-fav-off",
+        "PINSIR-lv60-fav-on",
+        "PINSIR-lv60-fav-off"
+      ],
+      "path": "species/PINSIR.json"
+    },
+    "DITTO": {
+      "speciesId": "DITTO",
+      "scenarioIds": [
+        "DITTO-lv30-fav-on",
+        "DITTO-lv30-fav-off",
+        "DITTO-lv50-fav-on",
+        "DITTO-lv50-fav-off",
+        "DITTO-lv60-fav-on",
+        "DITTO-lv60-fav-off"
+      ],
+      "path": "species/DITTO.json"
+    },
+    "EEVEE": {
+      "speciesId": "EEVEE",
+      "scenarioIds": [
+        "EEVEE-lv30-fav-on",
+        "EEVEE-lv30-fav-off",
+        "EEVEE-lv50-fav-on",
+        "EEVEE-lv50-fav-off",
+        "EEVEE-lv60-fav-on",
+        "EEVEE-lv60-fav-off"
+      ],
+      "path": "species/EEVEE.json"
+    },
+    "EEVEE_HALLOWEEN": {
+      "speciesId": "EEVEE_HALLOWEEN",
+      "scenarioIds": [
+        "EEVEE_HALLOWEEN-lv30-fav-on",
+        "EEVEE_HALLOWEEN-lv30-fav-off",
+        "EEVEE_HALLOWEEN-lv50-fav-on",
+        "EEVEE_HALLOWEEN-lv50-fav-off",
+        "EEVEE_HALLOWEEN-lv60-fav-on",
+        "EEVEE_HALLOWEEN-lv60-fav-off"
+      ],
+      "path": "species/EEVEE_HALLOWEEN.json"
+    },
+    "EEVEE_HOLIDAY": {
+      "speciesId": "EEVEE_HOLIDAY",
+      "scenarioIds": [
+        "EEVEE_HOLIDAY-lv30-fav-on",
+        "EEVEE_HOLIDAY-lv30-fav-off",
+        "EEVEE_HOLIDAY-lv50-fav-on",
+        "EEVEE_HOLIDAY-lv50-fav-off",
+        "EEVEE_HOLIDAY-lv60-fav-on",
+        "EEVEE_HOLIDAY-lv60-fav-off"
+      ],
+      "path": "species/EEVEE_HOLIDAY.json"
+    },
+    "VAPOREON": {
+      "speciesId": "VAPOREON",
+      "scenarioIds": [
+        "VAPOREON-lv30-fav-on",
+        "VAPOREON-lv30-fav-off",
+        "VAPOREON-lv50-fav-on",
+        "VAPOREON-lv50-fav-off",
+        "VAPOREON-lv60-fav-on",
+        "VAPOREON-lv60-fav-off"
+      ],
+      "path": "species/VAPOREON.json"
+    },
+    "JOLTEON": {
+      "speciesId": "JOLTEON",
+      "scenarioIds": [
+        "JOLTEON-lv30-fav-on",
+        "JOLTEON-lv30-fav-off",
+        "JOLTEON-lv50-fav-on",
+        "JOLTEON-lv50-fav-off",
+        "JOLTEON-lv60-fav-on",
+        "JOLTEON-lv60-fav-off"
+      ],
+      "path": "species/JOLTEON.json"
+    },
+    "FLAREON": {
+      "speciesId": "FLAREON",
+      "scenarioIds": [
+        "FLAREON-lv30-fav-on",
+        "FLAREON-lv30-fav-off",
+        "FLAREON-lv50-fav-on",
+        "FLAREON-lv50-fav-off",
+        "FLAREON-lv60-fav-on",
+        "FLAREON-lv60-fav-off"
+      ],
+      "path": "species/FLAREON.json"
+    },
+    "DRATINI": {
+      "speciesId": "DRATINI",
+      "scenarioIds": [
+        "DRATINI-lv30-fav-on",
+        "DRATINI-lv30-fav-off",
+        "DRATINI-lv50-fav-on",
+        "DRATINI-lv50-fav-off",
+        "DRATINI-lv60-fav-on",
+        "DRATINI-lv60-fav-off"
+      ],
+      "path": "species/DRATINI.json"
+    },
+    "DRAGONAIR": {
+      "speciesId": "DRAGONAIR",
+      "scenarioIds": [
+        "DRAGONAIR-lv30-fav-on",
+        "DRAGONAIR-lv30-fav-off",
+        "DRAGONAIR-lv50-fav-on",
+        "DRAGONAIR-lv50-fav-off",
+        "DRAGONAIR-lv60-fav-on",
+        "DRAGONAIR-lv60-fav-off"
+      ],
+      "path": "species/DRAGONAIR.json"
+    },
+    "DRAGONITE": {
+      "speciesId": "DRAGONITE",
+      "scenarioIds": [
+        "DRAGONITE-lv30-fav-on",
+        "DRAGONITE-lv30-fav-off",
+        "DRAGONITE-lv50-fav-on",
+        "DRAGONITE-lv50-fav-off",
+        "DRAGONITE-lv60-fav-on",
+        "DRAGONITE-lv60-fav-off"
+      ],
+      "path": "species/DRAGONITE.json"
+    },
+    "CHIKORITA": {
+      "speciesId": "CHIKORITA",
+      "scenarioIds": [
+        "CHIKORITA-lv30-fav-on",
+        "CHIKORITA-lv30-fav-off",
+        "CHIKORITA-lv50-fav-on",
+        "CHIKORITA-lv50-fav-off",
+        "CHIKORITA-lv60-fav-on",
+        "CHIKORITA-lv60-fav-off"
+      ],
+      "path": "species/CHIKORITA.json"
+    },
+    "BAYLEEF": {
+      "speciesId": "BAYLEEF",
+      "scenarioIds": [
+        "BAYLEEF-lv30-fav-on",
+        "BAYLEEF-lv30-fav-off",
+        "BAYLEEF-lv50-fav-on",
+        "BAYLEEF-lv50-fav-off",
+        "BAYLEEF-lv60-fav-on",
+        "BAYLEEF-lv60-fav-off"
+      ],
+      "path": "species/BAYLEEF.json"
+    },
+    "MEGANIUM": {
+      "speciesId": "MEGANIUM",
+      "scenarioIds": [
+        "MEGANIUM-lv30-fav-on",
+        "MEGANIUM-lv30-fav-off",
+        "MEGANIUM-lv50-fav-on",
+        "MEGANIUM-lv50-fav-off",
+        "MEGANIUM-lv60-fav-on",
+        "MEGANIUM-lv60-fav-off"
+      ],
+      "path": "species/MEGANIUM.json"
+    },
+    "CYNDAQUIL": {
+      "speciesId": "CYNDAQUIL",
+      "scenarioIds": [
+        "CYNDAQUIL-lv30-fav-on",
+        "CYNDAQUIL-lv30-fav-off",
+        "CYNDAQUIL-lv50-fav-on",
+        "CYNDAQUIL-lv50-fav-off",
+        "CYNDAQUIL-lv60-fav-on",
+        "CYNDAQUIL-lv60-fav-off"
+      ],
+      "path": "species/CYNDAQUIL.json"
+    },
+    "QUILAVA": {
+      "speciesId": "QUILAVA",
+      "scenarioIds": [
+        "QUILAVA-lv30-fav-on",
+        "QUILAVA-lv30-fav-off",
+        "QUILAVA-lv50-fav-on",
+        "QUILAVA-lv50-fav-off",
+        "QUILAVA-lv60-fav-on",
+        "QUILAVA-lv60-fav-off"
+      ],
+      "path": "species/QUILAVA.json"
+    },
+    "TYPHLOSION": {
+      "speciesId": "TYPHLOSION",
+      "scenarioIds": [
+        "TYPHLOSION-lv30-fav-on",
+        "TYPHLOSION-lv30-fav-off",
+        "TYPHLOSION-lv50-fav-on",
+        "TYPHLOSION-lv50-fav-off",
+        "TYPHLOSION-lv60-fav-on",
+        "TYPHLOSION-lv60-fav-off"
+      ],
+      "path": "species/TYPHLOSION.json"
+    },
+    "TOTODILE": {
+      "speciesId": "TOTODILE",
+      "scenarioIds": [
+        "TOTODILE-lv30-fav-on",
+        "TOTODILE-lv30-fav-off",
+        "TOTODILE-lv50-fav-on",
+        "TOTODILE-lv50-fav-off",
+        "TOTODILE-lv60-fav-on",
+        "TOTODILE-lv60-fav-off"
+      ],
+      "path": "species/TOTODILE.json"
+    },
+    "CROCONAW": {
+      "speciesId": "CROCONAW",
+      "scenarioIds": [
+        "CROCONAW-lv30-fav-on",
+        "CROCONAW-lv30-fav-off",
+        "CROCONAW-lv50-fav-on",
+        "CROCONAW-lv50-fav-off",
+        "CROCONAW-lv60-fav-on",
+        "CROCONAW-lv60-fav-off"
+      ],
+      "path": "species/CROCONAW.json"
+    },
+    "FERALIGATR": {
+      "speciesId": "FERALIGATR",
+      "scenarioIds": [
+        "FERALIGATR-lv30-fav-on",
+        "FERALIGATR-lv30-fav-off",
+        "FERALIGATR-lv50-fav-on",
+        "FERALIGATR-lv50-fav-off",
+        "FERALIGATR-lv60-fav-on",
+        "FERALIGATR-lv60-fav-off"
+      ],
+      "path": "species/FERALIGATR.json"
+    },
+    "PICHU": {
+      "speciesId": "PICHU",
+      "scenarioIds": [
+        "PICHU-lv30-fav-on",
+        "PICHU-lv30-fav-off",
+        "PICHU-lv50-fav-on",
+        "PICHU-lv50-fav-off",
+        "PICHU-lv60-fav-on",
+        "PICHU-lv60-fav-off"
+      ],
+      "path": "species/PICHU.json"
+    },
+    "CLEFFA": {
+      "speciesId": "CLEFFA",
+      "scenarioIds": [
+        "CLEFFA-lv30-fav-on",
+        "CLEFFA-lv30-fav-off",
+        "CLEFFA-lv50-fav-on",
+        "CLEFFA-lv50-fav-off",
+        "CLEFFA-lv60-fav-on",
+        "CLEFFA-lv60-fav-off"
+      ],
+      "path": "species/CLEFFA.json"
+    },
+    "IGGLYBUFF": {
+      "speciesId": "IGGLYBUFF",
+      "scenarioIds": [
+        "IGGLYBUFF-lv30-fav-on",
+        "IGGLYBUFF-lv30-fav-off",
+        "IGGLYBUFF-lv50-fav-on",
+        "IGGLYBUFF-lv50-fav-off",
+        "IGGLYBUFF-lv60-fav-on",
+        "IGGLYBUFF-lv60-fav-off"
+      ],
+      "path": "species/IGGLYBUFF.json"
+    },
+    "TOGEPI": {
+      "speciesId": "TOGEPI",
+      "scenarioIds": [
+        "TOGEPI-lv30-fav-on",
+        "TOGEPI-lv30-fav-off",
+        "TOGEPI-lv50-fav-on",
+        "TOGEPI-lv50-fav-off",
+        "TOGEPI-lv60-fav-on",
+        "TOGEPI-lv60-fav-off"
+      ],
+      "path": "species/TOGEPI.json"
+    },
+    "TOGETIC": {
+      "speciesId": "TOGETIC",
+      "scenarioIds": [
+        "TOGETIC-lv30-fav-on",
+        "TOGETIC-lv30-fav-off",
+        "TOGETIC-lv50-fav-on",
+        "TOGETIC-lv50-fav-off",
+        "TOGETIC-lv60-fav-on",
+        "TOGETIC-lv60-fav-off"
+      ],
+      "path": "species/TOGETIC.json"
+    },
+    "NATU": {
+      "speciesId": "NATU",
+      "scenarioIds": [
+        "NATU-lv30-fav-on",
+        "NATU-lv30-fav-off",
+        "NATU-lv50-fav-on",
+        "NATU-lv50-fav-off",
+        "NATU-lv60-fav-on",
+        "NATU-lv60-fav-off"
+      ],
+      "path": "species/NATU.json"
+    },
+    "XATU": {
+      "speciesId": "XATU",
+      "scenarioIds": [
+        "XATU-lv30-fav-on",
+        "XATU-lv30-fav-off",
+        "XATU-lv50-fav-on",
+        "XATU-lv50-fav-off",
+        "XATU-lv60-fav-on",
+        "XATU-lv60-fav-off"
+      ],
+      "path": "species/XATU.json"
+    },
+    "MAREEP": {
+      "speciesId": "MAREEP",
+      "scenarioIds": [
+        "MAREEP-lv30-fav-on",
+        "MAREEP-lv30-fav-off",
+        "MAREEP-lv50-fav-on",
+        "MAREEP-lv50-fav-off",
+        "MAREEP-lv60-fav-on",
+        "MAREEP-lv60-fav-off"
+      ],
+      "path": "species/MAREEP.json"
+    },
+    "FLAAFFY": {
+      "speciesId": "FLAAFFY",
+      "scenarioIds": [
+        "FLAAFFY-lv30-fav-on",
+        "FLAAFFY-lv30-fav-off",
+        "FLAAFFY-lv50-fav-on",
+        "FLAAFFY-lv50-fav-off",
+        "FLAAFFY-lv60-fav-on",
+        "FLAAFFY-lv60-fav-off"
+      ],
+      "path": "species/FLAAFFY.json"
+    },
+    "AMPHAROS": {
+      "speciesId": "AMPHAROS",
+      "scenarioIds": [
+        "AMPHAROS-lv30-fav-on",
+        "AMPHAROS-lv30-fav-off",
+        "AMPHAROS-lv50-fav-on",
+        "AMPHAROS-lv50-fav-off",
+        "AMPHAROS-lv60-fav-on",
+        "AMPHAROS-lv60-fav-off"
+      ],
+      "path": "species/AMPHAROS.json"
+    },
+    "SUDOWOODO": {
+      "speciesId": "SUDOWOODO",
+      "scenarioIds": [
+        "SUDOWOODO-lv30-fav-on",
+        "SUDOWOODO-lv30-fav-off",
+        "SUDOWOODO-lv50-fav-on",
+        "SUDOWOODO-lv50-fav-off",
+        "SUDOWOODO-lv60-fav-on",
+        "SUDOWOODO-lv60-fav-off"
+      ],
+      "path": "species/SUDOWOODO.json"
+    },
+    "WOOPER": {
+      "speciesId": "WOOPER",
+      "scenarioIds": [
+        "WOOPER-lv30-fav-on",
+        "WOOPER-lv30-fav-off",
+        "WOOPER-lv50-fav-on",
+        "WOOPER-lv50-fav-off",
+        "WOOPER-lv60-fav-on",
+        "WOOPER-lv60-fav-off"
+      ],
+      "path": "species/WOOPER.json"
+    },
+    "WOOPER_PALDEAN": {
+      "speciesId": "WOOPER_PALDEAN",
+      "scenarioIds": [
+        "WOOPER_PALDEAN-lv30-fav-on",
+        "WOOPER_PALDEAN-lv30-fav-off",
+        "WOOPER_PALDEAN-lv50-fav-on",
+        "WOOPER_PALDEAN-lv50-fav-off",
+        "WOOPER_PALDEAN-lv60-fav-on",
+        "WOOPER_PALDEAN-lv60-fav-off"
+      ],
+      "path": "species/WOOPER_PALDEAN.json"
+    },
+    "QUAGSIRE": {
+      "speciesId": "QUAGSIRE",
+      "scenarioIds": [
+        "QUAGSIRE-lv30-fav-on",
+        "QUAGSIRE-lv30-fav-off",
+        "QUAGSIRE-lv50-fav-on",
+        "QUAGSIRE-lv50-fav-off",
+        "QUAGSIRE-lv60-fav-on",
+        "QUAGSIRE-lv60-fav-off"
+      ],
+      "path": "species/QUAGSIRE.json"
+    },
+    "ESPEON": {
+      "speciesId": "ESPEON",
+      "scenarioIds": [
+        "ESPEON-lv30-fav-on",
+        "ESPEON-lv30-fav-off",
+        "ESPEON-lv50-fav-on",
+        "ESPEON-lv50-fav-off",
+        "ESPEON-lv60-fav-on",
+        "ESPEON-lv60-fav-off"
+      ],
+      "path": "species/ESPEON.json"
+    },
+    "UMBREON": {
+      "speciesId": "UMBREON",
+      "scenarioIds": [
+        "UMBREON-lv30-fav-on",
+        "UMBREON-lv30-fav-off",
+        "UMBREON-lv50-fav-on",
+        "UMBREON-lv50-fav-off",
+        "UMBREON-lv60-fav-on",
+        "UMBREON-lv60-fav-off"
+      ],
+      "path": "species/UMBREON.json"
+    },
+    "MURKROW": {
+      "speciesId": "MURKROW",
+      "scenarioIds": [
+        "MURKROW-lv30-fav-on",
+        "MURKROW-lv30-fav-off",
+        "MURKROW-lv50-fav-on",
+        "MURKROW-lv50-fav-off",
+        "MURKROW-lv60-fav-on",
+        "MURKROW-lv60-fav-off"
+      ],
+      "path": "species/MURKROW.json"
+    },
+    "SLOWKING": {
+      "speciesId": "SLOWKING",
+      "scenarioIds": [
+        "SLOWKING-lv30-fav-on",
+        "SLOWKING-lv30-fav-off",
+        "SLOWKING-lv50-fav-on",
+        "SLOWKING-lv50-fav-off",
+        "SLOWKING-lv60-fav-on",
+        "SLOWKING-lv60-fav-off"
+      ],
+      "path": "species/SLOWKING.json"
+    },
+    "WOBBUFFET": {
+      "speciesId": "WOBBUFFET",
+      "scenarioIds": [
+        "WOBBUFFET-lv30-fav-on",
+        "WOBBUFFET-lv30-fav-off",
+        "WOBBUFFET-lv50-fav-on",
+        "WOBBUFFET-lv50-fav-off",
+        "WOBBUFFET-lv60-fav-on",
+        "WOBBUFFET-lv60-fav-off"
+      ],
+      "path": "species/WOBBUFFET.json"
+    },
+    "STEELIX": {
+      "speciesId": "STEELIX",
+      "scenarioIds": [
+        "STEELIX-lv30-fav-on",
+        "STEELIX-lv30-fav-off",
+        "STEELIX-lv50-fav-on",
+        "STEELIX-lv50-fav-off",
+        "STEELIX-lv60-fav-on",
+        "STEELIX-lv60-fav-off"
+      ],
+      "path": "species/STEELIX.json"
+    },
+    "SHUCKLE": {
+      "speciesId": "SHUCKLE",
+      "scenarioIds": [
+        "SHUCKLE-lv30-fav-on",
+        "SHUCKLE-lv30-fav-off",
+        "SHUCKLE-lv50-fav-on",
+        "SHUCKLE-lv50-fav-off",
+        "SHUCKLE-lv60-fav-on",
+        "SHUCKLE-lv60-fav-off"
+      ],
+      "path": "species/SHUCKLE.json"
+    },
+    "HERACROSS": {
+      "speciesId": "HERACROSS",
+      "scenarioIds": [
+        "HERACROSS-lv30-fav-on",
+        "HERACROSS-lv30-fav-off",
+        "HERACROSS-lv50-fav-on",
+        "HERACROSS-lv50-fav-off",
+        "HERACROSS-lv60-fav-on",
+        "HERACROSS-lv60-fav-off"
+      ],
+      "path": "species/HERACROSS.json"
+    },
+    "SNEASEL": {
+      "speciesId": "SNEASEL",
+      "scenarioIds": [
+        "SNEASEL-lv30-fav-on",
+        "SNEASEL-lv30-fav-off",
+        "SNEASEL-lv50-fav-on",
+        "SNEASEL-lv50-fav-off",
+        "SNEASEL-lv60-fav-on",
+        "SNEASEL-lv60-fav-off"
+      ],
+      "path": "species/SNEASEL.json"
+    },
+    "DELIBIRD": {
+      "speciesId": "DELIBIRD",
+      "scenarioIds": [
+        "DELIBIRD-lv30-fav-on",
+        "DELIBIRD-lv30-fav-off",
+        "DELIBIRD-lv50-fav-on",
+        "DELIBIRD-lv50-fav-off",
+        "DELIBIRD-lv60-fav-on",
+        "DELIBIRD-lv60-fav-off"
+      ],
+      "path": "species/DELIBIRD.json"
+    },
+    "HOUNDOUR": {
+      "speciesId": "HOUNDOUR",
+      "scenarioIds": [
+        "HOUNDOUR-lv30-fav-on",
+        "HOUNDOUR-lv30-fav-off",
+        "HOUNDOUR-lv50-fav-on",
+        "HOUNDOUR-lv50-fav-off",
+        "HOUNDOUR-lv60-fav-on",
+        "HOUNDOUR-lv60-fav-off"
+      ],
+      "path": "species/HOUNDOUR.json"
+    },
+    "HOUNDOOM": {
+      "speciesId": "HOUNDOOM",
+      "scenarioIds": [
+        "HOUNDOOM-lv30-fav-on",
+        "HOUNDOOM-lv30-fav-off",
+        "HOUNDOOM-lv50-fav-on",
+        "HOUNDOOM-lv50-fav-off",
+        "HOUNDOOM-lv60-fav-on",
+        "HOUNDOOM-lv60-fav-off"
+      ],
+      "path": "species/HOUNDOOM.json"
+    },
+    "BLISSEY": {
+      "speciesId": "BLISSEY",
+      "scenarioIds": [
+        "BLISSEY-lv30-fav-on",
+        "BLISSEY-lv30-fav-off",
+        "BLISSEY-lv50-fav-on",
+        "BLISSEY-lv50-fav-off",
+        "BLISSEY-lv60-fav-on",
+        "BLISSEY-lv60-fav-off"
+      ],
+      "path": "species/BLISSEY.json"
+    },
+    "RAIKOU": {
+      "speciesId": "RAIKOU",
+      "scenarioIds": [
+        "RAIKOU-lv30-fav-on",
+        "RAIKOU-lv30-fav-off",
+        "RAIKOU-lv50-fav-on",
+        "RAIKOU-lv50-fav-off",
+        "RAIKOU-lv60-fav-on",
+        "RAIKOU-lv60-fav-off"
+      ],
+      "path": "species/RAIKOU.json"
+    },
+    "ENTEI": {
+      "speciesId": "ENTEI",
+      "scenarioIds": [
+        "ENTEI-lv30-fav-on",
+        "ENTEI-lv30-fav-off",
+        "ENTEI-lv50-fav-on",
+        "ENTEI-lv50-fav-off",
+        "ENTEI-lv60-fav-on",
+        "ENTEI-lv60-fav-off"
+      ],
+      "path": "species/ENTEI.json"
+    },
+    "SUICUNE": {
+      "speciesId": "SUICUNE",
+      "scenarioIds": [
+        "SUICUNE-lv30-fav-on",
+        "SUICUNE-lv30-fav-off",
+        "SUICUNE-lv50-fav-on",
+        "SUICUNE-lv50-fav-off",
+        "SUICUNE-lv60-fav-on",
+        "SUICUNE-lv60-fav-off"
+      ],
+      "path": "species/SUICUNE.json"
+    },
+    "LARVITAR": {
+      "speciesId": "LARVITAR",
+      "scenarioIds": [
+        "LARVITAR-lv30-fav-on",
+        "LARVITAR-lv30-fav-off",
+        "LARVITAR-lv50-fav-on",
+        "LARVITAR-lv50-fav-off",
+        "LARVITAR-lv60-fav-on",
+        "LARVITAR-lv60-fav-off"
+      ],
+      "path": "species/LARVITAR.json"
+    },
+    "PUPITAR": {
+      "speciesId": "PUPITAR",
+      "scenarioIds": [
+        "PUPITAR-lv30-fav-on",
+        "PUPITAR-lv30-fav-off",
+        "PUPITAR-lv50-fav-on",
+        "PUPITAR-lv50-fav-off",
+        "PUPITAR-lv60-fav-on",
+        "PUPITAR-lv60-fav-off"
+      ],
+      "path": "species/PUPITAR.json"
+    },
+    "TYRANITAR": {
+      "speciesId": "TYRANITAR",
+      "scenarioIds": [
+        "TYRANITAR-lv30-fav-on",
+        "TYRANITAR-lv30-fav-off",
+        "TYRANITAR-lv50-fav-on",
+        "TYRANITAR-lv50-fav-off",
+        "TYRANITAR-lv60-fav-on",
+        "TYRANITAR-lv60-fav-off"
+      ],
+      "path": "species/TYRANITAR.json"
+    },
+    "TREECKO": {
+      "speciesId": "TREECKO",
+      "scenarioIds": [
+        "TREECKO-lv30-fav-on",
+        "TREECKO-lv30-fav-off",
+        "TREECKO-lv50-fav-on",
+        "TREECKO-lv50-fav-off",
+        "TREECKO-lv60-fav-on",
+        "TREECKO-lv60-fav-off"
+      ],
+      "path": "species/TREECKO.json"
+    },
+    "GROVYLE": {
+      "speciesId": "GROVYLE",
+      "scenarioIds": [
+        "GROVYLE-lv30-fav-on",
+        "GROVYLE-lv30-fav-off",
+        "GROVYLE-lv50-fav-on",
+        "GROVYLE-lv50-fav-off",
+        "GROVYLE-lv60-fav-on",
+        "GROVYLE-lv60-fav-off"
+      ],
+      "path": "species/GROVYLE.json"
+    },
+    "SCEPTILE": {
+      "speciesId": "SCEPTILE",
+      "scenarioIds": [
+        "SCEPTILE-lv30-fav-on",
+        "SCEPTILE-lv30-fav-off",
+        "SCEPTILE-lv50-fav-on",
+        "SCEPTILE-lv50-fav-off",
+        "SCEPTILE-lv60-fav-on",
+        "SCEPTILE-lv60-fav-off"
+      ],
+      "path": "species/SCEPTILE.json"
+    },
+    "TORCHIC": {
+      "speciesId": "TORCHIC",
+      "scenarioIds": [
+        "TORCHIC-lv30-fav-on",
+        "TORCHIC-lv30-fav-off",
+        "TORCHIC-lv50-fav-on",
+        "TORCHIC-lv50-fav-off",
+        "TORCHIC-lv60-fav-on",
+        "TORCHIC-lv60-fav-off"
+      ],
+      "path": "species/TORCHIC.json"
+    },
+    "COMBUSKEN": {
+      "speciesId": "COMBUSKEN",
+      "scenarioIds": [
+        "COMBUSKEN-lv30-fav-on",
+        "COMBUSKEN-lv30-fav-off",
+        "COMBUSKEN-lv50-fav-on",
+        "COMBUSKEN-lv50-fav-off",
+        "COMBUSKEN-lv60-fav-on",
+        "COMBUSKEN-lv60-fav-off"
+      ],
+      "path": "species/COMBUSKEN.json"
+    },
+    "BLAZIKEN": {
+      "speciesId": "BLAZIKEN",
+      "scenarioIds": [
+        "BLAZIKEN-lv30-fav-on",
+        "BLAZIKEN-lv30-fav-off",
+        "BLAZIKEN-lv50-fav-on",
+        "BLAZIKEN-lv50-fav-off",
+        "BLAZIKEN-lv60-fav-on",
+        "BLAZIKEN-lv60-fav-off"
+      ],
+      "path": "species/BLAZIKEN.json"
+    },
+    "MUDKIP": {
+      "speciesId": "MUDKIP",
+      "scenarioIds": [
+        "MUDKIP-lv30-fav-on",
+        "MUDKIP-lv30-fav-off",
+        "MUDKIP-lv50-fav-on",
+        "MUDKIP-lv50-fav-off",
+        "MUDKIP-lv60-fav-on",
+        "MUDKIP-lv60-fav-off"
+      ],
+      "path": "species/MUDKIP.json"
+    },
+    "MARSHTOMP": {
+      "speciesId": "MARSHTOMP",
+      "scenarioIds": [
+        "MARSHTOMP-lv30-fav-on",
+        "MARSHTOMP-lv30-fav-off",
+        "MARSHTOMP-lv50-fav-on",
+        "MARSHTOMP-lv50-fav-off",
+        "MARSHTOMP-lv60-fav-on",
+        "MARSHTOMP-lv60-fav-off"
+      ],
+      "path": "species/MARSHTOMP.json"
+    },
+    "SWAMPERT": {
+      "speciesId": "SWAMPERT",
+      "scenarioIds": [
+        "SWAMPERT-lv30-fav-on",
+        "SWAMPERT-lv30-fav-off",
+        "SWAMPERT-lv50-fav-on",
+        "SWAMPERT-lv50-fav-off",
+        "SWAMPERT-lv60-fav-on",
+        "SWAMPERT-lv60-fav-off"
+      ],
+      "path": "species/SWAMPERT.json"
+    },
+    "RALTS": {
+      "speciesId": "RALTS",
+      "scenarioIds": [
+        "RALTS-lv30-fav-on",
+        "RALTS-lv30-fav-off",
+        "RALTS-lv50-fav-on",
+        "RALTS-lv50-fav-off",
+        "RALTS-lv60-fav-on",
+        "RALTS-lv60-fav-off"
+      ],
+      "path": "species/RALTS.json"
+    },
+    "KIRLIA": {
+      "speciesId": "KIRLIA",
+      "scenarioIds": [
+        "KIRLIA-lv30-fav-on",
+        "KIRLIA-lv30-fav-off",
+        "KIRLIA-lv50-fav-on",
+        "KIRLIA-lv50-fav-off",
+        "KIRLIA-lv60-fav-on",
+        "KIRLIA-lv60-fav-off"
+      ],
+      "path": "species/KIRLIA.json"
+    },
+    "GARDEVOIR": {
+      "speciesId": "GARDEVOIR",
+      "scenarioIds": [
+        "GARDEVOIR-lv30-fav-on",
+        "GARDEVOIR-lv30-fav-off",
+        "GARDEVOIR-lv50-fav-on",
+        "GARDEVOIR-lv50-fav-off",
+        "GARDEVOIR-lv60-fav-on",
+        "GARDEVOIR-lv60-fav-off"
+      ],
+      "path": "species/GARDEVOIR.json"
+    },
+    "SLAKOTH": {
+      "speciesId": "SLAKOTH",
+      "scenarioIds": [
+        "SLAKOTH-lv30-fav-on",
+        "SLAKOTH-lv30-fav-off",
+        "SLAKOTH-lv50-fav-on",
+        "SLAKOTH-lv50-fav-off",
+        "SLAKOTH-lv60-fav-on",
+        "SLAKOTH-lv60-fav-off"
+      ],
+      "path": "species/SLAKOTH.json"
+    },
+    "VIGOROTH": {
+      "speciesId": "VIGOROTH",
+      "scenarioIds": [
+        "VIGOROTH-lv30-fav-on",
+        "VIGOROTH-lv30-fav-off",
+        "VIGOROTH-lv50-fav-on",
+        "VIGOROTH-lv50-fav-off",
+        "VIGOROTH-lv60-fav-on",
+        "VIGOROTH-lv60-fav-off"
+      ],
+      "path": "species/VIGOROTH.json"
+    },
+    "SLAKING": {
+      "speciesId": "SLAKING",
+      "scenarioIds": [
+        "SLAKING-lv30-fav-on",
+        "SLAKING-lv30-fav-off",
+        "SLAKING-lv50-fav-on",
+        "SLAKING-lv50-fav-off",
+        "SLAKING-lv60-fav-on",
+        "SLAKING-lv60-fav-off"
+      ],
+      "path": "species/SLAKING.json"
+    },
+    "SABLEYE": {
+      "speciesId": "SABLEYE",
+      "scenarioIds": [
+        "SABLEYE-lv30-fav-on",
+        "SABLEYE-lv30-fav-off",
+        "SABLEYE-lv50-fav-on",
+        "SABLEYE-lv50-fav-off",
+        "SABLEYE-lv60-fav-on",
+        "SABLEYE-lv60-fav-off"
+      ],
+      "path": "species/SABLEYE.json"
+    },
+    "MAWILE": {
+      "speciesId": "MAWILE",
+      "scenarioIds": [
+        "MAWILE-lv30-fav-on",
+        "MAWILE-lv30-fav-off",
+        "MAWILE-lv50-fav-on",
+        "MAWILE-lv50-fav-off",
+        "MAWILE-lv60-fav-on",
+        "MAWILE-lv60-fav-off"
+      ],
+      "path": "species/MAWILE.json"
+    },
+    "ARON": {
+      "speciesId": "ARON",
+      "scenarioIds": [
+        "ARON-lv30-fav-on",
+        "ARON-lv30-fav-off",
+        "ARON-lv50-fav-on",
+        "ARON-lv50-fav-off",
+        "ARON-lv60-fav-on",
+        "ARON-lv60-fav-off"
+      ],
+      "path": "species/ARON.json"
+    },
+    "LAIRON": {
+      "speciesId": "LAIRON",
+      "scenarioIds": [
+        "LAIRON-lv30-fav-on",
+        "LAIRON-lv30-fav-off",
+        "LAIRON-lv50-fav-on",
+        "LAIRON-lv50-fav-off",
+        "LAIRON-lv60-fav-on",
+        "LAIRON-lv60-fav-off"
+      ],
+      "path": "species/LAIRON.json"
+    },
+    "AGGRON": {
+      "speciesId": "AGGRON",
+      "scenarioIds": [
+        "AGGRON-lv30-fav-on",
+        "AGGRON-lv30-fav-off",
+        "AGGRON-lv50-fav-on",
+        "AGGRON-lv50-fav-off",
+        "AGGRON-lv60-fav-on",
+        "AGGRON-lv60-fav-off"
+      ],
+      "path": "species/AGGRON.json"
+    },
+    "PLUSLE": {
+      "speciesId": "PLUSLE",
+      "scenarioIds": [
+        "PLUSLE-lv30-fav-on",
+        "PLUSLE-lv30-fav-off",
+        "PLUSLE-lv50-fav-on",
+        "PLUSLE-lv50-fav-off",
+        "PLUSLE-lv60-fav-on",
+        "PLUSLE-lv60-fav-off"
+      ],
+      "path": "species/PLUSLE.json"
+    },
+    "MINUN": {
+      "speciesId": "MINUN",
+      "scenarioIds": [
+        "MINUN-lv30-fav-on",
+        "MINUN-lv30-fav-off",
+        "MINUN-lv50-fav-on",
+        "MINUN-lv50-fav-off",
+        "MINUN-lv60-fav-on",
+        "MINUN-lv60-fav-off"
+      ],
+      "path": "species/MINUN.json"
+    },
+    "GULPIN": {
+      "speciesId": "GULPIN",
+      "scenarioIds": [
+        "GULPIN-lv30-fav-on",
+        "GULPIN-lv30-fav-off",
+        "GULPIN-lv50-fav-on",
+        "GULPIN-lv50-fav-off",
+        "GULPIN-lv60-fav-on",
+        "GULPIN-lv60-fav-off"
+      ],
+      "path": "species/GULPIN.json"
+    },
+    "SWALOT": {
+      "speciesId": "SWALOT",
+      "scenarioIds": [
+        "SWALOT-lv30-fav-on",
+        "SWALOT-lv30-fav-off",
+        "SWALOT-lv50-fav-on",
+        "SWALOT-lv50-fav-off",
+        "SWALOT-lv60-fav-on",
+        "SWALOT-lv60-fav-off"
+      ],
+      "path": "species/SWALOT.json"
+    },
+    "TRAPINCH": {
+      "speciesId": "TRAPINCH",
+      "scenarioIds": [
+        "TRAPINCH-lv30-fav-on",
+        "TRAPINCH-lv30-fav-off",
+        "TRAPINCH-lv50-fav-on",
+        "TRAPINCH-lv50-fav-off",
+        "TRAPINCH-lv60-fav-on",
+        "TRAPINCH-lv60-fav-off"
+      ],
+      "path": "species/TRAPINCH.json"
+    },
+    "VIBRAVA": {
+      "speciesId": "VIBRAVA",
+      "scenarioIds": [
+        "VIBRAVA-lv30-fav-on",
+        "VIBRAVA-lv30-fav-off",
+        "VIBRAVA-lv50-fav-on",
+        "VIBRAVA-lv50-fav-off",
+        "VIBRAVA-lv60-fav-on",
+        "VIBRAVA-lv60-fav-off"
+      ],
+      "path": "species/VIBRAVA.json"
+    },
+    "FLYGON": {
+      "speciesId": "FLYGON",
+      "scenarioIds": [
+        "FLYGON-lv30-fav-on",
+        "FLYGON-lv30-fav-off",
+        "FLYGON-lv50-fav-on",
+        "FLYGON-lv50-fav-off",
+        "FLYGON-lv60-fav-on",
+        "FLYGON-lv60-fav-off"
+      ],
+      "path": "species/FLYGON.json"
+    },
+    "SWABLU": {
+      "speciesId": "SWABLU",
+      "scenarioIds": [
+        "SWABLU-lv30-fav-on",
+        "SWABLU-lv30-fav-off",
+        "SWABLU-lv50-fav-on",
+        "SWABLU-lv50-fav-off",
+        "SWABLU-lv60-fav-on",
+        "SWABLU-lv60-fav-off"
+      ],
+      "path": "species/SWABLU.json"
+    },
+    "ALTARIA": {
+      "speciesId": "ALTARIA",
+      "scenarioIds": [
+        "ALTARIA-lv30-fav-on",
+        "ALTARIA-lv30-fav-off",
+        "ALTARIA-lv50-fav-on",
+        "ALTARIA-lv50-fav-off",
+        "ALTARIA-lv60-fav-on",
+        "ALTARIA-lv60-fav-off"
+      ],
+      "path": "species/ALTARIA.json"
+    },
+    "SHUPPET": {
+      "speciesId": "SHUPPET",
+      "scenarioIds": [
+        "SHUPPET-lv30-fav-on",
+        "SHUPPET-lv30-fav-off",
+        "SHUPPET-lv50-fav-on",
+        "SHUPPET-lv50-fav-off",
+        "SHUPPET-lv60-fav-on",
+        "SHUPPET-lv60-fav-off"
+      ],
+      "path": "species/SHUPPET.json"
+    },
+    "BANETTE": {
+      "speciesId": "BANETTE",
+      "scenarioIds": [
+        "BANETTE-lv30-fav-on",
+        "BANETTE-lv30-fav-off",
+        "BANETTE-lv50-fav-on",
+        "BANETTE-lv50-fav-off",
+        "BANETTE-lv60-fav-on",
+        "BANETTE-lv60-fav-off"
+      ],
+      "path": "species/BANETTE.json"
+    },
+    "ABSOL": {
+      "speciesId": "ABSOL",
+      "scenarioIds": [
+        "ABSOL-lv30-fav-on",
+        "ABSOL-lv30-fav-off",
+        "ABSOL-lv50-fav-on",
+        "ABSOL-lv50-fav-off",
+        "ABSOL-lv60-fav-on",
+        "ABSOL-lv60-fav-off"
+      ],
+      "path": "species/ABSOL.json"
+    },
+    "WYNAUT": {
+      "speciesId": "WYNAUT",
+      "scenarioIds": [
+        "WYNAUT-lv30-fav-on",
+        "WYNAUT-lv30-fav-off",
+        "WYNAUT-lv50-fav-on",
+        "WYNAUT-lv50-fav-off",
+        "WYNAUT-lv60-fav-on",
+        "WYNAUT-lv60-fav-off"
+      ],
+      "path": "species/WYNAUT.json"
+    },
+    "SPHEAL": {
+      "speciesId": "SPHEAL",
+      "scenarioIds": [
+        "SPHEAL-lv30-fav-on",
+        "SPHEAL-lv30-fav-off",
+        "SPHEAL-lv50-fav-on",
+        "SPHEAL-lv50-fav-off",
+        "SPHEAL-lv60-fav-on",
+        "SPHEAL-lv60-fav-off"
+      ],
+      "path": "species/SPHEAL.json"
+    },
+    "SPHEAL_HOLIDAY": {
+      "speciesId": "SPHEAL_HOLIDAY",
+      "scenarioIds": [
+        "SPHEAL_HOLIDAY-lv30-fav-on",
+        "SPHEAL_HOLIDAY-lv30-fav-off",
+        "SPHEAL_HOLIDAY-lv50-fav-on",
+        "SPHEAL_HOLIDAY-lv50-fav-off",
+        "SPHEAL_HOLIDAY-lv60-fav-on",
+        "SPHEAL_HOLIDAY-lv60-fav-off"
+      ],
+      "path": "species/SPHEAL_HOLIDAY.json"
+    },
+    "SEALEO": {
+      "speciesId": "SEALEO",
+      "scenarioIds": [
+        "SEALEO-lv30-fav-on",
+        "SEALEO-lv30-fav-off",
+        "SEALEO-lv50-fav-on",
+        "SEALEO-lv50-fav-off",
+        "SEALEO-lv60-fav-on",
+        "SEALEO-lv60-fav-off"
+      ],
+      "path": "species/SEALEO.json"
+    },
+    "WALREIN": {
+      "speciesId": "WALREIN",
+      "scenarioIds": [
+        "WALREIN-lv30-fav-on",
+        "WALREIN-lv30-fav-off",
+        "WALREIN-lv50-fav-on",
+        "WALREIN-lv50-fav-off",
+        "WALREIN-lv60-fav-on",
+        "WALREIN-lv60-fav-off"
+      ],
+      "path": "species/WALREIN.json"
+    },
+    "BAGON": {
+      "speciesId": "BAGON",
+      "scenarioIds": [
+        "BAGON-lv30-fav-on",
+        "BAGON-lv30-fav-off",
+        "BAGON-lv50-fav-on",
+        "BAGON-lv50-fav-off",
+        "BAGON-lv60-fav-on",
+        "BAGON-lv60-fav-off"
+      ],
+      "path": "species/BAGON.json"
+    },
+    "SHELGON": {
+      "speciesId": "SHELGON",
+      "scenarioIds": [
+        "SHELGON-lv30-fav-on",
+        "SHELGON-lv30-fav-off",
+        "SHELGON-lv50-fav-on",
+        "SHELGON-lv50-fav-off",
+        "SHELGON-lv60-fav-on",
+        "SHELGON-lv60-fav-off"
+      ],
+      "path": "species/SHELGON.json"
+    },
+    "SALAMENCE": {
+      "speciesId": "SALAMENCE",
+      "scenarioIds": [
+        "SALAMENCE-lv30-fav-on",
+        "SALAMENCE-lv30-fav-off",
+        "SALAMENCE-lv50-fav-on",
+        "SALAMENCE-lv50-fav-off",
+        "SALAMENCE-lv60-fav-on",
+        "SALAMENCE-lv60-fav-off"
+      ],
+      "path": "species/SALAMENCE.json"
+    },
+    "LATIAS": {
+      "speciesId": "LATIAS",
+      "scenarioIds": [
+        "LATIAS-lv30-fav-on",
+        "LATIAS-lv30-fav-off",
+        "LATIAS-lv50-fav-on",
+        "LATIAS-lv50-fav-off",
+        "LATIAS-lv60-fav-on",
+        "LATIAS-lv60-fav-off"
+      ],
+      "path": "species/LATIAS.json"
+    },
+    "SHINX": {
+      "speciesId": "SHINX",
+      "scenarioIds": [
+        "SHINX-lv30-fav-on",
+        "SHINX-lv30-fav-off",
+        "SHINX-lv50-fav-on",
+        "SHINX-lv50-fav-off",
+        "SHINX-lv60-fav-on",
+        "SHINX-lv60-fav-off"
+      ],
+      "path": "species/SHINX.json"
+    },
+    "LUXIO": {
+      "speciesId": "LUXIO",
+      "scenarioIds": [
+        "LUXIO-lv30-fav-on",
+        "LUXIO-lv30-fav-off",
+        "LUXIO-lv50-fav-on",
+        "LUXIO-lv50-fav-off",
+        "LUXIO-lv60-fav-on",
+        "LUXIO-lv60-fav-off"
+      ],
+      "path": "species/LUXIO.json"
+    },
+    "LUXRAY": {
+      "speciesId": "LUXRAY",
+      "scenarioIds": [
+        "LUXRAY-lv30-fav-on",
+        "LUXRAY-lv30-fav-off",
+        "LUXRAY-lv50-fav-on",
+        "LUXRAY-lv50-fav-off",
+        "LUXRAY-lv60-fav-on",
+        "LUXRAY-lv60-fav-off"
+      ],
+      "path": "species/LUXRAY.json"
+    },
+    "DRIFLOON": {
+      "speciesId": "DRIFLOON",
+      "scenarioIds": [
+        "DRIFLOON-lv30-fav-on",
+        "DRIFLOON-lv30-fav-off",
+        "DRIFLOON-lv50-fav-on",
+        "DRIFLOON-lv50-fav-off",
+        "DRIFLOON-lv60-fav-on",
+        "DRIFLOON-lv60-fav-off"
+      ],
+      "path": "species/DRIFLOON.json"
+    },
+    "DRIFBLIM": {
+      "speciesId": "DRIFBLIM",
+      "scenarioIds": [
+        "DRIFBLIM-lv30-fav-on",
+        "DRIFBLIM-lv30-fav-off",
+        "DRIFBLIM-lv50-fav-on",
+        "DRIFBLIM-lv50-fav-off",
+        "DRIFBLIM-lv60-fav-on",
+        "DRIFBLIM-lv60-fav-off"
+      ],
+      "path": "species/DRIFBLIM.json"
+    },
+    "HONCHKROW": {
+      "speciesId": "HONCHKROW",
+      "scenarioIds": [
+        "HONCHKROW-lv30-fav-on",
+        "HONCHKROW-lv30-fav-off",
+        "HONCHKROW-lv50-fav-on",
+        "HONCHKROW-lv50-fav-off",
+        "HONCHKROW-lv60-fav-on",
+        "HONCHKROW-lv60-fav-off"
+      ],
+      "path": "species/HONCHKROW.json"
+    },
+    "BONSLY": {
+      "speciesId": "BONSLY",
+      "scenarioIds": [
+        "BONSLY-lv30-fav-on",
+        "BONSLY-lv30-fav-off",
+        "BONSLY-lv50-fav-on",
+        "BONSLY-lv50-fav-off",
+        "BONSLY-lv60-fav-on",
+        "BONSLY-lv60-fav-off"
+      ],
+      "path": "species/BONSLY.json"
+    },
+    "MIME_JR": {
+      "speciesId": "MIME_JR",
+      "scenarioIds": [
+        "MIME_JR-lv30-fav-on",
+        "MIME_JR-lv30-fav-off",
+        "MIME_JR-lv50-fav-on",
+        "MIME_JR-lv50-fav-off",
+        "MIME_JR-lv60-fav-on",
+        "MIME_JR-lv60-fav-off"
+      ],
+      "path": "species/MIME_JR.json"
+    },
+    "HAPPINY": {
+      "speciesId": "HAPPINY",
+      "scenarioIds": [
+        "HAPPINY-lv30-fav-on",
+        "HAPPINY-lv30-fav-off",
+        "HAPPINY-lv50-fav-on",
+        "HAPPINY-lv50-fav-off",
+        "HAPPINY-lv60-fav-on",
+        "HAPPINY-lv60-fav-off"
+      ],
+      "path": "species/HAPPINY.json"
+    },
+    "SPIRITOMB": {
+      "speciesId": "SPIRITOMB",
+      "scenarioIds": [
+        "SPIRITOMB-lv30-fav-on",
+        "SPIRITOMB-lv30-fav-off",
+        "SPIRITOMB-lv50-fav-on",
+        "SPIRITOMB-lv50-fav-off",
+        "SPIRITOMB-lv60-fav-on",
+        "SPIRITOMB-lv60-fav-off"
+      ],
+      "path": "species/SPIRITOMB.json"
+    },
+    "RIOLU": {
+      "speciesId": "RIOLU",
+      "scenarioIds": [
+        "RIOLU-lv30-fav-on",
+        "RIOLU-lv30-fav-off",
+        "RIOLU-lv50-fav-on",
+        "RIOLU-lv50-fav-off",
+        "RIOLU-lv60-fav-on",
+        "RIOLU-lv60-fav-off"
+      ],
+      "path": "species/RIOLU.json"
+    },
+    "LUCARIO": {
+      "speciesId": "LUCARIO",
+      "scenarioIds": [
+        "LUCARIO-lv30-fav-on",
+        "LUCARIO-lv30-fav-off",
+        "LUCARIO-lv50-fav-on",
+        "LUCARIO-lv50-fav-off",
+        "LUCARIO-lv60-fav-on",
+        "LUCARIO-lv60-fav-off"
+      ],
+      "path": "species/LUCARIO.json"
+    },
+    "CROAGUNK": {
+      "speciesId": "CROAGUNK",
+      "scenarioIds": [
+        "CROAGUNK-lv30-fav-on",
+        "CROAGUNK-lv30-fav-off",
+        "CROAGUNK-lv50-fav-on",
+        "CROAGUNK-lv50-fav-off",
+        "CROAGUNK-lv60-fav-on",
+        "CROAGUNK-lv60-fav-off"
+      ],
+      "path": "species/CROAGUNK.json"
+    },
+    "TOXICROAK": {
+      "speciesId": "TOXICROAK",
+      "scenarioIds": [
+        "TOXICROAK-lv30-fav-on",
+        "TOXICROAK-lv30-fav-off",
+        "TOXICROAK-lv50-fav-on",
+        "TOXICROAK-lv50-fav-off",
+        "TOXICROAK-lv60-fav-on",
+        "TOXICROAK-lv60-fav-off"
+      ],
+      "path": "species/TOXICROAK.json"
+    },
+    "SNOVER": {
+      "speciesId": "SNOVER",
+      "scenarioIds": [
+        "SNOVER-lv30-fav-on",
+        "SNOVER-lv30-fav-off",
+        "SNOVER-lv50-fav-on",
+        "SNOVER-lv50-fav-off",
+        "SNOVER-lv60-fav-on",
+        "SNOVER-lv60-fav-off"
+      ],
+      "path": "species/SNOVER.json"
+    },
+    "ABOMASNOW": {
+      "speciesId": "ABOMASNOW",
+      "scenarioIds": [
+        "ABOMASNOW-lv30-fav-on",
+        "ABOMASNOW-lv30-fav-off",
+        "ABOMASNOW-lv50-fav-on",
+        "ABOMASNOW-lv50-fav-off",
+        "ABOMASNOW-lv60-fav-on",
+        "ABOMASNOW-lv60-fav-off"
+      ],
+      "path": "species/ABOMASNOW.json"
+    },
+    "WEAVILE": {
+      "speciesId": "WEAVILE",
+      "scenarioIds": [
+        "WEAVILE-lv30-fav-on",
+        "WEAVILE-lv30-fav-off",
+        "WEAVILE-lv50-fav-on",
+        "WEAVILE-lv50-fav-off",
+        "WEAVILE-lv60-fav-on",
+        "WEAVILE-lv60-fav-off"
+      ],
+      "path": "species/WEAVILE.json"
+    },
+    "MAGNEZONE": {
+      "speciesId": "MAGNEZONE",
+      "scenarioIds": [
+        "MAGNEZONE-lv30-fav-on",
+        "MAGNEZONE-lv30-fav-off",
+        "MAGNEZONE-lv50-fav-on",
+        "MAGNEZONE-lv50-fav-off",
+        "MAGNEZONE-lv60-fav-on",
+        "MAGNEZONE-lv60-fav-off"
+      ],
+      "path": "species/MAGNEZONE.json"
+    },
+    "TOGEKISS": {
+      "speciesId": "TOGEKISS",
+      "scenarioIds": [
+        "TOGEKISS-lv30-fav-on",
+        "TOGEKISS-lv30-fav-off",
+        "TOGEKISS-lv50-fav-on",
+        "TOGEKISS-lv50-fav-off",
+        "TOGEKISS-lv60-fav-on",
+        "TOGEKISS-lv60-fav-off"
+      ],
+      "path": "species/TOGEKISS.json"
+    },
+    "LEAFEON": {
+      "speciesId": "LEAFEON",
+      "scenarioIds": [
+        "LEAFEON-lv30-fav-on",
+        "LEAFEON-lv30-fav-off",
+        "LEAFEON-lv50-fav-on",
+        "LEAFEON-lv50-fav-off",
+        "LEAFEON-lv60-fav-on",
+        "LEAFEON-lv60-fav-off"
+      ],
+      "path": "species/LEAFEON.json"
+    },
+    "GLACEON": {
+      "speciesId": "GLACEON",
+      "scenarioIds": [
+        "GLACEON-lv30-fav-on",
+        "GLACEON-lv30-fav-off",
+        "GLACEON-lv50-fav-on",
+        "GLACEON-lv50-fav-off",
+        "GLACEON-lv60-fav-on",
+        "GLACEON-lv60-fav-off"
+      ],
+      "path": "species/GLACEON.json"
+    },
+    "GALLADE": {
+      "speciesId": "GALLADE",
+      "scenarioIds": [
+        "GALLADE-lv30-fav-on",
+        "GALLADE-lv30-fav-off",
+        "GALLADE-lv50-fav-on",
+        "GALLADE-lv50-fav-off",
+        "GALLADE-lv60-fav-on",
+        "GALLADE-lv60-fav-off"
+      ],
+      "path": "species/GALLADE.json"
+    },
+    "CRESSELIA": {
+      "speciesId": "CRESSELIA",
+      "scenarioIds": [
+        "CRESSELIA-lv30-fav-on",
+        "CRESSELIA-lv30-fav-off",
+        "CRESSELIA-lv50-fav-on",
+        "CRESSELIA-lv50-fav-off",
+        "CRESSELIA-lv60-fav-on",
+        "CRESSELIA-lv60-fav-off"
+      ],
+      "path": "species/CRESSELIA.json"
+    },
+    "DARKRAI": {
+      "speciesId": "DARKRAI",
+      "scenarioIds": [
+        "DARKRAI-lv30-fav-on",
+        "DARKRAI-lv30-fav-off",
+        "DARKRAI-lv50-fav-on",
+        "DARKRAI-lv50-fav-off",
+        "DARKRAI-lv60-fav-on",
+        "DARKRAI-lv60-fav-off"
+      ],
+      "path": "species/DARKRAI.json"
+    },
+    "MUNNA": {
+      "speciesId": "MUNNA",
+      "scenarioIds": [
+        "MUNNA-lv30-fav-on",
+        "MUNNA-lv30-fav-off",
+        "MUNNA-lv50-fav-on",
+        "MUNNA-lv50-fav-off",
+        "MUNNA-lv60-fav-on",
+        "MUNNA-lv60-fav-off"
+      ],
+      "path": "species/MUNNA.json"
+    },
+    "MUSHARNA": {
+      "speciesId": "MUSHARNA",
+      "scenarioIds": [
+        "MUSHARNA-lv30-fav-on",
+        "MUSHARNA-lv30-fav-off",
+        "MUSHARNA-lv50-fav-on",
+        "MUSHARNA-lv50-fav-off",
+        "MUSHARNA-lv60-fav-on",
+        "MUSHARNA-lv60-fav-off"
+      ],
+      "path": "species/MUSHARNA.json"
+    },
+    "DWEBBLE": {
+      "speciesId": "DWEBBLE",
+      "scenarioIds": [
+        "DWEBBLE-lv30-fav-on",
+        "DWEBBLE-lv30-fav-off",
+        "DWEBBLE-lv50-fav-on",
+        "DWEBBLE-lv50-fav-off",
+        "DWEBBLE-lv60-fav-on",
+        "DWEBBLE-lv60-fav-off"
+      ],
+      "path": "species/DWEBBLE.json"
+    },
+    "CRUSTLE": {
+      "speciesId": "CRUSTLE",
+      "scenarioIds": [
+        "CRUSTLE-lv30-fav-on",
+        "CRUSTLE-lv30-fav-off",
+        "CRUSTLE-lv50-fav-on",
+        "CRUSTLE-lv50-fav-off",
+        "CRUSTLE-lv60-fav-on",
+        "CRUSTLE-lv60-fav-off"
+      ],
+      "path": "species/CRUSTLE.json"
+    },
+    "RUFFLET": {
+      "speciesId": "RUFFLET",
+      "scenarioIds": [
+        "RUFFLET-lv30-fav-on",
+        "RUFFLET-lv30-fav-off",
+        "RUFFLET-lv50-fav-on",
+        "RUFFLET-lv50-fav-off",
+        "RUFFLET-lv60-fav-on",
+        "RUFFLET-lv60-fav-off"
+      ],
+      "path": "species/RUFFLET.json"
+    },
+    "BRAVIARY": {
+      "speciesId": "BRAVIARY",
+      "scenarioIds": [
+        "BRAVIARY-lv30-fav-on",
+        "BRAVIARY-lv30-fav-off",
+        "BRAVIARY-lv50-fav-on",
+        "BRAVIARY-lv50-fav-off",
+        "BRAVIARY-lv60-fav-on",
+        "BRAVIARY-lv60-fav-off"
+      ],
+      "path": "species/BRAVIARY.json"
+    },
+    "TYRUNT": {
+      "speciesId": "TYRUNT",
+      "scenarioIds": [
+        "TYRUNT-lv30-fav-on",
+        "TYRUNT-lv30-fav-off",
+        "TYRUNT-lv50-fav-on",
+        "TYRUNT-lv50-fav-off",
+        "TYRUNT-lv60-fav-on",
+        "TYRUNT-lv60-fav-off"
+      ],
+      "path": "species/TYRUNT.json"
+    },
+    "TYRANTRUM": {
+      "speciesId": "TYRANTRUM",
+      "scenarioIds": [
+        "TYRANTRUM-lv30-fav-on",
+        "TYRANTRUM-lv30-fav-off",
+        "TYRANTRUM-lv50-fav-on",
+        "TYRANTRUM-lv50-fav-off",
+        "TYRANTRUM-lv60-fav-on",
+        "TYRANTRUM-lv60-fav-off"
+      ],
+      "path": "species/TYRANTRUM.json"
+    },
+    "SYLVEON": {
+      "speciesId": "SYLVEON",
+      "scenarioIds": [
+        "SYLVEON-lv30-fav-on",
+        "SYLVEON-lv30-fav-off",
+        "SYLVEON-lv50-fav-on",
+        "SYLVEON-lv50-fav-off",
+        "SYLVEON-lv60-fav-on",
+        "SYLVEON-lv60-fav-off"
+      ],
+      "path": "species/SYLVEON.json"
+    },
+    "DEDENNE": {
+      "speciesId": "DEDENNE",
+      "scenarioIds": [
+        "DEDENNE-lv30-fav-on",
+        "DEDENNE-lv30-fav-off",
+        "DEDENNE-lv50-fav-on",
+        "DEDENNE-lv50-fav-off",
+        "DEDENNE-lv60-fav-on",
+        "DEDENNE-lv60-fav-off"
+      ],
+      "path": "species/DEDENNE.json"
+    },
+    "PUMPKABOO_LARGE": {
+      "speciesId": "PUMPKABOO_LARGE",
+      "scenarioIds": [
+        "PUMPKABOO_LARGE-lv30-fav-on",
+        "PUMPKABOO_LARGE-lv30-fav-off",
+        "PUMPKABOO_LARGE-lv50-fav-on",
+        "PUMPKABOO_LARGE-lv50-fav-off",
+        "PUMPKABOO_LARGE-lv60-fav-on",
+        "PUMPKABOO_LARGE-lv60-fav-off"
+      ],
+      "path": "species/PUMPKABOO_LARGE.json"
+    },
+    "PUMPKABOO_SMALL": {
+      "speciesId": "PUMPKABOO_SMALL",
+      "scenarioIds": [
+        "PUMPKABOO_SMALL-lv30-fav-on",
+        "PUMPKABOO_SMALL-lv30-fav-off",
+        "PUMPKABOO_SMALL-lv50-fav-on",
+        "PUMPKABOO_SMALL-lv50-fav-off",
+        "PUMPKABOO_SMALL-lv60-fav-on",
+        "PUMPKABOO_SMALL-lv60-fav-off"
+      ],
+      "path": "species/PUMPKABOO_SMALL.json"
+    },
+    "PUMPKABOO_JUMBO": {
+      "speciesId": "PUMPKABOO_JUMBO",
+      "scenarioIds": [
+        "PUMPKABOO_JUMBO-lv30-fav-on",
+        "PUMPKABOO_JUMBO-lv30-fav-off",
+        "PUMPKABOO_JUMBO-lv50-fav-on",
+        "PUMPKABOO_JUMBO-lv50-fav-off",
+        "PUMPKABOO_JUMBO-lv60-fav-on",
+        "PUMPKABOO_JUMBO-lv60-fav-off"
+      ],
+      "path": "species/PUMPKABOO_JUMBO.json"
+    },
+    "PUMPKABOO_MEDIUM": {
+      "speciesId": "PUMPKABOO_MEDIUM",
+      "scenarioIds": [
+        "PUMPKABOO_MEDIUM-lv30-fav-on",
+        "PUMPKABOO_MEDIUM-lv30-fav-off",
+        "PUMPKABOO_MEDIUM-lv50-fav-on",
+        "PUMPKABOO_MEDIUM-lv50-fav-off",
+        "PUMPKABOO_MEDIUM-lv60-fav-on",
+        "PUMPKABOO_MEDIUM-lv60-fav-off"
+      ],
+      "path": "species/PUMPKABOO_MEDIUM.json"
+    },
+    "GOURGEIST_LARGE": {
+      "speciesId": "GOURGEIST_LARGE",
+      "scenarioIds": [
+        "GOURGEIST_LARGE-lv30-fav-on",
+        "GOURGEIST_LARGE-lv30-fav-off",
+        "GOURGEIST_LARGE-lv50-fav-on",
+        "GOURGEIST_LARGE-lv50-fav-off",
+        "GOURGEIST_LARGE-lv60-fav-on",
+        "GOURGEIST_LARGE-lv60-fav-off"
+      ],
+      "path": "species/GOURGEIST_LARGE.json"
+    },
+    "GOURGEIST_SMALL": {
+      "speciesId": "GOURGEIST_SMALL",
+      "scenarioIds": [
+        "GOURGEIST_SMALL-lv30-fav-on",
+        "GOURGEIST_SMALL-lv30-fav-off",
+        "GOURGEIST_SMALL-lv50-fav-on",
+        "GOURGEIST_SMALL-lv50-fav-off",
+        "GOURGEIST_SMALL-lv60-fav-on",
+        "GOURGEIST_SMALL-lv60-fav-off"
+      ],
+      "path": "species/GOURGEIST_SMALL.json"
+    },
+    "GOURGEIST_JUMBO": {
+      "speciesId": "GOURGEIST_JUMBO",
+      "scenarioIds": [
+        "GOURGEIST_JUMBO-lv30-fav-on",
+        "GOURGEIST_JUMBO-lv30-fav-off",
+        "GOURGEIST_JUMBO-lv50-fav-on",
+        "GOURGEIST_JUMBO-lv50-fav-off",
+        "GOURGEIST_JUMBO-lv60-fav-on",
+        "GOURGEIST_JUMBO-lv60-fav-off"
+      ],
+      "path": "species/GOURGEIST_JUMBO.json"
+    },
+    "GOURGEIST_MEDIUM": {
+      "speciesId": "GOURGEIST_MEDIUM",
+      "scenarioIds": [
+        "GOURGEIST_MEDIUM-lv30-fav-on",
+        "GOURGEIST_MEDIUM-lv30-fav-off",
+        "GOURGEIST_MEDIUM-lv50-fav-on",
+        "GOURGEIST_MEDIUM-lv50-fav-off",
+        "GOURGEIST_MEDIUM-lv60-fav-on",
+        "GOURGEIST_MEDIUM-lv60-fav-off"
+      ],
+      "path": "species/GOURGEIST_MEDIUM.json"
+    },
+    "NOIBAT": {
+      "speciesId": "NOIBAT",
+      "scenarioIds": [
+        "NOIBAT-lv30-fav-on",
+        "NOIBAT-lv30-fav-off",
+        "NOIBAT-lv50-fav-on",
+        "NOIBAT-lv50-fav-off",
+        "NOIBAT-lv60-fav-on",
+        "NOIBAT-lv60-fav-off"
+      ],
+      "path": "species/NOIBAT.json"
+    },
+    "NOIVERN": {
+      "speciesId": "NOIVERN",
+      "scenarioIds": [
+        "NOIVERN-lv30-fav-on",
+        "NOIVERN-lv30-fav-off",
+        "NOIVERN-lv50-fav-on",
+        "NOIVERN-lv50-fav-off",
+        "NOIVERN-lv60-fav-on",
+        "NOIVERN-lv60-fav-off"
+      ],
+      "path": "species/NOIVERN.json"
+    },
+    "GRUBBIN": {
+      "speciesId": "GRUBBIN",
+      "scenarioIds": [
+        "GRUBBIN-lv30-fav-on",
+        "GRUBBIN-lv30-fav-off",
+        "GRUBBIN-lv50-fav-on",
+        "GRUBBIN-lv50-fav-off",
+        "GRUBBIN-lv60-fav-on",
+        "GRUBBIN-lv60-fav-off"
+      ],
+      "path": "species/GRUBBIN.json"
+    },
+    "CHARJABUG": {
+      "speciesId": "CHARJABUG",
+      "scenarioIds": [
+        "CHARJABUG-lv30-fav-on",
+        "CHARJABUG-lv30-fav-off",
+        "CHARJABUG-lv50-fav-on",
+        "CHARJABUG-lv50-fav-off",
+        "CHARJABUG-lv60-fav-on",
+        "CHARJABUG-lv60-fav-off"
+      ],
+      "path": "species/CHARJABUG.json"
+    },
+    "VIKAVOLT": {
+      "speciesId": "VIKAVOLT",
+      "scenarioIds": [
+        "VIKAVOLT-lv30-fav-on",
+        "VIKAVOLT-lv30-fav-off",
+        "VIKAVOLT-lv50-fav-on",
+        "VIKAVOLT-lv50-fav-off",
+        "VIKAVOLT-lv60-fav-on",
+        "VIKAVOLT-lv60-fav-off"
+      ],
+      "path": "species/VIKAVOLT.json"
+    },
+    "CUTIEFLY": {
+      "speciesId": "CUTIEFLY",
+      "scenarioIds": [
+        "CUTIEFLY-lv30-fav-on",
+        "CUTIEFLY-lv30-fav-off",
+        "CUTIEFLY-lv50-fav-on",
+        "CUTIEFLY-lv50-fav-off",
+        "CUTIEFLY-lv60-fav-on",
+        "CUTIEFLY-lv60-fav-off"
+      ],
+      "path": "species/CUTIEFLY.json"
+    },
+    "RIBOMBEE": {
+      "speciesId": "RIBOMBEE",
+      "scenarioIds": [
+        "RIBOMBEE-lv30-fav-on",
+        "RIBOMBEE-lv30-fav-off",
+        "RIBOMBEE-lv50-fav-on",
+        "RIBOMBEE-lv50-fav-off",
+        "RIBOMBEE-lv60-fav-on",
+        "RIBOMBEE-lv60-fav-off"
+      ],
+      "path": "species/RIBOMBEE.json"
+    },
+    "STUFFUL": {
+      "speciesId": "STUFFUL",
+      "scenarioIds": [
+        "STUFFUL-lv30-fav-on",
+        "STUFFUL-lv30-fav-off",
+        "STUFFUL-lv50-fav-on",
+        "STUFFUL-lv50-fav-off",
+        "STUFFUL-lv60-fav-on",
+        "STUFFUL-lv60-fav-off"
+      ],
+      "path": "species/STUFFUL.json"
+    },
+    "BEWEAR": {
+      "speciesId": "BEWEAR",
+      "scenarioIds": [
+        "BEWEAR-lv30-fav-on",
+        "BEWEAR-lv30-fav-off",
+        "BEWEAR-lv50-fav-on",
+        "BEWEAR-lv50-fav-off",
+        "BEWEAR-lv60-fav-on",
+        "BEWEAR-lv60-fav-off"
+      ],
+      "path": "species/BEWEAR.json"
+    },
+    "COMFEY": {
+      "speciesId": "COMFEY",
+      "scenarioIds": [
+        "COMFEY-lv30-fav-on",
+        "COMFEY-lv30-fav-off",
+        "COMFEY-lv50-fav-on",
+        "COMFEY-lv50-fav-off",
+        "COMFEY-lv60-fav-on",
+        "COMFEY-lv60-fav-off"
+      ],
+      "path": "species/COMFEY.json"
+    },
+    "TOGEDEMARU": {
+      "speciesId": "TOGEDEMARU",
+      "scenarioIds": [
+        "TOGEDEMARU-lv30-fav-on",
+        "TOGEDEMARU-lv30-fav-off",
+        "TOGEDEMARU-lv50-fav-on",
+        "TOGEDEMARU-lv50-fav-off",
+        "TOGEDEMARU-lv60-fav-on",
+        "TOGEDEMARU-lv60-fav-off"
+      ],
+      "path": "species/TOGEDEMARU.json"
+    },
+    "MIMIKYU": {
+      "speciesId": "MIMIKYU",
+      "scenarioIds": [
+        "MIMIKYU-lv30-fav-on",
+        "MIMIKYU-lv30-fav-off",
+        "MIMIKYU-lv50-fav-on",
+        "MIMIKYU-lv50-fav-off",
+        "MIMIKYU-lv60-fav-on",
+        "MIMIKYU-lv60-fav-off"
+      ],
+      "path": "species/MIMIKYU.json"
+    },
+    "DRAMPA": {
+      "speciesId": "DRAMPA",
+      "scenarioIds": [
+        "DRAMPA-lv30-fav-on",
+        "DRAMPA-lv30-fav-off",
+        "DRAMPA-lv50-fav-on",
+        "DRAMPA-lv50-fav-off",
+        "DRAMPA-lv60-fav-on",
+        "DRAMPA-lv60-fav-off"
+      ],
+      "path": "species/DRAMPA.json"
+    },
+    "CRAMORANT": {
+      "speciesId": "CRAMORANT",
+      "scenarioIds": [
+        "CRAMORANT-lv30-fav-on",
+        "CRAMORANT-lv30-fav-off",
+        "CRAMORANT-lv50-fav-on",
+        "CRAMORANT-lv50-fav-off",
+        "CRAMORANT-lv60-fav-on",
+        "CRAMORANT-lv60-fav-off"
+      ],
+      "path": "species/CRAMORANT.json"
+    },
+    "TOXEL": {
+      "speciesId": "TOXEL",
+      "scenarioIds": [
+        "TOXEL-lv30-fav-on",
+        "TOXEL-lv30-fav-off",
+        "TOXEL-lv50-fav-on",
+        "TOXEL-lv50-fav-off",
+        "TOXEL-lv60-fav-on",
+        "TOXEL-lv60-fav-off"
+      ],
+      "path": "species/TOXEL.json"
+    },
+    "TOXTRICITY_AMPED": {
+      "speciesId": "TOXTRICITY_AMPED",
+      "scenarioIds": [
+        "TOXTRICITY_AMPED-lv30-fav-on",
+        "TOXTRICITY_AMPED-lv30-fav-off",
+        "TOXTRICITY_AMPED-lv50-fav-on",
+        "TOXTRICITY_AMPED-lv50-fav-off",
+        "TOXTRICITY_AMPED-lv60-fav-on",
+        "TOXTRICITY_AMPED-lv60-fav-off"
+      ],
+      "path": "species/TOXTRICITY_AMPED.json"
+    },
+    "TOXTRICITY_LOW_KEY": {
+      "speciesId": "TOXTRICITY_LOW_KEY",
+      "scenarioIds": [
+        "TOXTRICITY_LOW_KEY-lv30-fav-on",
+        "TOXTRICITY_LOW_KEY-lv30-fav-off",
+        "TOXTRICITY_LOW_KEY-lv50-fav-on",
+        "TOXTRICITY_LOW_KEY-lv50-fav-off",
+        "TOXTRICITY_LOW_KEY-lv60-fav-on",
+        "TOXTRICITY_LOW_KEY-lv60-fav-off"
+      ],
+      "path": "species/TOXTRICITY_LOW_KEY.json"
+    },
+    "SPRIGATITO": {
+      "speciesId": "SPRIGATITO",
+      "scenarioIds": [
+        "SPRIGATITO-lv30-fav-on",
+        "SPRIGATITO-lv30-fav-off",
+        "SPRIGATITO-lv50-fav-on",
+        "SPRIGATITO-lv50-fav-off",
+        "SPRIGATITO-lv60-fav-on",
+        "SPRIGATITO-lv60-fav-off"
+      ],
+      "path": "species/SPRIGATITO.json"
+    },
+    "FLORAGATO": {
+      "speciesId": "FLORAGATO",
+      "scenarioIds": [
+        "FLORAGATO-lv30-fav-on",
+        "FLORAGATO-lv30-fav-off",
+        "FLORAGATO-lv50-fav-on",
+        "FLORAGATO-lv50-fav-off",
+        "FLORAGATO-lv60-fav-on",
+        "FLORAGATO-lv60-fav-off"
+      ],
+      "path": "species/FLORAGATO.json"
+    },
+    "MEOWSCARADA": {
+      "speciesId": "MEOWSCARADA",
+      "scenarioIds": [
+        "MEOWSCARADA-lv30-fav-on",
+        "MEOWSCARADA-lv30-fav-off",
+        "MEOWSCARADA-lv50-fav-on",
+        "MEOWSCARADA-lv50-fav-off",
+        "MEOWSCARADA-lv60-fav-on",
+        "MEOWSCARADA-lv60-fav-off"
+      ],
+      "path": "species/MEOWSCARADA.json"
+    },
+    "FUECOCO": {
+      "speciesId": "FUECOCO",
+      "scenarioIds": [
+        "FUECOCO-lv30-fav-on",
+        "FUECOCO-lv30-fav-off",
+        "FUECOCO-lv50-fav-on",
+        "FUECOCO-lv50-fav-off",
+        "FUECOCO-lv60-fav-on",
+        "FUECOCO-lv60-fav-off"
+      ],
+      "path": "species/FUECOCO.json"
+    },
+    "CROCALOR": {
+      "speciesId": "CROCALOR",
+      "scenarioIds": [
+        "CROCALOR-lv30-fav-on",
+        "CROCALOR-lv30-fav-off",
+        "CROCALOR-lv50-fav-on",
+        "CROCALOR-lv50-fav-off",
+        "CROCALOR-lv60-fav-on",
+        "CROCALOR-lv60-fav-off"
+      ],
+      "path": "species/CROCALOR.json"
+    },
+    "SKELEDIRGE": {
+      "speciesId": "SKELEDIRGE",
+      "scenarioIds": [
+        "SKELEDIRGE-lv30-fav-on",
+        "SKELEDIRGE-lv30-fav-off",
+        "SKELEDIRGE-lv50-fav-on",
+        "SKELEDIRGE-lv50-fav-off",
+        "SKELEDIRGE-lv60-fav-on",
+        "SKELEDIRGE-lv60-fav-off"
+      ],
+      "path": "species/SKELEDIRGE.json"
+    },
+    "QUAXLY": {
+      "speciesId": "QUAXLY",
+      "scenarioIds": [
+        "QUAXLY-lv30-fav-on",
+        "QUAXLY-lv30-fav-off",
+        "QUAXLY-lv50-fav-on",
+        "QUAXLY-lv50-fav-off",
+        "QUAXLY-lv60-fav-on",
+        "QUAXLY-lv60-fav-off"
+      ],
+      "path": "species/QUAXLY.json"
+    },
+    "QUAXWELL": {
+      "speciesId": "QUAXWELL",
+      "scenarioIds": [
+        "QUAXWELL-lv30-fav-on",
+        "QUAXWELL-lv30-fav-off",
+        "QUAXWELL-lv50-fav-on",
+        "QUAXWELL-lv50-fav-off",
+        "QUAXWELL-lv60-fav-on",
+        "QUAXWELL-lv60-fav-off"
+      ],
+      "path": "species/QUAXWELL.json"
+    },
+    "QUAQUAVAL": {
+      "speciesId": "QUAQUAVAL",
+      "scenarioIds": [
+        "QUAQUAVAL-lv30-fav-on",
+        "QUAQUAVAL-lv30-fav-off",
+        "QUAQUAVAL-lv50-fav-on",
+        "QUAQUAVAL-lv50-fav-off",
+        "QUAQUAVAL-lv60-fav-on",
+        "QUAQUAVAL-lv60-fav-off"
+      ],
+      "path": "species/QUAQUAVAL.json"
+    },
+    "PAWMI": {
+      "speciesId": "PAWMI",
+      "scenarioIds": [
+        "PAWMI-lv30-fav-on",
+        "PAWMI-lv30-fav-off",
+        "PAWMI-lv50-fav-on",
+        "PAWMI-lv50-fav-off",
+        "PAWMI-lv60-fav-on",
+        "PAWMI-lv60-fav-off"
+      ],
+      "path": "species/PAWMI.json"
+    },
+    "PAWMO": {
+      "speciesId": "PAWMO",
+      "scenarioIds": [
+        "PAWMO-lv30-fav-on",
+        "PAWMO-lv30-fav-off",
+        "PAWMO-lv50-fav-on",
+        "PAWMO-lv50-fav-off",
+        "PAWMO-lv60-fav-on",
+        "PAWMO-lv60-fav-off"
+      ],
+      "path": "species/PAWMO.json"
+    },
+    "PAWMOT": {
+      "speciesId": "PAWMOT",
+      "scenarioIds": [
+        "PAWMOT-lv30-fav-on",
+        "PAWMOT-lv30-fav-off",
+        "PAWMOT-lv50-fav-on",
+        "PAWMOT-lv50-fav-off",
+        "PAWMOT-lv60-fav-on",
+        "PAWMOT-lv60-fav-off"
+      ],
+      "path": "species/PAWMOT.json"
+    },
+    "CETODDLE": {
+      "speciesId": "CETODDLE",
+      "scenarioIds": [
+        "CETODDLE-lv30-fav-on",
+        "CETODDLE-lv30-fav-off",
+        "CETODDLE-lv50-fav-on",
+        "CETODDLE-lv50-fav-off",
+        "CETODDLE-lv60-fav-on",
+        "CETODDLE-lv60-fav-off"
+      ],
+      "path": "species/CETODDLE.json"
+    },
+    "CETITAN": {
+      "speciesId": "CETITAN",
+      "scenarioIds": [
+        "CETITAN-lv30-fav-on",
+        "CETITAN-lv30-fav-off",
+        "CETITAN-lv50-fav-on",
+        "CETITAN-lv50-fav-off",
+        "CETITAN-lv60-fav-on",
+        "CETITAN-lv60-fav-off"
+      ],
+      "path": "species/CETITAN.json"
+    },
+    "CLODSIRE": {
+      "speciesId": "CLODSIRE",
+      "scenarioIds": [
+        "CLODSIRE-lv30-fav-on",
+        "CLODSIRE-lv30-fav-off",
+        "CLODSIRE-lv50-fav-on",
+        "CLODSIRE-lv50-fav-off",
+        "CLODSIRE-lv60-fav-on",
+        "CLODSIRE-lv60-fav-off"
+      ],
+      "path": "species/CLODSIRE.json"
+    }
+  }
+}

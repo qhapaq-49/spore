@@ -1,7 +1,11 @@
 import { dataset } from '../data/dataset';
-import type { CalcInput, PokemonSpecies } from '../types';
+import type { CalcInput, EnergyMode, ExBerryMode, ExBonusMode, MapMode, PokemonSpecies } from '../types';
 
 const DEFAULT_NATURE_ID = 'Bashful';
+const ENERGY_MODES = new Set<EnergyMode>(['normal', 'morningPillow', 'constant80']);
+const EX_BERRY_MODES = new Set<ExBerryMode>(['none', 'main', 'sub']);
+const EX_BONUS_MODES = new Set<ExBonusMode>(['berry', 'ingredient', 'skill']);
+const MAP_MODES = new Set<MapMode>(['normal', 'wakakusaEx']);
 
 export function firstPlayableSpecies() {
   const species = dataset.pokemon.find((pokemon) => pokemon.id === 'VENUSAUR') ?? dataset.pokemon[0];
@@ -23,16 +27,16 @@ export function defaultInput(species: PokemonSpecies = firstPlayableSpecies()): 
     ingredient30Id: ingredient30?.ingredientId ?? '',
     ingredient60Id: ingredient60?.ingredientId ?? '',
     skillLevel: 1,
-    evolutionCount: Math.min(2, species.previousEvolutions),
+    evolutionCount: 0,
     helpingBonusCount: 0,
     subskillIds: [],
     natureId: DEFAULT_NATURE_ID,
     energyMode: 'normal',
-    excludeSelfEnergySkill: false,
-    favoriteBerry: true,
+    favoriteBerry: false,
     exMode: false,
     exBerryMode: 'main',
     exBonusMode: 'berry',
+    mapMode: 'normal',
     goodCamp: false,
     fieldBonus: 0
   };
@@ -46,24 +50,52 @@ export function inputForSpecies(previous: CalcInput, species: PokemonSpecies): C
     ingredient0Id: next.ingredient0Id,
     ingredient30Id: next.ingredient30Id,
     ingredient60Id: next.ingredient60Id,
-    evolutionCount: Math.min(2, species.previousEvolutions),
+    evolutionCount: 0,
+    favoriteBerry: next.favoriteBerry,
     skillLevel: Math.min(previous.skillLevel, 8)
   };
 }
 
 export function normalizeInput(input: CalcInput, species: PokemonSpecies): CalcInput {
   const fallback = defaultInput(species);
+  const { excludeSelfEnergySkill: _unused, ...rawInput } = input as CalcInput & { excludeSelfEnergySkill?: boolean };
   return {
-    ...input,
-    level: clampInt(input.level, 1, 100),
-    skillLevel: clampInt(input.skillLevel, 1, 8),
-    evolutionCount: clampInt(input.evolutionCount, 0, 2),
-    helpingBonusCount: clampInt(input.helpingBonusCount, 0, 4),
-    fieldBonus: clampInt(input.fieldBonus, 0, 100),
-    ingredient0Id: ensureIngredient(species.ingredient0, input.ingredient0Id, fallback.ingredient0Id),
-    ingredient30Id: ensureIngredient(species.ingredient30, input.ingredient30Id, fallback.ingredient30Id),
-    ingredient60Id: ensureIngredient(species.ingredient60, input.ingredient60Id, fallback.ingredient60Id)
+    ...rawInput,
+    level: clampInt(rawInput.level, 1, 100),
+    skillLevel: clampInt(rawInput.skillLevel, 1, 8),
+    evolutionCount: clampInt(rawInput.evolutionCount, 0, 2),
+    helpingBonusCount: clampInt(rawInput.helpingBonusCount, 0, 4),
+    fieldBonus: clampInt(rawInput.fieldBonus, 0, 100),
+    energyMode: ENERGY_MODES.has(rawInput.energyMode) ? rawInput.energyMode : fallback.energyMode,
+    exBerryMode: EX_BERRY_MODES.has(rawInput.exBerryMode) ? rawInput.exBerryMode : fallback.exBerryMode,
+    exBonusMode: EX_BONUS_MODES.has(rawInput.exBonusMode) ? rawInput.exBonusMode : fallback.exBonusMode,
+    mapMode: MAP_MODES.has(rawInput.mapMode) ? rawInput.mapMode : fallback.mapMode,
+    favoriteBerry: booleanOrDefault(rawInput.favoriteBerry, fallback.favoriteBerry),
+    exMode: booleanOrDefault(rawInput.exMode, fallback.exMode),
+    goodCamp: booleanOrDefault(rawInput.goodCamp, fallback.goodCamp),
+    ingredient0Id: ensureIngredient(species.ingredient0, rawInput.ingredient0Id, fallback.ingredient0Id),
+    ingredient30Id: ensureIngredient(species.ingredient30, rawInput.ingredient30Id, fallback.ingredient30Id),
+    ingredient60Id: ensureIngredient(species.ingredient60, rawInput.ingredient60Id, fallback.ingredient60Id)
   };
+}
+
+export function activeSubskillCountAtLevel(level: number) {
+  if (level >= 100) {
+    return 5;
+  }
+  if (level >= 75) {
+    return 4;
+  }
+  if (level >= 50) {
+    return 3;
+  }
+  if (level >= 25) {
+    return 2;
+  }
+  if (level >= 10) {
+    return 1;
+  }
+  return 0;
 }
 
 function ensureIngredient(options: { ingredientId: string }[], value: string, fallback: string) {
@@ -75,4 +107,8 @@ function clampInt(value: number, min: number, max: number) {
     return min;
   }
   return Math.max(min, Math.min(max, Math.round(value)));
+}
+
+function booleanOrDefault(value: boolean, fallback: boolean) {
+  return typeof value === 'boolean' ? value : fallback;
 }

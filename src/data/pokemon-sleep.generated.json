@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-05-18T00:14:45.686Z",
+  "generatedAt": "2026-05-27T11:29:33.188Z",
   "source": {
     "name": "Neroli's Lab",
     "url": "https://github.com/nerolis-lab/nerolis-lab.git",
-    "commit": "e79e3611c53afc4927e242de76c6da822501830d"
+    "commit": "b9221b606d75647706163633e4a9818079b93a9f"
   },
   "pokemon": [
     {
@@ -1347,11 +1347,11 @@
       "displayNameJa": "プクリン",
       "pokedexNumber": 40,
       "specialty": "skill",
-      "frequency": 2900,
-      "ingredientPercentage": 17.4,
+      "frequency": 2750,
+      "ingredientPercentage": 19.1,
       "skillPercentage": 4,
       "berryId": "PECHA",
-      "carrySize": 13,
+      "carrySize": 22,
       "previousEvolutions": 2,
       "remainingEvolutions": 0,
       "ingredient0": [
@@ -9685,6 +9685,52 @@
         }
       ],
       "skillId": "Disguise (Berry Burst)"
+    },
+    {
+      "id": "DRAMPA",
+      "name": "DRAMPA",
+      "displayName": "Drampa",
+      "displayNameJa": "Drampa",
+      "pokedexNumber": 780,
+      "specialty": "ingredient",
+      "frequency": 3500,
+      "ingredientPercentage": 29.4,
+      "skillPercentage": 4.6,
+      "berryId": "YACHE",
+      "carrySize": 25,
+      "previousEvolutions": 0,
+      "remainingEvolutions": 0,
+      "ingredient0": [
+        {
+          "ingredientId": "Soybean",
+          "amount": 2
+        }
+      ],
+      "ingredient30": [
+        {
+          "ingredientId": "Soybean",
+          "amount": 5
+        },
+        {
+          "ingredientId": "Avocado",
+          "amount": 3
+        }
+      ],
+      "ingredient60": [
+        {
+          "ingredientId": "Soybean",
+          "amount": 7
+        },
+        {
+          "ingredientId": "Avocado",
+          "amount": 4
+        },
+        {
+          "ingredientId": "Sausage",
+          "amount": 7
+        }
+      ],
+      "skillId": "Tasty Chance S"
     },
     {
       "id": "CRAMORANT",

@@ -91,9 +91,10 @@ export interface PokemonSleepDataset {
   subskills: Subskill[];
 }
 
-export type EnergyMode = 'normal' | 'constant80';
+export type EnergyMode = 'normal' | 'morningPillow' | 'constant80';
 export type ExBerryMode = 'none' | 'main' | 'sub';
 export type ExBonusMode = 'berry' | 'ingredient' | 'skill';
+export type MapMode = 'normal' | 'wakakusaEx';
 
 export interface CalcInput {
   speciesId: string;
@@ -107,11 +108,11 @@ export interface CalcInput {
   subskillIds: string[];
   natureId: string;
   energyMode: EnergyMode;
-  excludeSelfEnergySkill: boolean;
   favoriteBerry: boolean;
   exMode: boolean;
   exBerryMode: ExBerryMode;
   exBonusMode: ExBonusMode;
+  mapMode: MapMode;
   goodCamp: boolean;
   fieldBonus: number;
 }
@@ -146,4 +147,102 @@ export interface CalcResult {
   selectedIngredients: IngredientDrop[];
   ingredientBreakdown: IngredientBreakdown[];
   notes: string[];
+}
+
+export interface WhistlePokemonResult {
+  speciesId: string;
+  speciesName: string;
+  level: number;
+  whistleCount: number;
+  displayedFrequency: number;
+  helpsPerWhistle: number;
+  berryId: string;
+  berryName: string;
+  berryAmount: number;
+  berryEnergy: number;
+  ingredientEnergy: number;
+  totalEnergy: number;
+  ingredientBreakdown: IngredientBreakdown[];
+  notes: string[];
+}
+
+export interface TimedProductionResult {
+  effectiveSeconds: number;
+  helps: number;
+  berryEnergy: number;
+  ingredientEnergy: number;
+  skillEnergy: number;
+  totalEnergy: number;
+  ingredientBreakdown: IngredientBreakdown[];
+}
+
+export interface PillowPokemonResult {
+  speciesId: string;
+  speciesName: string;
+  level: number;
+  pillowCount: number;
+  startEnergy: number;
+  afterEnergy: number;
+  awakeHours: number;
+  displayedFrequency: number;
+  before: TimedProductionResult;
+  after: TimedProductionResult;
+  gain: TimedProductionResult;
+}
+
+export interface DistributionMetric {
+  label: string;
+  unit: string;
+  precision: number;
+  min: number;
+  max: number;
+  mean: number;
+  quantiles: number[];
+}
+
+export interface DistributionScenario {
+  id: string;
+  speciesId: string;
+  level: number;
+  skillLevel: number;
+  favoriteBerry: boolean;
+  ingredientKey?: string;
+  ingredientPattern?: string;
+  helpingBonusTeamValue?: boolean;
+  goldFixedSlots?: number;
+  fieldBonus: number;
+  goodCamp: boolean;
+  energyMode: EnergyMode;
+  activeSubskillCount: number;
+  sampleSize: number;
+  metrics: Record<string, DistributionMetric>;
+}
+
+export interface SpeciesDistribution {
+  speciesId: string;
+  scenarioIds: string[];
+  path?: string;
+}
+
+export interface PokemonDistributionBase {
+  generatedAt: string;
+  modelVersion: string;
+  source: PokemonSleepDataset['source'];
+  simulation: {
+    seed: number;
+    sampleSize: number;
+    quantileCount: number;
+    targetSpecies: string[];
+    levels: number[];
+    assumptions: string[];
+  };
+  species: Record<string, SpeciesDistribution>;
+}
+
+export interface PokemonDistributionIndex extends PokemonDistributionBase {
+  scenarios?: never;
+}
+
+export interface PokemonDistributionDataset extends PokemonDistributionBase {
+  scenarios: Record<string, DistributionScenario>;
 }

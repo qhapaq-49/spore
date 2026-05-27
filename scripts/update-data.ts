@@ -606,6 +606,10 @@ async function main() {
   writeFileSync(outputPath, `${JSON.stringify(dataset, null, 2)}\n`, 'utf8');
   console.log(`Wrote ${outputPath}`);
   console.log(`${pokemon.length} pokemon, ${ingredients.length} ingredients, ${berries.length} berries`);
+
+  const { generateDistributions } = await import('./generate-distributions');
+  generateDistributions();
+  console.log('Wrote public/distributions/pokemon-distributions.generated.json and species distributions');
 }
 
 main().catch((error) => {

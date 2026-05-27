@@ -9,3 +9,5 @@ scripts/update-data.js
 scripts/update-data.d.ts
 src/types.js
 src/types.d.ts
+src/data/distributions.ts
+src/data/pokemon-distributions.generated.json

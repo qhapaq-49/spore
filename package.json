@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "test": "vitest run",
+    "generate-distributions": "tsx scripts/generate-distributions.ts",
     "update-data": "tsx scripts/update-data.ts"
   },
   "dependencies": {
