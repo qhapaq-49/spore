@@ -2,6 +2,24 @@ import { BarChart3, Download, Eye, EyeOff, History, Plus, RotateCcw, Save, Trash
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import { berryById, dataset, ingredientById, mainSkillById, natureById, pokemonById, subskillById } from './data/dataset';
 import { berryEnergyAtLevel, calculate, calculateWhistle } from './lib/calculate';
+import {
+  CANDY_BOOST_MODES,
+  CANDY_EXP_NATURES,
+  CANDY_EXP_TYPES,
+  MAX_CANDY_LEVEL,
+  candyExpAtLevel,
+  dreamShardsPerCandy,
+  expNatureFromModifier,
+  expToNextLevel,
+  inferCandyExpType,
+  simulateCandyPlanQueue,
+  simulateCandyUse,
+  type CandyBoostMode,
+  type CandyExpNature,
+  type CandyExpType,
+  type CandyPlanInput,
+  type CandySimulationResult
+} from './lib/candy';
 import { simulateCookingChanceWeek, type CookingChanceSource } from './lib/cooking-chance';
 import { analyzeDistribution, ingredientPatternLabel } from './lib/distribution';
 import { formatNumber, formatPercent, formatSeconds, resultsToCsv } from './lib/format';
@@ -23,11 +41,13 @@ const SCORE_TEAM_STORAGE_KEY = 'pokemon-sleep-checker-score-team-v1';
 const SCORE_SETTINGS_STORAGE_KEY = 'pokemon-sleep-checker-score-settings-v1';
 const MAX_HISTORY = 10;
 const MAX_SCORE_TEAM = 5;
+const MAX_CANDY_PLANS = 12;
 const DISTRIBUTION_LEVELS = [30, 50, 60];
 const MAX_SUBSKILLS = 5;
 const TOOL_TABS = [
   { id: 'expected', label: '期待値' },
   { id: 'whistle', label: 'チーム' },
+  { id: 'candy', label: 'アメ' },
   { id: 'howto', label: '使い方' }
 ] as const;
 const SUBSKILL_PRIORITY = [
@@ -70,11 +90,25 @@ interface ScoreSettings {
   energyMode: CalcInput['energyMode'];
 }
 
+interface CandyDraft {
+  speciesId: string;
+  currentLevel: number;
+  currentExp: number;
+  targetLevel: number;
+  expType: CandyExpType;
+  expNature: CandyExpNature;
+  boostMode: CandyBoostMode;
+  customShardMultiplier: number;
+  candyLimit: number;
+  shardLimit: number;
+}
+
 export function App() {
   const [input, setInput] = useState<CalcInput>(() => loadInput());
   const [history, setHistory] = useState<HistoryEntry[]>(() => loadHistory());
   const [selectedHistoryId, setSelectedHistoryId] = useState<string | null>(null);
   const [activeTool, setActiveTool] = useState<ToolTab>('expected');
+  const [hasOpenedCandy, setHasOpenedCandy] = useState(false);
   const [scoreTeam, setScoreTeam] = useState<TeamSlot[]>(() => loadScoreTeam());
   const [scoreSettings, setScoreSettings] = useState<ScoreSettings>(() => loadScoreSettings());
 
@@ -100,6 +134,12 @@ export function App() {
   useEffect(() => {
     localStorage.setItem(SCORE_SETTINGS_STORAGE_KEY, JSON.stringify(scoreSettings));
   }, [scoreSettings]);
+
+  useEffect(() => {
+    if (activeTool === 'candy') {
+      setHasOpenedCandy(true);
+    }
+  }, [activeTool]);
 
   function updateInput(patch: Partial<CalcInput>) {
     setInput((current) => ({ ...current, ...patch }));
@@ -424,9 +464,408 @@ export function App() {
         />
       ) : null}
 
+      {activeTool === 'candy' || hasOpenedCandy ? (
+        <div hidden={activeTool !== 'candy'}>
+          <CandySimulator currentInput={normalizedInput} />
+        </div>
+      ) : null}
+
       {activeTool === 'howto' ? <HowToPanel /> : null}
     </main>
   );
+}
+
+
+function CandySimulator({ currentInput }: { currentInput: CalcInput }) {
+  const [draft, setDraft] = useState<CandyDraft>(() => candyDraftFromInput(currentInput));
+  const [plans, setPlans] = useState<CandyPlanInput[]>([]);
+  const [sharedShardLimit, setSharedShardLimit] = useState(0);
+  const species = pokemonById.get(draft.speciesId) ?? firstPlayableSpecies();
+  const currentExpMax = Math.max(0, expToNextLevel(draft.currentLevel, draft.expType) - 1);
+  const candyExp = candyExpAtLevel(draft.currentLevel, draft.expNature, draft.boostMode);
+  const shardCost = dreamShardsPerCandy(draft.currentLevel, draft.boostMode, draft.customShardMultiplier);
+  const targetResult = useMemo(
+    () => simulateCandyUse({ ...draft, candyLimit: undefined, shardLimit: undefined }),
+    [draft]
+  );
+  const budgetResult = useMemo(
+    () => simulateCandyUse({ ...draft, targetLevel: MAX_CANDY_LEVEL, candyLimit: draft.candyLimit, shardLimit: draft.shardLimit }),
+    [draft]
+  );
+  const queue = useMemo(() => simulateCandyPlanQueue(plans, sharedShardLimit), [plans, sharedShardLimit]);
+
+  function updateDraft(patch: Partial<CandyDraft>) {
+    setDraft((current) => normalizeCandyDraft({ ...current, ...patch }));
+  }
+
+  function handleCandySpeciesChange(speciesId: string) {
+    setDraft((current) => normalizeCandyDraft({ ...current, speciesId, expType: inferCandyExpType(speciesId) }));
+  }
+
+  function applyCurrentInput() {
+    setDraft(candyDraftFromInput(currentInput));
+  }
+
+  function addTargetPlan() {
+    const normalized = normalizeCandyDraft(draft);
+    const planSpecies = pokemonById.get(normalized.speciesId) ?? firstPlayableSpecies();
+    addCandyPlan({
+      ...normalized,
+      candyLimit: undefined,
+      shardLimit: undefined,
+      mode: 'target',
+      label: planSpecies.displayNameJa + ' Lv' + normalized.currentLevel + '->' + normalized.targetLevel
+    });
+  }
+
+  function addBudgetPlan() {
+    const normalized = normalizeCandyDraft(draft);
+    const planSpecies = pokemonById.get(normalized.speciesId) ?? firstPlayableSpecies();
+    addCandyPlan({
+      ...normalized,
+      targetLevel: MAX_CANDY_LEVEL,
+      candyLimit: normalized.candyLimit,
+      shardLimit: undefined,
+      mode: 'budget',
+      label: planSpecies.displayNameJa + ' Lv' + normalized.currentLevel + ' +' + normalized.candyLimit + '個'
+    });
+  }
+
+  function addCandyPlan(plan: Omit<CandyPlanInput, 'id'>) {
+    setPlans((current) => {
+      if (current.length >= MAX_CANDY_PLANS) {
+        return current;
+      }
+      return [...current, { ...plan, id: makeClientId() }];
+    });
+  }
+
+  function removePlan(id: string) {
+    setPlans((current) => current.filter((plan) => plan.id !== id));
+  }
+
+  return (
+    <section className="candy-tool">
+      <form className="panel candy-panel" onSubmit={(event) => event.preventDefault()}>
+        <div className="panel-heading">
+          <h2>アメ</h2>
+          <span>{species.displayNameJa}</span>
+        </div>
+
+        <div className="field wide">
+          <PokemonSearch speciesId={draft.speciesId} onChange={handleCandySpeciesChange} />
+        </div>
+
+        <section className="candy-input-section">
+          <div className="section-heading">
+            <h3>目標までのコスト</h3>
+            <span>Lv{draft.currentLevel} から Lv{draft.targetLevel}</span>
+          </div>
+          <div className="field-grid">
+            <NumberField label="現在Lv" value={draft.currentLevel} min={1} max={MAX_CANDY_LEVEL} onChange={(currentLevel) => updateDraft({ currentLevel })} />
+            <NumberField label="Lv内EXP" value={draft.currentExp} min={0} max={currentExpMax} onChange={(currentExp) => updateDraft({ currentExp })} />
+            <NumberField label="目標Lv" value={draft.targetLevel} min={draft.currentLevel} max={MAX_CANDY_LEVEL} onChange={(targetLevel) => updateDraft({ targetLevel })} />
+          </div>
+
+          <div className="settings-grid candy-settings-grid">
+            <div className="field">
+              <label htmlFor="candy-exp-type">経験値タイプ</label>
+              <select id="candy-exp-type" value={draft.expType} onChange={(event) => updateDraft({ expType: Number(event.target.value) as CandyExpType })}>
+                {CANDY_EXP_TYPES.map((type) => (
+                  <option key={type.id} value={type.id}>
+                    {type.label} x{formatNumber(type.multiplier, 1)}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="field">
+              <label htmlFor="candy-exp-nature">EXP補正</label>
+              <select id="candy-exp-nature" value={draft.expNature} onChange={(event) => updateDraft({ expNature: event.target.value as CandyExpNature })}>
+                {CANDY_EXP_NATURES.map((nature) => (
+                  <option key={nature.id} value={nature.id}>
+                    {nature.label} x{formatNumber(nature.multiplier, 2)}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="field">
+              <label htmlFor="candy-boost-mode">ブースト種類</label>
+              <select id="candy-boost-mode" value={draft.boostMode} onChange={(event) => updateDraft({ boostMode: event.target.value as CandyBoostMode })}>
+                {CANDY_BOOST_MODES.map((mode) => (
+                  <option key={mode.id} value={mode.id}>
+                    {mode.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {draft.boostMode === 'custom' ? (
+              <NumberField label="かけら倍率" value={draft.customShardMultiplier} min={1} max={20} onChange={(customShardMultiplier) => updateDraft({ customShardMultiplier })} />
+            ) : null}
+          </div>
+          <button type="button" className="primary-button add-plan-button" onClick={addTargetPlan} disabled={plans.length >= MAX_CANDY_PLANS}>
+            <Plus size={18} />
+            目標までをプランに追加
+          </button>
+        </section>
+
+        <section className="candy-input-section">
+          <div className="section-heading">
+            <h3>手持ちで到達できるLv</h3>
+            <span>{draft.shardLimit > 0 ? formatNumber(draft.shardLimit) + 'かけら' : 'かけら無制限'}</span>
+          </div>
+          <div className="field-grid">
+            <NumberField label="所持アメ" value={draft.candyLimit} min={0} max={99999} onChange={(candyLimit) => updateDraft({ candyLimit })} />
+            <NumberField label="所持かけら" value={draft.shardLimit} min={0} max={999999999} onChange={(shardLimit) => updateDraft({ shardLimit })} />
+          </div>
+          <button type="button" className="secondary-button add-plan-button" onClick={addBudgetPlan} disabled={plans.length >= MAX_CANDY_PLANS || draft.candyLimit <= 0}>
+            <Plus size={18} />
+            手持ち消費をプランに追加
+          </button>
+        </section>
+
+        <div className="action-row candy-actions">
+          <button type="button" className="secondary-button" onClick={applyCurrentInput}>
+            <RotateCcw size={18} />
+            期待値入力を反映
+          </button>
+        </div>
+      </form>
+
+      <section className="panel candy-results">
+        <div className="panel-heading">
+          <h2>育成シミュレータ</h2>
+          <span>{candyExpTypeLabel(draft.expType)} / {candyNatureLabel(draft.expNature)}</span>
+        </div>
+
+        <section className="candy-section candy-primary-section">
+          <div className="section-heading">
+            <h3>目標までのコスト</h3>
+            <span>Lv{draft.currentLevel} から Lv{draft.targetLevel}</span>
+          </div>
+          <div className="candy-cost-summary">
+            <Metric label="必要アメ" value={formatNumber(targetResult.usedCandy) + '個'} />
+            <Metric label="必要かけら" value={formatNumber(targetResult.usedShards)} />
+          </div>
+          <div className="score-summary candy-summary">
+            <Metric label="必要EXP" value={formatNumber(targetResult.neededExp)} />
+            <Metric label="到達" value={formatCandyLevelResult(targetResult)} />
+            <Metric label="アメ1個" value={formatNumber(candyExp) + 'EXP / ' + formatNumber(shardCost) + 'かけら'} />
+            <Metric label="現在位置" value={formatCandyCurrentLevel(draft)} />
+          </div>
+        </section>
+
+        <section className="candy-section">
+          <div className="section-heading">
+            <h3>手持ちで到達できるLv</h3>
+            <span>{formatNumber(draft.candyLimit)}個 / {draft.shardLimit > 0 ? formatNumber(draft.shardLimit) + 'かけら' : 'かけら無制限'}</span>
+          </div>
+          <div className="score-summary candy-summary">
+            <Metric label="到達Lv" value={formatCandyLevelResult(budgetResult)} />
+            <Metric label="使ったアメ" value={formatNumber(budgetResult.usedCandy) + ' / ' + formatNumber(draft.candyLimit) + '個'} />
+            <Metric label="使ったかけら" value={formatCandyShardBudget(budgetResult, draft.shardLimit)} />
+            <Metric label="停止" value={candyStoppedByLabel(budgetResult)} />
+          </div>
+        </section>
+
+        <section className="candy-section">
+          <div className="section-heading">
+            <h3>複数個体育成</h3>
+            <span>{plans.length}/{MAX_CANDY_PLANS}</span>
+          </div>
+          <div className="candy-inline-controls">
+            <NumberField label="共通所持かけら" value={sharedShardLimit} min={0} max={999999999} onChange={setSharedShardLimit} />
+            <div className="candy-inline-stat">
+              <span>かけら残り</span>
+              <strong>{queue.isShardUnlimited ? '無制限' : formatNumber(queue.remainingShards)}</strong>
+            </div>
+          </div>
+          {plans.length === 0 ? (
+            <div className="candy-empty">
+              <p>プランが空です。</p>
+              <span>左の入力から育成候補を追加します。</span>
+            </div>
+          ) : (
+            <>
+              <div className="score-summary candy-summary">
+                <Metric label="予定アメ合計" value={formatNumber(queue.totals.targetCandy) + '個'} />
+                <Metric label="予定かけら合計" value={formatNumber(queue.totals.targetShards)} />
+                <Metric label="実行消費合計" value={formatNumber(queue.totals.budgetCandy) + '個 / ' + formatNumber(queue.totals.budgetShards)} />
+                <Metric label="完了" value={queue.totals.targetReachedCount + '/' + plans.length + '匹'} />
+              </div>
+              <div className="candy-plan-list">
+                {queue.results.map((row, index) => {
+                  const progress = candyProgressPercent(row.target, row.budget);
+                  return (
+                    <article key={row.plan.id} className="candy-plan-card">
+                      <div className="candy-plan-head">
+                        <div>
+                          <strong>{row.plan.label}</strong>
+                          <span>{index + 1}. {candyPlanMeta(row.plan)}</span>
+                        </div>
+                        <button type="button" className="icon-button history-delete" onClick={() => removePlan(row.plan.id)} title="プランから削除">
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                      <div className="candy-plan-status">
+                        <span>{candyPlanModeLabel(row.plan)}</span>
+                        <strong>{candyPlanResultLabel(row.plan, row.budget)}</strong>
+                      </div>
+                      <div className="score-mini-grid candy-plan-metrics">
+                        <Metric label={candyPlanPlannedCostLabel(row.plan)} value={formatNumber(row.target.usedCandy) + '個 / ' + formatNumber(row.target.usedShards)} />
+                        <Metric label="実行消費" value={formatNumber(row.budget.usedCandy) + '個 / ' + formatNumber(row.budget.usedShards)} />
+                        <Metric label="到達Lv" value={formatCandyLevelResult(row.budget)} />
+                      </div>
+                      <div className="candy-progress" aria-label="目標EXP進捗">
+                        <span style={{ width: progress + '%' }} />
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </>
+          )}
+        </section>
+      </section>
+    </section>
+  );
+}
+
+function candyDraftFromInput(input: CalcInput): CandyDraft {
+  const species = pokemonById.get(input.speciesId) ?? firstPlayableSpecies();
+  const nature = natureById.get(input.natureId);
+  const currentLevel = clampNumber(input.level, 1, MAX_CANDY_LEVEL, 1);
+  return normalizeCandyDraft({
+    speciesId: species.id,
+    currentLevel,
+    currentExp: 0,
+    targetLevel: nextCandyTargetLevel(currentLevel),
+    expType: inferCandyExpType(species.id),
+    expNature: expNatureFromModifier(nature?.exp ?? 1),
+    boostMode: 'none',
+    customShardMultiplier: 5,
+    candyLimit: 0,
+    shardLimit: 0
+  });
+}
+
+function normalizeCandyDraft(value: CandyDraft): CandyDraft {
+  const speciesId = pokemonById.has(value.speciesId) ? value.speciesId : firstPlayableSpecies().id;
+  const expType = isCandyExpType(value.expType) ? value.expType : inferCandyExpType(speciesId);
+  const currentLevel = clampNumber(value.currentLevel, 1, MAX_CANDY_LEVEL, 1);
+  const targetLevel = clampNumber(value.targetLevel, currentLevel, MAX_CANDY_LEVEL, nextCandyTargetLevel(currentLevel));
+  const currentExpMax = Math.max(0, expToNextLevel(currentLevel, expType) - 1);
+  return {
+    speciesId,
+    currentLevel,
+    currentExp: clampNumber(value.currentExp, 0, currentExpMax, 0),
+    targetLevel,
+    expType,
+    expNature: isCandyExpNature(value.expNature) ? value.expNature : 'neutral',
+    boostMode: isCandyBoostMode(value.boostMode) ? value.boostMode : 'none',
+    customShardMultiplier: clampNumber(value.customShardMultiplier, 1, 20, 5),
+    candyLimit: clampNumber(value.candyLimit, 0, 99999, 0),
+    shardLimit: clampNumber(value.shardLimit, 0, 999999999, 0)
+  };
+}
+
+function nextCandyTargetLevel(level: number) {
+  if (level < 30) {
+    return 30;
+  }
+  if (level < 50) {
+    return 50;
+  }
+  if (level < 60) {
+    return 60;
+  }
+  return MAX_CANDY_LEVEL;
+}
+
+function isCandyExpType(value: number): value is CandyExpType {
+  return CANDY_EXP_TYPES.some((type) => type.id === value);
+}
+
+function isCandyExpNature(value: string): value is CandyExpNature {
+  return CANDY_EXP_NATURES.some((nature) => nature.id === value);
+}
+
+function isCandyBoostMode(value: string): value is CandyBoostMode {
+  return CANDY_BOOST_MODES.some((mode) => mode.id === value);
+}
+
+function candyExpTypeLabel(expType: CandyExpType) {
+  return CANDY_EXP_TYPES.find((type) => type.id === expType)?.label ?? String(expType);
+}
+
+function candyNatureLabel(expNature: CandyExpNature) {
+  return CANDY_EXP_NATURES.find((nature) => nature.id === expNature)?.label ?? expNature;
+}
+
+function candyBoostLabel(boostMode: CandyBoostMode) {
+  return CANDY_BOOST_MODES.find((mode) => mode.id === boostMode)?.label ?? boostMode;
+}
+
+function candyPlanMeta(plan: CandyPlanInput) {
+  return candyPlanModeLabel(plan) + ' / ' + candyExpTypeLabel(plan.expType) + ' / ' + candyNatureLabel(plan.expNature) + ' / ' + candyBoostLabel(plan.boostMode);
+}
+
+function candyPlanModeLabel(plan: CandyPlanInput) {
+  if (plan.mode === 'budget') {
+    return '手持ち消費 ' + formatNumber(plan.candyLimit ?? 0) + '個';
+  }
+  return '目標 Lv' + plan.targetLevel;
+}
+
+function candyPlanPlannedCostLabel(plan: CandyPlanInput) {
+  return plan.mode === 'budget' ? '予定消費' : '目標まで';
+}
+
+function candyPlanResultLabel(plan: CandyPlanInput, result: CandySimulationResult) {
+  if (plan.mode === 'budget' && result.stoppedBy === 'candy') {
+    return '予定分使用';
+  }
+  return candyStoppedByLabel(result);
+}
+
+function formatCandyCurrentLevel(draft: CandyDraft) {
+  if (draft.currentLevel >= MAX_CANDY_LEVEL) {
+    return 'Lv' + MAX_CANDY_LEVEL;
+  }
+  return 'Lv' + draft.currentLevel + ' +' + formatNumber(draft.currentExp) + '/' + formatNumber(expToNextLevel(draft.currentLevel, draft.expType));
+}
+
+function formatCandyLevelResult(result: CandySimulationResult) {
+  if (result.finalLevel >= MAX_CANDY_LEVEL) {
+    return 'Lv' + MAX_CANDY_LEVEL;
+  }
+  return 'Lv' + result.finalLevel + ' +' + formatNumber(result.finalExp) + '/' + formatNumber(result.expToNext);
+}
+
+function formatCandyShardBudget(result: CandySimulationResult, shardLimit: number) {
+  return formatNumber(result.usedShards) + (shardLimit > 0 ? ' / ' + formatNumber(shardLimit) : '');
+}
+
+function candyStoppedByLabel(result: CandySimulationResult) {
+  if (result.finalLevel >= MAX_CANDY_LEVEL) {
+    return 'Lv上限';
+  }
+  if (result.stoppedBy === 'target') {
+    return '目標到達';
+  }
+  if (result.stoppedBy === 'candy') {
+    return 'アメ切れ';
+  }
+  if (result.stoppedBy === 'shards') {
+    return 'かけら切れ';
+  }
+  return 'Lv上限';
+}
+
+function candyProgressPercent(target: CandySimulationResult, budget: CandySimulationResult) {
+  if (target.neededExp <= 0 || budget.targetReached) {
+    return 100;
+  }
+  return Math.max(0, Math.min(100, (budget.gainedExp / target.neededExp) * 100));
 }
 
 function HowToPanel() {
@@ -434,7 +873,7 @@ function HowToPanel() {
     <section className="panel howto">
       <div className="panel-heading">
         <h2>使い方</h2>
-        <span>期待値・個体値・チーム評価の読み方</span>
+        <span>期待値・個体値・チーム評価・育成計画の読み方</span>
       </div>
 
       <div className="howto-grid">
@@ -554,6 +993,17 @@ function HowToPanel() {
             平日10%、日曜30%を基礎大成功率とし、料理チャンスは最大+70%までスタック、大成功時にスタックを0へ戻す近似です。
             料理チャンス持ちを途中で引っ込める運用はまだ扱っていません。
           </p>
+        </section>
+
+        <section className="howto-section">
+          <h3>7. アメシミュレータを見る</h3>
+          <ol>
+            <li>アメタブ上段の「目標までのコスト」に現在Lv、Lv内EXP、目標Lv、経験値タイプ、EXP補正、ブースト種類を入れます。</li>
+            <li>右側の必要アメと必要かけらが、そのLvまで育てるためのコストです。</li>
+            <li>下段の「手持ちで到達できるLv」には所持アメと所持かけらを入れます。所持かけら0は無制限として扱います。</li>
+            <li>複数個体育成では、目標までのプランを追加すると、上から順に目標Lvまで育て、共通所持かけらが尽きた時点で止まります。</li>
+            <li>手持ち消費のプランを追加すると、その個体には指定した所持アメ数まで使う計画として扱います。</li>
+          </ol>
         </section>
       </div>
 
