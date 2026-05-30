@@ -72,6 +72,39 @@ button {
   color: #697889;
 }
 
+.app-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.language-control {
+  display: inline-flex;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid #d7dde5;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.language-control button {
+  min-height: 30px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  color: #415063;
+  background: transparent;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.language-control button.active {
+  color: #ffffff;
+  background: #0f766e;
+}
+
 .workspace {
   display: grid;
   grid-template-columns: minmax(340px, 430px) minmax(0, 1fr);

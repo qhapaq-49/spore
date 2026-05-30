@@ -1,5 +1,5 @@
 import { BarChart3, Download, Eye, EyeOff, History, Plus, RotateCcw, Save, Trash2, X } from 'lucide-react';
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { createContext, Fragment, useContext, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { berryById, dataset, ingredientById, mainSkillById, natureById, pokemonById, subskillById } from './data/dataset';
 import { berryEnergyAtLevel, calculate, calculateWhistle } from './lib/calculate';
 import {
@@ -23,6 +23,34 @@ import {
 import { simulateCookingChanceWeek, type CookingChanceSource } from './lib/cooking-chance';
 import { analyzeDistribution, ingredientPatternLabel } from './lib/distribution';
 import { formatNumber, formatPercent, formatSeconds, resultsToCsv } from './lib/format';
+import {
+  berryName,
+  candyBoostLabel as localizedCandyBoostLabel,
+  candyExpTypeLabel as localizedCandyExpTypeLabel,
+  candyNatureLabel as localizedCandyNatureLabel,
+  countWithUnit,
+  ingredientName,
+  loadInitialLanguage,
+  localeFor,
+  localizeCalcNote,
+  mainSkillName,
+  metricLabel as localizedMetricLabel,
+  metricUnit as localizedMetricUnit,
+  modifierLabel as localizedModifierLabel,
+  natureName,
+  persistLanguage,
+  pokemonCandidateName,
+  pokemonName,
+  setActiveLanguage,
+  shardLimitLabel,
+  specialtyLabel as localizedSpecialtyLabel,
+  subskillName,
+  subskillRarityLabel as localizedSubskillRarityLabel,
+  translate,
+  updateUrlLanguage,
+  type Language,
+  type TranslationKey
+} from './lib/i18n';
 import { activeSubskillCountAtLevel, defaultInput, firstPlayableSpecies, inputForSpecies, normalizeInput } from './lib/input';
 import type {
   CalcInput,
@@ -45,10 +73,10 @@ const MAX_CANDY_PLANS = 12;
 const DISTRIBUTION_LEVELS = [30, 50, 60];
 const MAX_SUBSKILLS = 5;
 const TOOL_TABS = [
-  { id: 'expected', label: '期待値' },
-  { id: 'whistle', label: 'チーム' },
-  { id: 'candy', label: 'アメ' },
-  { id: 'howto', label: '使い方' }
+  { id: 'expected', labelKey: 'tabExpected' },
+  { id: 'whistle', labelKey: 'tabWhistle' },
+  { id: 'candy', labelKey: 'tabCandy' },
+  { id: 'howto', labelKey: 'tabHowto' }
 ] as const;
 const SUBSKILL_PRIORITY = [
   'Berry Finding S',
@@ -103,7 +131,38 @@ interface CandyDraft {
   shardLimit: number;
 }
 
+interface I18nContextValue {
+  language: Language;
+  setLanguage: (language: Language) => void;
+  t: (key: TranslationKey) => string;
+}
+
+const I18nContext = createContext<I18nContextValue | null>(null);
+
+function useI18n() {
+  const context = useContext(I18nContext);
+  if (!context) {
+    throw new Error('useI18n must be used inside I18nContext.Provider');
+  }
+  return context;
+}
+
 export function App() {
+  const [language, setLanguageState] = useState<Language>(() => loadInitialLanguage());
+  setActiveLanguage(language);
+  const t = (key: TranslationKey) => translate(language, key);
+  const i18nValue = useMemo<I18nContextValue>(
+    () => ({
+      language,
+      setLanguage: (nextLanguage) => {
+        setActiveLanguage(nextLanguage);
+        setLanguageState(nextLanguage);
+      },
+      t: (key) => translate(language, key)
+    }),
+    [language]
+  );
+
   const [input, setInput] = useState<CalcInput>(() => loadInput());
   const [history, setHistory] = useState<HistoryEntry[]>(() => loadHistory());
   const [selectedHistoryId, setSelectedHistoryId] = useState<string | null>(null);
@@ -118,6 +177,15 @@ export function App() {
   const selectedHistory = history.find((item) => item.id === selectedHistoryId);
   const detailResult = selectedHistory?.result ?? result;
   const detailInput = selectedHistory?.input ?? normalizedInput;
+
+  useLayoutEffect(() => {
+    setActiveLanguage(language);
+    persistLanguage(language);
+    updateUrlLanguage(language);
+    document.documentElement.lang = language;
+    document.title = translate(language, 'appTitle');
+    document.querySelector('meta[name="description"]')?.setAttribute('content', translate(language, 'appDescription'));
+  }, [language]);
 
   useEffect(() => {
     localStorage.setItem(INPUT_STORAGE_KEY, JSON.stringify(normalizedInput));
@@ -229,7 +297,7 @@ export function App() {
 
   function downloadCsv() {
     const rows = history.length > 0 ? history.map((entry) => entry.result) : [result];
-    const blob = new Blob([resultsToCsv(rows)], { type: 'text/csv;charset=utf-8' });
+    const blob = new Blob([resultsToCsv(rows, language)], { type: 'text/csv;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement('a');
     anchor.href = url;
@@ -239,19 +307,30 @@ export function App() {
   }
 
   return (
-    <main className="app">
+    <I18nContext.Provider value={i18nValue}>
+      <main className="app">
       <header className="app-header">
         <div>
-          <h1>ポケスリ計算機</h1>
+          <h1>{t('appTitle')}</h1>
           <p>SPORE: Super POkemon-sleep Rating Engine</p>
         </div>
-        <div className="source-pill">
-          data: {dataset.source.name}
-          <span>{dataset.generatedAt.slice(0, 10)}</span>
+        <div className="app-header-actions">
+          <div className="language-control" aria-label={t('languageLabel')}>
+            <button type="button" className={language === 'ja' ? 'active' : ''} onClick={() => i18nValue.setLanguage('ja')}>
+              {t('japanese')}
+            </button>
+            <button type="button" className={language === 'en' ? 'active' : ''} onClick={() => i18nValue.setLanguage('en')}>
+              {t('english')}
+            </button>
+          </div>
+          <div className="source-pill">
+            {t('sourceData')}: {dataset.source.name}
+            <span>{dataset.generatedAt.slice(0, 10)}</span>
+          </div>
         </div>
       </header>
 
-      <nav className="tool-tabs" aria-label="ツール切替">
+      <nav className="tool-tabs" aria-label={t('toolTabsAria')}>
         {TOOL_TABS.map((tab) => (
           <button
             key={tab.id}
@@ -259,7 +338,7 @@ export function App() {
             className={activeTool === tab.id ? 'active' : ''}
             onClick={() => setActiveTool(tab.id)}
           >
-            {tab.label}
+            {t(tab.labelKey)}
           </button>
         ))}
       </nav>
@@ -268,8 +347,8 @@ export function App() {
         <section className="workspace">
           <form className="panel controls" onSubmit={(event) => event.preventDefault()}>
             <div className="panel-heading">
-              <h2>入力</h2>
-              <button type="button" className="icon-button" onClick={resetInput} title="入力を初期化">
+              <h2>{t('input')}</h2>
+              <button type="button" className="icon-button" onClick={resetInput} title={t('resetInput')}>
                 <RotateCcw size={18} />
               </button>
             </div>
@@ -287,14 +366,14 @@ export function App() {
                 onChange={(level) => updateInput({ level })}
               />
               <NumberField
-                label="スキルLv"
+                label={t('skillLevel')}
                 value={normalizedInput.skillLevel}
                 min={1}
                 max={8}
                 onChange={(skillLevel) => updateInput({ skillLevel })}
               />
               <NumberField
-                label="他のおてボ数"
+                label={t('otherHelpingBonus')}
                 value={normalizedInput.helpingBonusCount}
                 min={0}
                 max={4}
@@ -303,7 +382,7 @@ export function App() {
             </div>
 
             <fieldset>
-              <legend>食材</legend>
+              <legend>{t('ingredients')}</legend>
               <IngredientSelect
                 label="Lv1"
                 drops={species.ingredient0}
@@ -329,30 +408,30 @@ export function App() {
             <NaturePicker value={normalizedInput.natureId} onChange={(natureId) => updateInput({ natureId })} />
 
             <fieldset>
-              <legend>サブスキル</legend>
+              <legend>{t('subskills')}</legend>
               <SubskillCheckboxPicker value={normalizedInput.subskillIds} onChange={(subskillIds) => updateInput({ subskillIds })} />
             </fieldset>
 
             <fieldset>
-              <legend>補正</legend>
+              <legend>{t('modifiers')}</legend>
               <div className="field-grid">
                 <NumberField
-                  label="フィールドボーナス%"
+                  label={t('fieldBonusPercent')}
                   value={normalizedInput.fieldBonus}
                   min={0}
                   max={100}
                   onChange={(fieldBonus) => updateInput({ fieldBonus })}
                 />
                 <div className="field">
-                  <label htmlFor="energy-mode">げんき</label>
+                  <label htmlFor="energy-mode">{t('energy')}</label>
                   <select
                     id="energy-mode"
                     value={normalizedInput.energyMode}
                     onChange={(event) => updateInput({ energyMode: event.target.value as CalcInput['energyMode'] })}
                   >
-                    <option value="normal">通常推移</option>
-                    <option value="morningPillow">朝イチ枕1個</option>
-                    <option value="constant80">常に80以上</option>
+                    <option value="normal">{t('normalEnergy')}</option>
+                    <option value="morningPillow">{t('morningPillow')}</option>
+                    <option value="constant80">{t('constant80')}</option>
                   </select>
                 </div>
               </div>
@@ -363,7 +442,7 @@ export function App() {
                   disabled={normalizedInput.exMode}
                   onChange={(event) => updateInput({ favoriteBerry: event.target.checked })}
                 />
-                <span>好みのきのみ一致</span>
+                <span>{t('favoriteBerry')}</span>
               </label>
               <label className="check-row">
                 <input
@@ -371,7 +450,7 @@ export function App() {
                   checked={normalizedInput.goodCamp}
                   onChange={(event) => updateInput({ goodCamp: event.target.checked })}
                 />
-                <span>いいキャンプチケット</span>
+                <span>{t('goodCamp')}</span>
               </label>
               <label className="check-row">
                 <input
@@ -379,7 +458,7 @@ export function App() {
                   checked={normalizedInput.exMode}
                   onChange={(event) => updateInput({ exMode: event.target.checked })}
                 />
-                <span>EXモード</span>
+                <span>{t('exMode')}</span>
               </label>
               <label className="check-row">
                 <input
@@ -387,32 +466,32 @@ export function App() {
                   checked={normalizedInput.mapMode === 'wakakusaEx'}
                   onChange={(event) => updateInput({ mapMode: event.target.checked ? 'wakakusaEx' : 'normal' })}
                 />
-                <span>ワカクサEXマップ補正</span>
+                <span>{t('wakakusaExMap')}</span>
               </label>
               {normalizedInput.exMode || normalizedInput.mapMode === 'wakakusaEx' ? (
                 <div className="field-grid">
                   <div className="field">
-                    <label htmlFor="ex-berry">EXきのみ</label>
+                    <label htmlFor="ex-berry">{t('exBerry')}</label>
                     <select
                       id="ex-berry"
                       value={normalizedInput.exBerryMode}
                       onChange={(event) => updateInput({ exBerryMode: event.target.value as CalcInput['exBerryMode'] })}
                     >
-                      <option value="main">メイン一致</option>
-                      <option value="sub">サブ一致</option>
-                    <option value="none">不一致（速度15%低下）</option>
+                      <option value="main">{t('mainMatch')}</option>
+                      <option value="sub">{t('subMatch')}</option>
+                    <option value="none">{t('noMatchSpeedDown')}</option>
                   </select>
                 </div>
                   <div className="field">
-                    <label htmlFor="ex-bonus">EX効果</label>
+                    <label htmlFor="ex-bonus">{t('exBonus')}</label>
                     <select
                       id="ex-bonus"
                       value={normalizedInput.exBonusMode}
                       onChange={(event) => updateInput({ exBonusMode: event.target.value as CalcInput['exBonusMode'] })}
                     >
-                      <option value="berry">きのみ2.4倍</option>
-                      <option value="ingredient">食材+</option>
-                      <option value="skill">スキル1.25倍</option>
+                      <option value="berry">{t('berry24x')}</option>
+                      <option value="ingredient">{t('ingredientPlus')}</option>
+                      <option value="skill">{t('skill125x')}</option>
                     </select>
                   </div>
                 </div>
@@ -422,11 +501,11 @@ export function App() {
             <div className="action-row">
               <button type="button" className="primary-button" onClick={saveResult}>
                 <Save size={18} />
-                履歴に保存
+                {t('saveHistory')}
               </button>
               <button type="button" className="secondary-button" onClick={addCurrentToScoreTeam} disabled={scoreTeam.length >= MAX_SCORE_TEAM}>
                 <Plus size={18} />
-                チーム
+                {t('addTeamShort')}
               </button>
               <button type="button" className="secondary-button" onClick={downloadCsv}>
                 <Download size={18} />
@@ -471,12 +550,14 @@ export function App() {
       ) : null}
 
       {activeTool === 'howto' ? <HowToPanel /> : null}
-    </main>
+      </main>
+    </I18nContext.Provider>
   );
 }
 
 
 function CandySimulator({ currentInput }: { currentInput: CalcInput }) {
+  const { language, t } = useI18n();
   const [draft, setDraft] = useState<CandyDraft>(() => candyDraftFromInput(currentInput));
   const [plans, setPlans] = useState<CandyPlanInput[]>([]);
   const [sharedShardLimit, setSharedShardLimit] = useState(0);
@@ -514,7 +595,7 @@ function CandySimulator({ currentInput }: { currentInput: CalcInput }) {
       candyLimit: undefined,
       shardLimit: undefined,
       mode: 'target',
-      label: planSpecies.displayNameJa + ' Lv' + normalized.currentLevel + '->' + normalized.targetLevel
+      label: pokemonName(planSpecies, language) + ' Lv' + normalized.currentLevel + ' -> ' + normalized.targetLevel
     });
   }
 
@@ -527,7 +608,7 @@ function CandySimulator({ currentInput }: { currentInput: CalcInput }) {
       candyLimit: normalized.candyLimit,
       shardLimit: undefined,
       mode: 'budget',
-      label: planSpecies.displayNameJa + ' Lv' + normalized.currentLevel + ' +' + normalized.candyLimit + '個'
+      label: pokemonName(planSpecies, language) + ' Lv' + normalized.currentLevel + ' +' + countWithUnit(formatNumber(normalized.candyLimit), 'pieces', language)
     });
   }
 
@@ -548,8 +629,8 @@ function CandySimulator({ currentInput }: { currentInput: CalcInput }) {
     <section className="candy-tool">
       <form className="panel candy-panel" onSubmit={(event) => event.preventDefault()}>
         <div className="panel-heading">
-          <h2>アメ</h2>
-          <span>{species.displayNameJa}</span>
+          <h2>{t('tabCandy')}</h2>
+          <span>{pokemonName(species, language)}</span>
         </div>
 
         <div className="field wide">
@@ -558,139 +639,139 @@ function CandySimulator({ currentInput }: { currentInput: CalcInput }) {
 
         <section className="candy-input-section">
           <div className="section-heading">
-            <h3>目標までのコスト</h3>
-            <span>Lv{draft.currentLevel} から Lv{draft.targetLevel}</span>
+            <h3>{t('targetCost')}</h3>
+            <span>{levelRangeLabel(draft.currentLevel, draft.targetLevel, language)}</span>
           </div>
           <div className="field-grid">
-            <NumberField label="現在Lv" value={draft.currentLevel} min={1} max={MAX_CANDY_LEVEL} onChange={(currentLevel) => updateDraft({ currentLevel })} />
-            <NumberField label="Lv内EXP" value={draft.currentExp} min={0} max={currentExpMax} onChange={(currentExp) => updateDraft({ currentExp })} />
-            <NumberField label="目標Lv" value={draft.targetLevel} min={draft.currentLevel} max={MAX_CANDY_LEVEL} onChange={(targetLevel) => updateDraft({ targetLevel })} />
+            <NumberField label={t('currentLevel')} value={draft.currentLevel} min={1} max={MAX_CANDY_LEVEL} onChange={(currentLevel) => updateDraft({ currentLevel })} />
+            <NumberField label={t('levelExp')} value={draft.currentExp} min={0} max={currentExpMax} onChange={(currentExp) => updateDraft({ currentExp })} />
+            <NumberField label={t('targetLevel')} value={draft.targetLevel} min={draft.currentLevel} max={MAX_CANDY_LEVEL} onChange={(targetLevel) => updateDraft({ targetLevel })} />
           </div>
 
           <div className="settings-grid candy-settings-grid">
             <div className="field">
-              <label htmlFor="candy-exp-type">経験値タイプ</label>
+              <label htmlFor="candy-exp-type">{t('expType')}</label>
               <select id="candy-exp-type" value={draft.expType} onChange={(event) => updateDraft({ expType: Number(event.target.value) as CandyExpType })}>
                 {CANDY_EXP_TYPES.map((type) => (
                   <option key={type.id} value={type.id}>
-                    {type.label} x{formatNumber(type.multiplier, 1)}
+                    {localizedCandyExpTypeLabel(type.id, language)} x{formatNumber(type.multiplier, 1)}
                   </option>
                 ))}
               </select>
             </div>
             <div className="field">
-              <label htmlFor="candy-exp-nature">EXP補正</label>
+              <label htmlFor="candy-exp-nature">{t('expNature')}</label>
               <select id="candy-exp-nature" value={draft.expNature} onChange={(event) => updateDraft({ expNature: event.target.value as CandyExpNature })}>
                 {CANDY_EXP_NATURES.map((nature) => (
                   <option key={nature.id} value={nature.id}>
-                    {nature.label} x{formatNumber(nature.multiplier, 2)}
+                    {localizedCandyNatureLabel(nature.id, language)} x{formatNumber(nature.multiplier, 2)}
                   </option>
                 ))}
               </select>
             </div>
             <div className="field">
-              <label htmlFor="candy-boost-mode">ブースト種類</label>
+              <label htmlFor="candy-boost-mode">{t('boostType')}</label>
               <select id="candy-boost-mode" value={draft.boostMode} onChange={(event) => updateDraft({ boostMode: event.target.value as CandyBoostMode })}>
                 {CANDY_BOOST_MODES.map((mode) => (
                   <option key={mode.id} value={mode.id}>
-                    {mode.label}
+                    {localizedCandyBoostLabel(mode.id, language)}
                   </option>
                 ))}
               </select>
             </div>
             {draft.boostMode === 'custom' ? (
-              <NumberField label="かけら倍率" value={draft.customShardMultiplier} min={1} max={20} onChange={(customShardMultiplier) => updateDraft({ customShardMultiplier })} />
+              <NumberField label={t('shardMultiplier')} value={draft.customShardMultiplier} min={1} max={20} onChange={(customShardMultiplier) => updateDraft({ customShardMultiplier })} />
             ) : null}
           </div>
           <button type="button" className="primary-button add-plan-button" onClick={addTargetPlan} disabled={plans.length >= MAX_CANDY_PLANS}>
             <Plus size={18} />
-            目標までをプランに追加
+            {t('addTargetPlan')}
           </button>
         </section>
 
         <section className="candy-input-section">
           <div className="section-heading">
-            <h3>手持ちで到達できるLv</h3>
-            <span>{draft.shardLimit > 0 ? formatNumber(draft.shardLimit) + 'かけら' : 'かけら無制限'}</span>
+            <h3>{t('reachableLevel')}</h3>
+            <span>{shardLimitLabel(draft.shardLimit, formatNumber(draft.shardLimit), language)}</span>
           </div>
           <div className="field-grid">
-            <NumberField label="所持アメ" value={draft.candyLimit} min={0} max={99999} onChange={(candyLimit) => updateDraft({ candyLimit })} />
-            <NumberField label="所持かけら" value={draft.shardLimit} min={0} max={999999999} onChange={(shardLimit) => updateDraft({ shardLimit })} />
+            <NumberField label={t('heldCandy')} value={draft.candyLimit} min={0} max={99999} onChange={(candyLimit) => updateDraft({ candyLimit })} />
+            <NumberField label={t('heldShards')} value={draft.shardLimit} min={0} max={999999999} onChange={(shardLimit) => updateDraft({ shardLimit })} />
           </div>
           <button type="button" className="secondary-button add-plan-button" onClick={addBudgetPlan} disabled={plans.length >= MAX_CANDY_PLANS || draft.candyLimit <= 0}>
             <Plus size={18} />
-            手持ち消費をプランに追加
+            {t('addBudgetPlan')}
           </button>
         </section>
 
         <div className="action-row candy-actions">
           <button type="button" className="secondary-button" onClick={applyCurrentInput}>
             <RotateCcw size={18} />
-            期待値入力を反映
+            {t('applyExpectedInput')}
           </button>
         </div>
       </form>
 
       <section className="panel candy-results">
         <div className="panel-heading">
-          <h2>育成シミュレータ</h2>
-          <span>{candyExpTypeLabel(draft.expType)} / {candyNatureLabel(draft.expNature)}</span>
+          <h2>{t('candySimulator')}</h2>
+          <span>{candyExpTypeLabel(draft.expType, language)} / {candyNatureLabel(draft.expNature, language)}</span>
         </div>
 
         <section className="candy-section candy-primary-section">
           <div className="section-heading">
-            <h3>目標までのコスト</h3>
-            <span>Lv{draft.currentLevel} から Lv{draft.targetLevel}</span>
+            <h3>{t('targetCost')}</h3>
+            <span>{levelRangeLabel(draft.currentLevel, draft.targetLevel, language)}</span>
           </div>
           <div className="candy-cost-summary">
-            <Metric label="必要アメ" value={formatNumber(targetResult.usedCandy) + '個'} />
-            <Metric label="必要かけら" value={formatNumber(targetResult.usedShards)} />
+            <Metric label={t('requiredCandy')} value={countWithUnit(formatNumber(targetResult.usedCandy), 'pieces', language)} />
+            <Metric label={t('requiredShards')} value={formatNumber(targetResult.usedShards)} />
           </div>
           <div className="score-summary candy-summary">
-            <Metric label="必要EXP" value={formatNumber(targetResult.neededExp)} />
-            <Metric label="到達" value={formatCandyLevelResult(targetResult)} />
-            <Metric label="アメ1個" value={formatNumber(candyExp) + 'EXP / ' + formatNumber(shardCost) + 'かけら'} />
-            <Metric label="現在位置" value={formatCandyCurrentLevel(draft)} />
+            <Metric label={t('requiredExp')} value={formatNumber(targetResult.neededExp)} />
+            <Metric label={t('reached')} value={formatCandyLevelResult(targetResult)} />
+            <Metric label={t('candyOne')} value={`${formatNumber(candyExp)} EXP / ${countWithUnit(formatNumber(shardCost), 'shards', language)}`} />
+            <Metric label={t('currentPosition')} value={formatCandyCurrentLevel(draft)} />
           </div>
         </section>
 
         <section className="candy-section">
           <div className="section-heading">
-            <h3>手持ちで到達できるLv</h3>
-            <span>{formatNumber(draft.candyLimit)}個 / {draft.shardLimit > 0 ? formatNumber(draft.shardLimit) + 'かけら' : 'かけら無制限'}</span>
+            <h3>{t('reachableLevel')}</h3>
+            <span>{countWithUnit(formatNumber(draft.candyLimit), 'pieces', language)} / {shardLimitLabel(draft.shardLimit, formatNumber(draft.shardLimit), language)}</span>
           </div>
           <div className="score-summary candy-summary">
-            <Metric label="到達Lv" value={formatCandyLevelResult(budgetResult)} />
-            <Metric label="使ったアメ" value={formatNumber(budgetResult.usedCandy) + ' / ' + formatNumber(draft.candyLimit) + '個'} />
-            <Metric label="使ったかけら" value={formatCandyShardBudget(budgetResult, draft.shardLimit)} />
-            <Metric label="停止" value={candyStoppedByLabel(budgetResult)} />
+            <Metric label={t('reachedLevel')} value={formatCandyLevelResult(budgetResult)} />
+            <Metric label={t('usedCandy')} value={`${formatNumber(budgetResult.usedCandy)} / ${countWithUnit(formatNumber(draft.candyLimit), 'pieces', language)}`} />
+            <Metric label={t('usedShards')} value={formatCandyShardBudget(budgetResult, draft.shardLimit, language)} />
+            <Metric label={t('stopped')} value={candyStoppedByLabel(budgetResult, language)} />
           </div>
         </section>
 
         <section className="candy-section">
           <div className="section-heading">
-            <h3>複数個体育成</h3>
+            <h3>{t('multiPokemonTraining')}</h3>
             <span>{plans.length}/{MAX_CANDY_PLANS}</span>
           </div>
           <div className="candy-inline-controls">
-            <NumberField label="共通所持かけら" value={sharedShardLimit} min={0} max={999999999} onChange={setSharedShardLimit} />
+            <NumberField label={t('sharedShards')} value={sharedShardLimit} min={0} max={999999999} onChange={setSharedShardLimit} />
             <div className="candy-inline-stat">
-              <span>かけら残り</span>
-              <strong>{queue.isShardUnlimited ? '無制限' : formatNumber(queue.remainingShards)}</strong>
+              <span>{t('remainingShards')}</span>
+              <strong>{queue.isShardUnlimited ? t('unlimited') : formatNumber(queue.remainingShards)}</strong>
             </div>
           </div>
           {plans.length === 0 ? (
             <div className="candy-empty">
-              <p>プランが空です。</p>
-              <span>左の入力から育成候補を追加します。</span>
+              <p>{t('plansEmpty')}</p>
+              <span>{t('addCandidatesFromLeft')}</span>
             </div>
           ) : (
             <>
               <div className="score-summary candy-summary">
-                <Metric label="予定アメ合計" value={formatNumber(queue.totals.targetCandy) + '個'} />
-                <Metric label="予定かけら合計" value={formatNumber(queue.totals.targetShards)} />
-                <Metric label="実行消費合計" value={formatNumber(queue.totals.budgetCandy) + '個 / ' + formatNumber(queue.totals.budgetShards)} />
-                <Metric label="完了" value={queue.totals.targetReachedCount + '/' + plans.length + '匹'} />
+                <Metric label={t('plannedCandyTotal')} value={countWithUnit(formatNumber(queue.totals.targetCandy), 'pieces', language)} />
+                <Metric label={t('plannedShardTotal')} value={formatNumber(queue.totals.targetShards)} />
+                <Metric label={t('executionTotal')} value={`${countWithUnit(formatNumber(queue.totals.budgetCandy), 'pieces', language)} / ${formatNumber(queue.totals.budgetShards)}`} />
+                <Metric label={t('complete')} value={`${queue.totals.targetReachedCount}/${countWithUnit(plans.length, 'pokemon', language)}`} />
               </div>
               <div className="candy-plan-list">
                 {queue.results.map((row, index) => {
@@ -700,22 +781,22 @@ function CandySimulator({ currentInput }: { currentInput: CalcInput }) {
                       <div className="candy-plan-head">
                         <div>
                           <strong>{row.plan.label}</strong>
-                          <span>{index + 1}. {candyPlanMeta(row.plan)}</span>
+                          <span>{index + 1}. {candyPlanMeta(row.plan, language)}</span>
                         </div>
-                        <button type="button" className="icon-button history-delete" onClick={() => removePlan(row.plan.id)} title="プランから削除">
+                        <button type="button" className="icon-button history-delete" onClick={() => removePlan(row.plan.id)} title={t('removePlan')}>
                           <Trash2 size={16} />
                         </button>
                       </div>
                       <div className="candy-plan-status">
-                        <span>{candyPlanModeLabel(row.plan)}</span>
-                        <strong>{candyPlanResultLabel(row.plan, row.budget)}</strong>
+                        <span>{candyPlanModeLabel(row.plan, language)}</span>
+                        <strong>{candyPlanResultLabel(row.plan, row.budget, language)}</strong>
                       </div>
                       <div className="score-mini-grid candy-plan-metrics">
-                        <Metric label={candyPlanPlannedCostLabel(row.plan)} value={formatNumber(row.target.usedCandy) + '個 / ' + formatNumber(row.target.usedShards)} />
-                        <Metric label="実行消費" value={formatNumber(row.budget.usedCandy) + '個 / ' + formatNumber(row.budget.usedShards)} />
-                        <Metric label="到達Lv" value={formatCandyLevelResult(row.budget)} />
+                        <Metric label={candyPlanPlannedCostLabel(row.plan, language)} value={`${countWithUnit(formatNumber(row.target.usedCandy), 'pieces', language)} / ${formatNumber(row.target.usedShards)}`} />
+                        <Metric label={t('executionTotal')} value={`${countWithUnit(formatNumber(row.budget.usedCandy), 'pieces', language)} / ${formatNumber(row.budget.usedShards)}`} />
+                        <Metric label={t('reachedLevel')} value={formatCandyLevelResult(row.budget)} />
                       </div>
-                      <div className="candy-progress" aria-label="目標EXP進捗">
+                      <div className="candy-progress" aria-label={t('targetExpProgress')}>
                         <span style={{ width: progress + '%' }} />
                       </div>
                     </article>
@@ -793,38 +874,52 @@ function isCandyBoostMode(value: string): value is CandyBoostMode {
   return CANDY_BOOST_MODES.some((mode) => mode.id === value);
 }
 
-function candyExpTypeLabel(expType: CandyExpType) {
-  return CANDY_EXP_TYPES.find((type) => type.id === expType)?.label ?? String(expType);
+function levelRangeLabel(fromLevel: number, toLevel: number, language: Language) {
+  return language === 'en' ? `Lv${fromLevel} to Lv${toLevel}` : `Lv${fromLevel} から Lv${toLevel}`;
 }
 
-function candyNatureLabel(expNature: CandyExpNature) {
-  return CANDY_EXP_NATURES.find((nature) => nature.id === expNature)?.label ?? expNature;
+function candyExpTypeLabel(expType: CandyExpType, language: Language) {
+  return localizedCandyExpTypeLabel(expType, language);
 }
 
-function candyBoostLabel(boostMode: CandyBoostMode) {
-  return CANDY_BOOST_MODES.find((mode) => mode.id === boostMode)?.label ?? boostMode;
+function candyNatureLabel(expNature: CandyExpNature, language: Language) {
+  return localizedCandyNatureLabel(expNature, language);
 }
 
-function candyPlanMeta(plan: CandyPlanInput) {
-  return candyPlanModeLabel(plan) + ' / ' + candyExpTypeLabel(plan.expType) + ' / ' + candyNatureLabel(plan.expNature) + ' / ' + candyBoostLabel(plan.boostMode);
+function candyBoostLabel(boostMode: CandyBoostMode, language: Language) {
+  return localizedCandyBoostLabel(boostMode, language);
 }
 
-function candyPlanModeLabel(plan: CandyPlanInput) {
+function candyPlanMeta(plan: CandyPlanInput, language: Language) {
+  return (
+    candyPlanModeLabel(plan, language) +
+    ' / ' +
+    candyExpTypeLabel(plan.expType, language) +
+    ' / ' +
+    candyNatureLabel(plan.expNature, language) +
+    ' / ' +
+    candyBoostLabel(plan.boostMode, language)
+  );
+}
+
+function candyPlanModeLabel(plan: CandyPlanInput, language: Language) {
   if (plan.mode === 'budget') {
-    return '手持ち消費 ' + formatNumber(plan.candyLimit ?? 0) + '個';
+    return language === 'en'
+      ? 'Budget ' + countWithUnit(formatNumber(plan.candyLimit ?? 0), 'pieces', language)
+      : '手持ち消費 ' + countWithUnit(formatNumber(plan.candyLimit ?? 0), 'pieces', language);
   }
-  return '目標 Lv' + plan.targetLevel;
+  return (language === 'en' ? 'Target ' : '目標 ') + 'Lv' + plan.targetLevel;
 }
 
-function candyPlanPlannedCostLabel(plan: CandyPlanInput) {
-  return plan.mode === 'budget' ? '予定消費' : '目標まで';
+function candyPlanPlannedCostLabel(plan: CandyPlanInput, language: Language) {
+  return plan.mode === 'budget' ? translate(language, 'plannedUse') : translate(language, 'untilTarget');
 }
 
-function candyPlanResultLabel(plan: CandyPlanInput, result: CandySimulationResult) {
+function candyPlanResultLabel(plan: CandyPlanInput, result: CandySimulationResult, language: Language) {
   if (plan.mode === 'budget' && result.stoppedBy === 'candy') {
-    return '予定分使用';
+    return translate(language, 'usedAsPlanned');
   }
-  return candyStoppedByLabel(result);
+  return candyStoppedByLabel(result, language);
 }
 
 function formatCandyCurrentLevel(draft: CandyDraft) {
@@ -841,24 +936,24 @@ function formatCandyLevelResult(result: CandySimulationResult) {
   return 'Lv' + result.finalLevel + ' +' + formatNumber(result.finalExp) + '/' + formatNumber(result.expToNext);
 }
 
-function formatCandyShardBudget(result: CandySimulationResult, shardLimit: number) {
+function formatCandyShardBudget(result: CandySimulationResult, shardLimit: number, language: Language) {
   return formatNumber(result.usedShards) + (shardLimit > 0 ? ' / ' + formatNumber(shardLimit) : '');
 }
 
-function candyStoppedByLabel(result: CandySimulationResult) {
+function candyStoppedByLabel(result: CandySimulationResult, language: Language) {
   if (result.finalLevel >= MAX_CANDY_LEVEL) {
-    return 'Lv上限';
+    return translate(language, 'levelCap');
   }
   if (result.stoppedBy === 'target') {
-    return '目標到達';
+    return translate(language, 'targetReached');
   }
   if (result.stoppedBy === 'candy') {
-    return 'アメ切れ';
+    return translate(language, 'outOfCandy');
   }
   if (result.stoppedBy === 'shards') {
-    return 'かけら切れ';
+    return translate(language, 'outOfShards');
   }
-  return 'Lv上限';
+  return translate(language, 'levelCap');
 }
 
 function candyProgressPercent(target: CandySimulationResult, budget: CandySimulationResult) {
@@ -869,6 +964,141 @@ function candyProgressPercent(target: CandySimulationResult, budget: CandySimula
 }
 
 function HowToPanel() {
+  const { language, t } = useI18n();
+
+  if (language === 'en') {
+    return (
+      <section className="panel howto">
+        <div className="panel-heading">
+          <h2>{t('howtoTitle')}</h2>
+          <span>{t('howtoSubtitle')}</span>
+        </div>
+
+        <div className="howto-grid">
+          <section className="howto-section">
+            <h3>1. Check an individual Pokemon</h3>
+            <div className="howto-flow" aria-label="Expected tab flow">
+              <div>Input</div>
+              <span />
+              <div>Modifiers</div>
+              <span />
+              <div>Result</div>
+            </div>
+            <ol>
+              <li>Choose a Pokemon in the Expected tab. The search box matches partial names.</li>
+              <li>Enter level, skill level, ingredients, nature, and subskills.</li>
+              <li>Set field bonus, energy mode, favorite berry, camp, and EX/Greengrass EX modifiers.</li>
+              <li>Read total strength and the berry, ingredient, skill, and detail breakdowns.</li>
+            </ol>
+            <p>
+              <strong>Morning pillow x1</strong> assumes daytime production starts at 150% energy. <strong>Always 80+</strong> is also useful as an approximation for maintaining high energy.
+            </p>
+          </section>
+
+          <section className="howto-section">
+            <h3>2. Read the individual distribution</h3>
+            <div className="howto-rank-diagram" aria-label="How to read the distribution rank">
+              <div className="rank-axis">
+                <span>Lower</span>
+                <i />
+                <b>Current</b>
+                <span>Upper</span>
+              </div>
+              <div className="rank-caption">
+                <span>Same ingredients</span>
+                <span>Fixed level</span>
+                <span>Same selection rules</span>
+              </div>
+            </div>
+            <ol>
+              <li>Open Individual Distribution on the right side of the Expected tab.</li>
+              <li>Select a fixed Lv30, Lv50, or Lv60 evaluation level.</li>
+              <li>The current ingredient pattern is fixed, so AAA is compared against the AAA population.</li>
+              <li>Current uses your nature and subskills; population mean is the random individual average.</li>
+              <li>Top % is the share of the population that is at least as good as the current individual.</li>
+            </ol>
+          </section>
+
+          <section className="howto-section">
+            <h3>3. Use history</h3>
+            <ol>
+              <li>Save a result after the input is ready.</li>
+              <li>Click a history row to restore that Pokemon input.</li>
+              <li>Use the trash button to delete unwanted rows.</li>
+              <li>Add current or historical Pokemon to the Team tab for team output.</li>
+            </ol>
+          </section>
+
+          <section className="howto-section">
+            <h3>4. Check team output</h3>
+            <div className="howto-team-diagram" aria-label="Team productivity structure">
+              <div className="team-slots">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+              </div>
+              <div className="team-output">
+                <strong>Daily</strong>
+                <strong>Whistle</strong>
+                <strong>Tasty Chance</strong>
+              </div>
+            </div>
+            <ol>
+              <li>Add up to five Pokemon in the Team tab.</li>
+              <li>Set field bonus, energy mode, and camp for the team.</li>
+              <li>Greengrass EX is configured per team card.</li>
+              <li>Review total daily output, each member's breakdown, and Helper Whistle gain.</li>
+            </ol>
+          </section>
+
+          <section className="howto-section">
+            <h3>5. Check Helper Whistle</h3>
+            <ol>
+              <li>Enter the number of Helper Whistles.</li>
+              <li>The tool shows the team and member gains for three hours at maximum energy efficiency.</li>
+              <li>Main skills, Good Camp, EX speed, and EX ingredient +1 are not included for whistles.</li>
+            </ol>
+          </section>
+
+          <section className="howto-section">
+            <h3>6. Check Tasty Chance</h3>
+            <div className="howto-cooking-diagram" aria-label="Weekly Tasty Chance score distribution">
+              <span style={{ height: '28%' }} />
+              <span style={{ height: '48%' }} />
+              <span style={{ height: '76%' }} />
+              <span style={{ height: '100%' }} />
+              <span style={{ height: '62%' }} />
+              <span style={{ height: '38%' }} />
+              <span style={{ height: '20%' }} />
+            </div>
+            <ol>
+              <li>Tasty Chance S users on the team are detected automatically.</li>
+              <li>Enter base meal score to simulate 21 meals across one week.</li>
+              <li>Manual mode lets you enter triggers per day and effect percent directly.</li>
+            </ol>
+          </section>
+
+          <section className="howto-section">
+            <h3>7. Use the candy simulator</h3>
+            <ol>
+              <li>Enter current level, current EXP, target level, EXP type, EXP nature, and boost type.</li>
+              <li>The right side shows candy and dream shard cost to reach the target.</li>
+              <li>Use Candy Owned and Shards Owned to see the reachable level from current resources.</li>
+              <li>Multi-Pokemon Plans apply plans from top to bottom until shared shards run out.</li>
+            </ol>
+          </section>
+        </div>
+
+        <div className="howto-note">
+          <strong>{t('premise')}</strong>
+          <p>This calculator is for comparing expected value, selection quality, score attack output, and training plans. Unknown game mechanics and event modifiers are reflected only where they are explicit in the tool.</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="panel howto">
       <div className="panel-heading">
@@ -1017,7 +1247,38 @@ function HowToPanel() {
   );
 }
 
+
+function metricUnitSuffix(metricId: string, language: Language) {
+  const unit = localizedMetricUnit(metricId, language);
+  return language === 'en' && unit ? ` ${unit}` : unit;
+}
+
+function distributionNoteText(pattern: string, activeSubskillCount: number, language: Language) {
+  if (language === 'en') {
+    return `The Monte Carlo comparison fixes ingredient pattern ${pattern}. Only the first ${activeSubskillCount} selected subskills are counted, and skill level follows the current input. Current value is this individual's expected value; population mean is the random individual average under the same conditions. Top % is the share of the population at least as good as the current individual. Gold lock fixes gold subskills from the first slot, and team value adds four teammates worth of speed value to Helping Bonus owners.`;
+  }
+  return `食材構成${pattern}に固定して性格・サブスキルをMonte Carlo比較します。サブスキルは選択順の先頭${activeSubskillCount}個だけを反映し、スキルLvは現在入力に合わせます。表示値は現在個体の期待値、母集団平均は同条件のランダム個体の平均です。上位%は母集団内で現在個体以上の個体が出る割合です。金固定は先頭枠から指定数だけ金スキル確定として母集団を作ります。おてボ価値込みでは、おてつだいボーナス持ちに他4匹分の速度価値を加えます。`;
+}
+
+function distributionWarningText(selectedCount: number, level: number, activeCount: number, language: Language) {
+  if (language === 'en') {
+    return `You selected ${selectedCount} subskills. Matching the Lv${level} unlocked slot count of ${activeCount} makes the comparison more stable.`;
+  }
+  return `現在の選択サブスキル数は${selectedCount}個です。Lv${level}評価の解放枠${activeCount}個に合わせると比較が安定します。`;
+}
+
+function distributionUnavailableText(reason: string | undefined, language: Language) {
+  if (language === 'ja') {
+    return reason ?? 'この条件の分布はまだありません。';
+  }
+  if (!reason) {
+    return 'No distribution is available for this condition yet.';
+  }
+  return 'No distribution is available because this condition is outside the supported baseline.';
+}
+
 function DistributionPanel({ input, species }: { input: CalcInput; species: PokemonSpecies }) {
+  const { language, t } = useI18n();
   const [evaluationLevel, setEvaluationLevel] = useState(60);
   const [isExpanded, setIsExpanded] = useState(() => loadDistributionVisibility());
   const [helpingBonusTeamValue, setHelpingBonusTeamValue] = useState(false);
@@ -1066,21 +1327,21 @@ function DistributionPanel({ input, species }: { input: CalcInput; species: Poke
       <div className="panel-heading">
         <h2>
           <BarChart3 size={18} />
-          個体値分布
+          {t('distribution')}
         </h2>
         <button
           type="button"
           className="secondary-button compact-button"
           onClick={() => setIsExpanded((current) => !current)}
-          title={isExpanded ? '個体値分布を隠す' : '個体値分布を表示'}
+          title={isExpanded ? t('hideDistribution') : t('showDistribution')}
         >
           {isExpanded ? <EyeOff size={16} /> : <Eye size={16} />}
-          {isExpanded ? '隠す' : '表示'}
+          {isExpanded ? t('hide') : t('show')}
         </button>
       </div>
       {!isExpanded ? null : (
         <>
-          <div className="level-tabs" aria-label="個体値評価レベル">
+          <div className="level-tabs" aria-label={t('distributionLevelAria')}>
             {DISTRIBUTION_LEVELS.map((level) => (
               <button
                 key={level}
@@ -1098,68 +1359,66 @@ function DistributionPanel({ input, species }: { input: CalcInput; species: Poke
               checked={helpingBonusTeamValue}
               onChange={(event) => setHelpingBonusTeamValue(event.target.checked)}
             />
-            <span>おてつだいボーナスをチーム価値込みで評価</span>
+            <span>{t('helpingBonusTeamValue')}</span>
           </label>
           <div className="field distribution-select">
-            <label htmlFor="gold-fixed-slots">フレンドレベル/金固定</label>
+            <label htmlFor="gold-fixed-slots">{t('friendLevelGold')}</label>
             <select id="gold-fixed-slots" value={goldFixedSlots} onChange={(event) => setGoldFixedSlots(Number(event.target.value))}>
-              <option value={0}>金固定なし</option>
-              <option value={1}>1枠目金固定</option>
-              <option value={2}>1-2枠目金固定</option>
-              <option value={3}>1-3枠目金固定</option>
+              <option value={0}>{t('noGoldLock')}</option>
+              <option value={1}>{t('firstGoldLock')}</option>
+              <option value={2}>{t('firstTwoGoldLock')}</option>
+              <option value={3}>{t('firstThreeGoldLock')}</option>
             </select>
           </div>
           {!analysis ? (
             <div className="distribution-empty">
-              <p>分布データを計算中です。</p>
-              <span>{species.displayNameJa} Lv30/50/60 の食材構成別Monte Carlo分布を使います。</span>
+              <p>{t('distributionLoading')}</p>
+              <span>{pokemonName(species, language)} Lv30/50/60{t('distributionUsesMonteCarlo')}</span>
             </div>
           ) : analysis.scenario ? (
             <>
               <div className="distribution-meta">
-                <span>対象: {evaluationResult.speciesName} Lv{analysis.scenario.level}</span>
-                <span>スキルLv: {analysis.scenario.skillLevel}</span>
-                <span>好みのきのみ: {analysis.scenario.favoriteBerry ? 'on' : 'off'}</span>
-                <span>食材構成: {analysis.scenario.ingredientPattern ?? ingredientPattern}</span>
-                <span>おてボ価値: {analysis.scenario.helpingBonusTeamValue ? 'チーム込み' : '本人のみ'}</span>
-                <span>金固定: {analysis.scenario.goldFixedSlots ? `${analysis.scenario.goldFixedSlots}枠` : 'なし'}</span>
-                <span>解放サブスキル: {analysis.scenario.activeSubskillCount}</span>
-                <span>サンプル: {analysis.scenario.sampleSize.toLocaleString('ja-JP')}</span>
+                <span>{t('target')}: {pokemonName(species, language)} Lv{analysis.scenario.level}</span>
+                <span>{t('skillLevel')}: {analysis.scenario.skillLevel}</span>
+                <span>{t('favoriteBerryMeta')}: {analysis.scenario.favoriteBerry ? 'on' : 'off'}</span>
+                <span>{t('ingredientPattern')}: {analysis.scenario.ingredientPattern ?? ingredientPattern}</span>
+                <span>{t('helpingBonusValue')}: {analysis.scenario.helpingBonusTeamValue ? t('teamIncluded') : t('selfOnly')}</span>
+                <span>{t('goldLock')}: {analysis.scenario.goldFixedSlots ? countWithUnit(analysis.scenario.goldFixedSlots, 'pieces', language) : t('none')}</span>
+                <span>{t('unlockedSubskills')}: {analysis.scenario.activeSubskillCount}</span>
+                <span>{t('samples')}: {analysis.scenario.sampleSize.toLocaleString(localeFor(language))}</span>
               </div>
               <div className="rank-list">
                 {analysis.ranks.map((rank) => (
                   <div key={rank.id} className="rank-item">
                     <div>
-                      <strong>{rank.label}</strong>
+                      <strong>{localizedMetricLabel(rank.id, language)}</strong>
                       <span>
-                        現在個体 {formatNumber(rank.value, rank.precision)}
-                        {rank.unit} / 母集団平均 {formatNumber(rank.mean, rank.precision)}
-                        {rank.unit}
+                        {t('currentIndividual')} {formatNumber(rank.value, rank.precision)}
+                        {metricUnitSuffix(rank.id, language)} / {t('populationMean')} {formatNumber(rank.mean, rank.precision)}
+                        {metricUnitSuffix(rank.id, language)}
                       </span>
                     </div>
-                    <div className="rank-gauge" aria-label={`${rank.label} 上位 ${formatNumber(rank.topPercent, 1)}%`}>
+                    <div className="rank-gauge" aria-label={`${localizedMetricLabel(rank.id, language)} ${t('top')} ${formatNumber(rank.topPercent, 1)}%`}>
                       <span style={{ width: `${Math.max(3, Math.min(100, rank.percentile))}%` }} />
                     </div>
-                    <b>上位 {formatNumber(rank.topPercent, 1)}%</b>
+                    <b>{t('top')} {formatNumber(rank.topPercent, 1)}%</b>
                     <DistributionShapePlot rank={rank} />
                   </div>
                 ))}
               </div>
               <p className="distribution-note">
-                食材構成{analysis.scenario.ingredientPattern ?? ingredientPattern}に固定して性格・サブスキルをMonte Carlo比較します。サブスキルは選択順の先頭
-                {analysis.scenario.activeSubskillCount}個だけを反映し、スキルLvは現在入力に合わせます。表示値は現在個体の期待値、母集団平均は同条件のランダム個体の平均です。上位%は母集団内で現在個体以上の個体が出る割合です。金固定は先頭枠から指定数だけ金スキル確定として母集団を作ります。おてボ価値込みでは、おてつだいボーナス持ちに他4匹分の速度価値を加えます。
+                {distributionNoteText(analysis.scenario.ingredientPattern ?? ingredientPattern, analysis.scenario.activeSubskillCount, language)}
               </p>
               {input.subskillIds.length !== analysis.scenario.activeSubskillCount ? (
                 <p className="distribution-warning">
-                  現在の選択サブスキル数は{input.subskillIds.length}個です。Lv{analysis.scenario.level}
-                  評価の解放枠{analysis.scenario.activeSubskillCount}個に合わせると比較が安定します。
+                  {distributionWarningText(input.subskillIds.length, analysis.scenario.level, analysis.scenario.activeSubskillCount, language)}
                 </p>
               ) : null}
             </>
           ) : (
             <div className="distribution-empty">
-              <p>{analysis.unavailableReasons[0] ?? 'この条件の分布はまだありません。'}</p>
-              <span>対応条件は Lv30/50/60、FB0%、キャンプoff、通常マップ、EX off、他のおてボ0です。</span>
+              <p>{distributionUnavailableText(analysis.unavailableReasons[0], language)}</p>
+              <span>{t('distributionSupported')}</span>
             </div>
           )}
         </>
@@ -1169,11 +1428,12 @@ function DistributionPanel({ input, species }: { input: CalcInput; species: Poke
 }
 
 function DistributionShapePlot({ rank }: { rank: ReturnType<typeof analyzeDistribution>['ranks'][number] }) {
+  const { language, t } = useI18n();
   const shape = rank.shape;
   const iqrWidth = Math.max(1, shape.p75Percent - shape.p25Percent);
 
   return (
-    <div className="shape-plot" aria-label={`${rank.label}の分布`}>
+    <div className="shape-plot" aria-label={`${localizedMetricLabel(rank.id, language)} distribution`}>
       <div className="shape-bars" aria-hidden="true">
         {shape.bins.map((bin) => (
           <span key={bin.id} style={{ height: `${bin.height * 100}%` }} />
@@ -1184,7 +1444,7 @@ function DistributionShapePlot({ rank }: { rank: ReturnType<typeof analyzeDistri
       </div>
       <div className="shape-scale">
         <span>{formatNumber(shape.min, rank.precision)}</span>
-        <span>中央値 {formatNumber(shape.median, rank.precision)}</span>
+        <span>{t('median')} {formatNumber(shape.median, rank.precision)}</span>
         <span>{formatNumber(shape.max, rank.precision)}</span>
       </div>
     </div>
@@ -1214,6 +1474,7 @@ function WhistleSimulator({
   onUpdateSlot,
   onSettingsChange
 }: ScoreToolProps) {
+  const { language, t } = useI18n();
   const { whistleCount, fieldBonus, goodCamp, energyMode } = settings;
   const [cookingMode, setCookingMode] = useState<'team' | 'manual'>('team');
   const [manualCookingTriggers, setManualCookingTriggers] = useState(1);
@@ -1246,8 +1507,8 @@ function WhistleSimulator({
   const dailyAggregate = useMemo(() => summarizeCalcResults(dailyRows.map((row) => row.result)), [dailyRows]);
   const whistleAggregate = useMemo(() => summarizeWhistleResults(whistleRows.map((row) => row.result)), [whistleRows]);
   const teamCookingSources = useMemo(
-    () => dailyRows.map((row) => cookingChanceSourceFor(row.input, row.result)).filter((source): source is CookingChanceSource => source !== null),
-    [dailyRows]
+    () => dailyRows.map((row) => cookingChanceSourceFor(row.input, row.result, language)).filter((source): source is CookingChanceSource => source !== null),
+    [dailyRows, language]
   );
   const cookingSources = useMemo(
     () =>
@@ -1256,12 +1517,12 @@ function WhistleSimulator({
         : [
             {
               id: 'manual',
-              label: '手入力',
+              label: translate(language, 'manualInput'),
               triggersPerDay: manualCookingTriggers,
               chancePercent: manualCookingChance
             }
           ],
-    [cookingMode, manualCookingChance, manualCookingTriggers, teamCookingSources]
+    [cookingMode, language, manualCookingChance, manualCookingTriggers, teamCookingSources]
   );
   const cookingSimulation = useMemo(
     () =>
@@ -1290,32 +1551,32 @@ function WhistleSimulator({
 
       <section className="panel score-results">
         <div className="panel-heading">
-          <h2>チーム生産性</h2>
-          <span>日産とホイッスル</span>
+          <h2>{t('teamProductivity')}</h2>
+          <span>{t('dailyAndWhistle')}</span>
         </div>
         <div className="settings-grid team-settings-grid">
           <NumberField
-            label="フィールドボーナス%"
+            label={t('fieldBonusPercent')}
             value={fieldBonus}
             min={0}
             max={100}
             onChange={(value) => onSettingsChange({ fieldBonus: value })}
           />
           <div className="field">
-            <label htmlFor="team-energy-mode">げんき</label>
+            <label htmlFor="team-energy-mode">{t('energy')}</label>
             <select
               id="team-energy-mode"
               value={energyMode}
               onChange={(event) => onSettingsChange({ energyMode: event.target.value as CalcInput['energyMode'] })}
             >
-              <option value="normal">通常推移</option>
-              <option value="morningPillow">朝イチ枕1個</option>
-              <option value="constant80">常に80以上</option>
+              <option value="normal">{t('normalEnergy')}</option>
+              <option value="morningPillow">{t('morningPillow')}</option>
+              <option value="constant80">{t('constant80')}</option>
             </select>
           </div>
           <label className="check-row score-check">
             <input type="checkbox" checked={goodCamp} onChange={(event) => onSettingsChange({ goodCamp: event.target.checked })} />
-            <span>日産にいいキャンプチケット</span>
+            <span>{t('dailyGoodCamp')}</span>
           </label>
         </div>
 
@@ -1325,32 +1586,32 @@ function WhistleSimulator({
           <>
             <section className="score-section">
               <div className="section-heading">
-                <h3>チーム日産</h3>
-                <span>{dailyRows.length}匹合計</span>
+                <h3>{t('teamDailyOutput')}</h3>
+                <span>{dailyRows.length} {t('totalPokemon')}</span>
               </div>
               <div className="score-summary">
-                <Metric label="合計エナジー" value={formatNumber(dailyAggregate.totalEnergy)} />
-                <Metric label="きのみ" value={formatNumber(dailyAggregate.berryEnergy)} />
-                <Metric label="食材" value={formatNumber(dailyAggregate.ingredientEnergy)} />
-                <Metric label="スキル" value={formatNumber(dailyAggregate.skillEnergy)} />
+                <Metric label={t('totalEnergy')} value={formatNumber(dailyAggregate.totalEnergy)} />
+                <Metric label={t('berries')} value={formatNumber(dailyAggregate.berryEnergy)} />
+                <Metric label={t('ingredients')} value={formatNumber(dailyAggregate.ingredientEnergy)} />
+                <Metric label={t('skill')} value={formatNumber(dailyAggregate.skillEnergy)} />
               </div>
-              <IngredientBreakdownList title="日産食材内訳" breakdown={dailyAggregate.ingredientBreakdown} />
+              <IngredientBreakdownList title={t('dailyIngredients')} breakdown={dailyAggregate.ingredientBreakdown} />
               <div className="member-list compact-member-list">
                 {dailyRows.map(({ slot, input: preparedInput, result }) => (
                   <div key={slot.id} className="member-result">
                     <div>
                       <strong>
-                        {result.speciesName} Lv{result.level}
+                        {pokemonName(pokemonById.get(result.speciesId) ?? firstPlayableSpecies(), language)} Lv{result.level}
                       </strong>
                       <span>
-                        {formatSkillTitle(preparedInput)} / 表示おてつだい時間 {formatSeconds(result.displayedFrequency)}
+                        {formatSkillTitle(preparedInput, language)} / {t('displayedHelpTime')} {formatSeconds(result.displayedFrequency)}
                       </span>
                     </div>
                     <b>{formatNumber(result.totalEnergy)}</b>
                     <div className="score-mini-grid">
-                      <Metric label="きのみ" value={formatNumber(result.berryEnergy)} />
-                      <Metric label="食材" value={formatNumber(result.ingredientEnergy)} />
-                      <Metric label="スキル" value={`${formatNumber(result.skillEnergy)} / ${formatNumber(result.expectedSkillTriggers, 2)}回`} />
+                      <Metric label={t('berries')} value={formatNumber(result.berryEnergy)} />
+                      <Metric label={t('ingredients')} value={formatNumber(result.ingredientEnergy)} />
+                      <Metric label={t('skill')} value={`${formatNumber(result.skillEnergy)} / ${countWithUnit(formatNumber(result.expectedSkillTriggers, 2), 'times', language)}`} />
                     </div>
                   </div>
                 ))}
@@ -1374,12 +1635,12 @@ function WhistleSimulator({
 
             <section className="score-section">
               <div className="section-heading">
-                <h3>おてつだいホイッスル</h3>
-                <span>{whistleRows.length}匹 x {whistleCount}個 / 最大げんき効率の3時間分</span>
+                <h3>{t('whistle')}</h3>
+                <span>{countWithUnit(whistleRows.length, 'pokemon', language)} x {countWithUnit(whistleCount, 'pieces', language)} / {language === 'en' ? '3 hours at max energy efficiency' : '最大げんき効率の3時間分'}</span>
               </div>
               <div className="score-summary">
                 <div className="metric metric-control">
-                  <span>ホイッスル使用数</span>
+                  <span>{t('whistleUseCount')}</span>
                   <input
                     type="number"
                     min={1}
@@ -1388,37 +1649,36 @@ function WhistleSimulator({
                     onChange={(event) => onSettingsChange({ whistleCount: Number(event.target.value) })}
                   />
                 </div>
-                <Metric label="合計エナジー" value={formatNumber(whistleAggregate.totalEnergy)} />
-                <Metric label="きのみ" value={`${formatNumber(whistleAggregate.berryEnergy)} / ${formatNumber(whistleAggregate.berryAmount, 0)}個`} />
-                <Metric label="食材" value={formatNumber(whistleAggregate.ingredientEnergy)} />
+                <Metric label={t('totalEnergy')} value={formatNumber(whistleAggregate.totalEnergy)} />
+                <Metric label={t('berries')} value={`${formatNumber(whistleAggregate.berryEnergy)} / ${countWithUnit(formatNumber(whistleAggregate.berryAmount, 0), 'pieces', language)}`} />
+                <Metric label={t('ingredients')} value={formatNumber(whistleAggregate.ingredientEnergy)} />
               </div>
-              <IngredientBreakdownList title="ホイッスル食材内訳" breakdown={whistleAggregate.ingredientBreakdown} />
+              <IngredientBreakdownList title={t('whistleIngredients')} breakdown={whistleAggregate.ingredientBreakdown} />
               <div className="member-list compact-member-list">
                 {whistleRows.map(({ slot, result }) => (
                   <div key={slot.id} className="member-result">
                     <div>
                       <strong>
-                        {result.speciesName} Lv{result.level}
+                        {pokemonName(pokemonById.get(result.speciesId) ?? firstPlayableSpecies(), language)} Lv{result.level}
                       </strong>
                       <span>
-                        {result.berryName} {formatNumber(result.berryAmount, 0)}個 / 表示おてつだい時間 {formatSeconds(result.displayedFrequency)}
+                        {berryName(berryById.get(result.berryId)!, language)} {countWithUnit(formatNumber(result.berryAmount, 0), 'pieces', language)} / {t('displayedHelpTime')} {formatSeconds(result.displayedFrequency)}
                       </span>
                     </div>
                     <b>{formatNumber(result.totalEnergy)}</b>
                     <div className="score-mini-grid">
-                      <Metric label="きのみ" value={formatNumber(result.berryEnergy)} />
-                      <Metric label="食材" value={formatNumber(result.ingredientEnergy)} />
-                      <Metric label="おてつだい/個" value={`${formatNumber(result.helpsPerWhistle, 2)}回`} />
+                      <Metric label={t('berries')} value={formatNumber(result.berryEnergy)} />
+                      <Metric label={t('ingredients')} value={formatNumber(result.ingredientEnergy)} />
+                      <Metric label={t('helpsPerWhistle')} value={countWithUnit(formatNumber(result.helpsPerWhistle, 2), 'times', language)} />
                     </div>
                   </div>
                 ))}
               </div>
             </section>
             <ul className="notes">
-              <li>日産はチーム画面のげんき条件を使います。朝イチ枕1個は日中をげんき150%スタートとして計算します。</li>
-              <li>ワカクサEX補正は各チームカードの個別設定を使います。</li>
-              <li>ホイッスルはメインスキルが発動せず、いいキャンプチケット・EX速度・EX食材+1も反映しません。</li>
-              <li>チーム内のおてつだいボーナスは自動集計し、各個体の「他のおてボ数」を上書きしています。</li>
+              {teamNotes(language).map((note) => (
+                <li key={note}>{localizeCalcNote(note, language)}</li>
+              ))}
             </ul>
           </>
         )}
@@ -1454,58 +1714,59 @@ function CookingChancePanel({
   onBaseScoreChange: (value: number) => void;
   simulation: ReturnType<typeof simulateCookingChanceWeek>;
 }) {
+  const { language, t } = useI18n();
   const maxScoreProbability = Math.max(...simulation.scoreHistogram.map((bin) => bin.probability), 0.01);
   const maxSuccessProbability = Math.max(...simulation.histogram.map((bin) => bin.probability), 0.01);
 
   return (
     <section className="score-section cooking-section">
       <div className="section-heading">
-        <h3>料理チャンス週間スコア分布</h3>
-        <span>{simulation.weeks.toLocaleString('ja-JP')}週 Monte Carlo</span>
+        <h3>{t('cookingChanceDistribution')}</h3>
+        <span>{countWithUnit(simulation.weeks.toLocaleString(localeFor(language)), 'weeks', language)} Monte Carlo</span>
       </div>
       <div className="settings-grid cooking-settings-grid">
         <div className="field">
-          <label htmlFor="cooking-source-mode">入力</label>
+          <label htmlFor="cooking-source-mode">{t('sourceInput')}</label>
           <select id="cooking-source-mode" value={mode} onChange={(event) => onModeChange(event.target.value as 'team' | 'manual')}>
-            <option value="team">チームから集計</option>
-            <option value="manual">手入力</option>
+            <option value="team">{t('aggregateFromTeam')}</option>
+            <option value="manual">{t('manualInput')}</option>
           </select>
         </div>
         {mode === 'manual' ? (
           <>
-            <NumberField label="発動回数/日" value={manualTriggers} min={0} max={20} onChange={onManualTriggersChange} />
-            <NumberField label="効果量%" value={manualChance} min={0} max={70} onChange={onManualChanceChange} />
+            <NumberField label={t('triggersPerDay')} value={manualTriggers} min={0} max={20} onChange={onManualTriggersChange} />
+            <NumberField label={t('effectPercent')} value={manualChance} min={0} max={70} onChange={onManualChanceChange} />
           </>
         ) : (
           <div className="cooking-source-list">
             {teamSources.length > 0 ? (
               teamSources.map((source) => (
                 <span key={source.id}>
-                  {source.label}: {formatNumber(source.triggersPerDay, 2)}回/日 x {formatNumber(source.chancePercent, 1)}%
+                  {source.label}: {countWithUnit(formatNumber(source.triggersPerDay, 2), 'times', language)}/{countWithUnit(1, 'days', language)} x {formatNumber(source.chancePercent, 1)}%
                 </span>
               ))
             ) : (
-              <span>料理チャンスS持ちがチームにいません。</span>
+              <span>{t('noCookingChance')}</span>
             )}
           </div>
         )}
-        <NumberField label="料理素点" value={baseScore} min={0} max={999999} onChange={onBaseScoreChange} />
-        <NumberField label="目標大成功/週" value={target} min={0} max={21} onChange={onTargetChange} />
+        <NumberField label={t('baseMealScore')} value={baseScore} min={0} max={999999} onChange={onBaseScoreChange} />
+        <NumberField label={t('targetCritsWeek')} value={target} min={0} max={21} onChange={onTargetChange} />
       </div>
 
       <div className="score-summary">
-        <Metric label="平均週間料理点" value={formatNumber(simulation.meanScore, 0)} />
-        <Metric label="中央値" value={formatNumber(simulation.medianScore, 0)} />
+        <Metric label={t('meanWeeklyMealScore')} value={formatNumber(simulation.meanScore, 0)} />
+        <Metric label={t('median')} value={formatNumber(simulation.medianScore, 0)} />
         <Metric label="p10-p90" value={`${formatNumber(simulation.p10Score, 0)}-${formatNumber(simulation.p90Score, 0)}`} />
-        <Metric label="素点比" value={formatPercent(simulation.energyRatio - 1, 2)} />
+        <Metric label={t('scoreRatio')} value={formatPercent(simulation.energyRatio - 1, 2)} />
       </div>
       <div className="distribution-meta cooking-meta">
-        <span>発動期待 {formatNumber(simulation.totalTriggersPerDay, 2)}回/日</span>
-        <span>平均大成功 {formatNumber(simulation.meanSuccesses, 2)}回/週</span>
-        <span>週{target}回以上 {formatPercent(simulation.probabilityAtLeastTarget)}</span>
-        <span>料理倍率 {formatNumber(simulation.meanEnergyMultiplier, 2)}x</span>
+        <span>{t('expectedTriggers')} {countWithUnit(formatNumber(simulation.totalTriggersPerDay, 2), 'times', language)}/{countWithUnit(1, 'days', language)}</span>
+        <span>{t('meanCrits')} {countWithUnit(formatNumber(simulation.meanSuccesses, 2), 'times', language)}/{countWithUnit(1, 'weeks', language)}</span>
+        <span>{language === 'en' ? `${target}${t('orMore')}` : `週${target}回以上`} {formatPercent(simulation.probabilityAtLeastTarget)}</span>
+        <span>{t('cookingMultiplier')} {formatNumber(simulation.meanEnergyMultiplier, 2)}x</span>
       </div>
-      <div className="score-histogram" aria-label="1週間の料理エナジー分布">
+      <div className="score-histogram" aria-label={t('weeklyMealEnergyAria')}>
         {simulation.scoreHistogram.map((bin) => (
           <div key={bin.id}>
             <span style={{ height: `${Math.max(2, (bin.probability / maxScoreProbability) * 100)}%` }} />
@@ -1513,7 +1774,7 @@ function CookingChancePanel({
           </div>
         ))}
       </div>
-      <div className="cooking-histogram" aria-label="1週間の料理大成功回数分布">
+      <div className="cooking-histogram" aria-label={t('weeklyMealCritAria')}>
         {simulation.histogram.map((bin) => (
           <div key={bin.successes} className={bin.successes >= target ? 'target-bin' : ''}>
             <span style={{ height: `${Math.max(2, (bin.probability / maxSuccessProbability) * 100)}%` }} />
@@ -1522,8 +1783,9 @@ function CookingChancePanel({
         ))}
       </div>
       <ul className="notes">
-        <li>平日10%、日曜30%を基礎大成功率とし、料理チャンスは最大+70%までスタック、実際に大成功したらスタックを0に戻します。</li>
-        <li>発動タイミングは1日3食の各食前区間にポアソン分布で割り振る近似です。</li>
+        {cookingNotes(language).map((note) => (
+          <li key={note}>{localizeCalcNote(note, language)}</li>
+        ))}
       </ul>
     </section>
   );
@@ -1538,18 +1800,19 @@ function ScoreTeamPanel({
   onRemoveSlot,
   onUpdateSlot
 }: ScoreToolProps) {
+  const { language, t } = useI18n();
   const isFull = team.length >= MAX_SCORE_TEAM;
   return (
     <section className="panel team-panel">
       <div className="panel-heading">
-        <h2>チーム</h2>
+        <h2>{t('team')}</h2>
         <span>{team.length}/{MAX_SCORE_TEAM}</span>
       </div>
       <button type="button" className="primary-button add-team-button" onClick={onAddCurrent} disabled={isFull}>
         <Plus size={18} />
-        現在の入力を追加
+        {t('addCurrentInput')}
       </button>
-      <p className="score-note">期待値タブで作った個体か、履歴から最大5匹まで追加します。</p>
+      <p className="score-note">{t('teamNote')}</p>
       <div className="team-list">
         {team.map((slot) => (
           <TeamSlotCard key={slot.id} slot={slot} onRemove={onRemoveSlot} onUpdate={onUpdateSlot} />
@@ -1557,15 +1820,15 @@ function ScoreTeamPanel({
       </div>
       {history.length > 0 ? (
         <>
-          <h3 className="team-subheading">履歴から追加</h3>
+          <h3 className="team-subheading">{t('addFromHistory')}</h3>
           <div className="team-picks">
             {history.map((entry) => (
               <button key={entry.id} type="button" disabled={isFull} onClick={() => onAddHistory(entry)}>
                 <strong>
-                  {entry.result.speciesName} Lv{entry.input.level}
+                  {pokemonName(pokemonById.get(entry.input.speciesId) ?? firstPlayableSpecies(), language)} Lv{entry.input.level}
                 </strong>
                 <span>
-                  {natureById.get(entry.input.natureId)?.nameJa ?? entry.input.natureId} / {formatShortSubskills(entry.input)}
+                  {formatNatureName(entry.input.natureId, language)} / {formatShortSubskills(entry.input, language)}
                 </span>
               </button>
             ))}
@@ -1573,8 +1836,8 @@ function ScoreTeamPanel({
         </>
       ) : null}
       <div className="current-input-chip">
-        <span>現在の入力</span>
-        <strong>{formatTeamInputTitle(currentInput)}</strong>
+        <span>{t('currentInput')}</span>
+        <strong>{formatTeamInputTitle(currentInput, language)}</strong>
       </div>
     </section>
   );
@@ -1589,6 +1852,7 @@ function TeamSlotCard({
   onRemove: (id: string) => void;
   onUpdate: (id: string, patch: Partial<CalcInput>) => void;
 }) {
+  const { language, t } = useI18n();
   const input = slot.input;
   const species = pokemonById.get(input.speciesId);
   if (!species) {
@@ -1598,23 +1862,23 @@ function TeamSlotCard({
   return (
     <article className="team-card">
       <div className="team-card-main">
-        <strong>{formatTeamInputTitle(input)}</strong>
+        <strong>{formatTeamInputTitle(input, language)}</strong>
         <span>
-          {natureById.get(input.natureId)?.nameJa ?? input.natureId} / {formatSkillTitle(input)}
+          {formatNatureName(input.natureId, language)} / {formatSkillTitle(input, language)}
         </span>
         <HistorySubskillTags input={input} />
       </div>
       <div className="team-card-actions">
-        <label className="check-row compact-check" title={isWakakusaEx ? 'ワカクサEX時はEXきのみ設定を使います' : undefined}>
+        <label className="check-row compact-check" title={isWakakusaEx ? t('wakakusaExTitle') : undefined}>
           <input
             type="checkbox"
             checked={input.favoriteBerry}
             disabled={isWakakusaEx}
             onChange={(event) => onUpdate(slot.id, { favoriteBerry: event.target.checked })}
           />
-          <span>好み</span>
+          <span>{t('favoriteShort')}</span>
         </label>
-        <button type="button" className="icon-button" onClick={() => onRemove(slot.id)} title="チームから削除">
+        <button type="button" className="icon-button" onClick={() => onRemove(slot.id)} title={t('removeFromTeam')}>
           <X size={17} />
         </button>
       </div>
@@ -1625,30 +1889,30 @@ function TeamSlotCard({
             checked={isWakakusaEx}
             onChange={(event) => onUpdate(slot.id, { mapMode: event.target.checked ? 'wakakusaEx' : 'normal', exMode: false })}
           />
-          <span>ワカクサEX</span>
+          <span>{t('wakakusaEx')}</span>
         </label>
         {isWakakusaEx ? (
           <div className="team-ex-grid">
             <div className="field compact-field">
-              <label>EXきのみ</label>
+              <label>{t('exBerry')}</label>
               <select
                 value={input.exBerryMode}
                 onChange={(event) => onUpdate(slot.id, { exBerryMode: event.target.value as CalcInput['exBerryMode'], exMode: false })}
               >
-                <option value="main">メイン一致</option>
-                <option value="sub">サブ一致</option>
-                <option value="none">不一致（速度15%低下）</option>
+                <option value="main">{t('mainMatch')}</option>
+                <option value="sub">{t('subMatch')}</option>
+                <option value="none">{t('noMatchSpeedDown')}</option>
               </select>
             </div>
             <div className="field compact-field">
-              <label>EX効果</label>
+              <label>{t('exBonus')}</label>
               <select
                 value={input.exBonusMode}
                 onChange={(event) => onUpdate(slot.id, { exBonusMode: event.target.value as CalcInput['exBonusMode'], exMode: false })}
               >
-                <option value="berry">きのみ2.4倍</option>
-                <option value="ingredient">食材+</option>
-                <option value="skill">スキル1.25倍</option>
+                <option value="berry">{t('berry24x')}</option>
+                <option value="ingredient">{t('ingredientPlus')}</option>
+                <option value="skill">{t('skill125x')}</option>
               </select>
             </div>
           </div>
@@ -1659,15 +1923,17 @@ function TeamSlotCard({
 }
 
 function ScoreEmpty() {
+  const { t } = useI18n();
   return (
     <div className="score-empty">
-      <p>まだチームが空です。</p>
-      <span>期待値タブの現在入力か履歴から、スコアアタック対象を追加してください。</span>
+      <p>{t('teamEmpty')}</p>
+      <span>{t('teamEmptyHint')}</span>
     </div>
   );
 }
 
 function IngredientBreakdownList({ title, breakdown }: { title: string; breakdown: IngredientBreakdown[] }) {
+  const { language, t } = useI18n();
   return (
     <div className="breakdown score-breakdown">
       <h3>{title}</h3>
@@ -1677,40 +1943,41 @@ function IngredientBreakdownList({ title, breakdown }: { title: string; breakdow
             const ingredient = ingredientById.get(item.ingredientId);
             return (
               <li key={item.ingredientId}>
-                <span>{ingredient?.nameJa ?? item.ingredientId}</span>
+                <span>{ingredient ? ingredientName(ingredient, language) : item.ingredientId}</span>
                 <strong>
-                  {formatNumber(item.amount, 1)}個 / {formatNumber(item.energy)}
+                  {countWithUnit(formatNumber(item.amount, 1), 'pieces', language)} / {formatNumber(item.energy)}
                 </strong>
               </li>
             );
           })}
         </ul>
       ) : (
-        <p>対象食材はありません。</p>
+        <p>{t('noIngredients')}</p>
       )}
     </div>
   );
 }
 
 function ResultSummary({ result, species }: { result: CalcResult; species: PokemonSpecies }) {
+  const { language, t } = useI18n();
   const berry = berryById.get(species.berryId);
   const skill = mainSkillById.get(species.skillId);
   return (
     <section className="panel summary">
       <div className="summary-title">
         <div>
-          <h2>{result.speciesName}</h2>
+          <h2>{pokemonName(species, language)}</h2>
           <p>
-            {specialtyLabel(species.specialty)} / {berry?.nameJa ?? species.berryId} / {skill?.nameJa ?? species.skillId}
+            {localizedSpecialtyLabel(species.specialty, language)} / {berry ? berryName(berry, language) : species.berryId} / {skill ? mainSkillName(skill, language) : species.skillId}
           </p>
         </div>
         <strong>{formatNumber(result.totalEnergy)}</strong>
       </div>
       <div className="stat-grid">
-        <Metric label="きのみ" value={formatNumber(result.berryEnergy)} />
-        <Metric label="食材" value={formatNumber(result.ingredientEnergy)} />
-        <Metric label="スキル" value={formatNumber(result.skillEnergy)} />
-        <Metric label="おてつだい" value={`${formatNumber(result.helpsPerDay, 1)}回`} />
+        <Metric label={t('berries')} value={formatNumber(result.berryEnergy)} />
+        <Metric label={t('ingredients')} value={formatNumber(result.ingredientEnergy)} />
+        <Metric label={t('skill')} value={formatNumber(result.skillEnergy)} />
+        <Metric label={t('helping')} value={countWithUnit(formatNumber(result.helpsPerDay, 1), 'times', language)} />
       </div>
     </section>
   );
@@ -1725,53 +1992,54 @@ function ResultDetail({
   input: CalcInput;
   selectedHistoryId: string | null;
 }) {
-  const skillTitle = formatSkillTitle(input);
-  const skillSummary = formatSkillEffectSummary(input);
+  const { language, t } = useI18n();
+  const skillTitle = formatSkillTitle(input, language);
+  const skillSummary = formatSkillEffectSummary(input, language);
 
   return (
     <section className="panel detail">
       <div className="panel-heading">
-        <h2>{selectedHistoryId ? '履歴詳細' : '現在の詳細'}</h2>
-        <span>{new Date(result.createdAt).toLocaleString('ja-JP')}</span>
+        <h2>{selectedHistoryId ? t('historyDetail') : t('currentDetail')}</h2>
+        <span>{new Date(result.createdAt).toLocaleString(localeFor(language))}</span>
       </div>
       <div className="skill-info">
-        <span>メインスキル</span>
+        <span>{t('mainSkill')}</span>
         <strong>{skillTitle}</strong>
         <p>{skillSummary}</p>
       </div>
       <div className="detail-grid">
-        <Metric label="計算上おてつだい時間" value={formatSeconds(result.displayedFrequency)} />
-        <Metric label="最大所持数" value={`${result.inventoryLimit}`} />
-        <Metric label="食材確率" value={formatPercent(result.ingredientProbability)} />
-        <Metric label="スキル確率" value={formatPercent(result.skillProbability)} />
-        <Metric label="スキル発動期待" value={`${formatNumber(result.expectedSkillTriggers, 2)}回`} />
-        <Metric label="睡眠中スキル" value={`${formatNumber(result.sleepSkillTriggers ?? 0, 2)} / ${result.sleepSkillStockLimit ?? 1}`} />
-        <Metric label="きのみ/回" value={`${formatNumber(result.berriesPerHelp, 1)}個`} />
-        <Metric label="睡眠中あふれ" value={`${formatNumber(result.sleepOverflowHelps ?? 0, 1)}回`} />
+        <Metric label={t('calculatedHelpTime')} value={formatSeconds(result.displayedFrequency)} />
+        <Metric label={t('inventoryLimit')} value={`${result.inventoryLimit}`} />
+        <Metric label={t('ingredientRate')} value={formatPercent(result.ingredientProbability)} />
+        <Metric label={t('skillRate')} value={formatPercent(result.skillProbability)} />
+        <Metric label={t('skillTriggers')} value={countWithUnit(formatNumber(result.expectedSkillTriggers, 2), 'times', language)} />
+        <Metric label={t('sleepSkill')} value={`${formatNumber(result.sleepSkillTriggers ?? 0, 2)} / ${result.sleepSkillStockLimit ?? 1}`} />
+        <Metric label={t('berriesPerHelp')} value={countWithUnit(formatNumber(result.berriesPerHelp, 1), 'pieces', language)} />
+        <Metric label={t('sleepOverflow')} value={countWithUnit(formatNumber(result.sleepOverflowHelps ?? 0, 1), 'times', language)} />
       </div>
       <div className="breakdown">
-        <h3>食材内訳</h3>
+        <h3>{t('ingredientBreakdown')}</h3>
         {result.ingredientBreakdown.length > 0 ? (
           <ul>
             {result.ingredientBreakdown.map((item) => {
               const ingredient = ingredientById.get(item.ingredientId);
               return (
                 <li key={item.ingredientId}>
-                  <span>{ingredient?.nameJa ?? item.ingredientId}</span>
+                  <span>{ingredient ? ingredientName(ingredient, language) : item.ingredientId}</span>
                   <strong>
-                    {formatNumber(item.amount, 1)}個 / {formatNumber(item.energy)}
+                    {countWithUnit(formatNumber(item.amount, 1), 'pieces', language)} / {formatNumber(item.energy)}
                   </strong>
                 </li>
               );
             })}
           </ul>
         ) : (
-          <p>解放済み食材がありません。</p>
+          <p>{t('noUnlockedIngredients')}</p>
         )}
       </div>
       <ul className="notes">
         {result.notes.map((note) => (
-          <li key={note}>{note}</li>
+          <li key={note}>{localizeCalcNote(note, language)}</li>
         ))}
       </ul>
     </section>
@@ -1791,29 +2059,30 @@ function HistoryTable({
   onDelete: (id: string) => void;
   onDownload: () => void;
 }) {
+  const { language, t } = useI18n();
   return (
     <section className="panel history">
       <div className="panel-heading">
         <h2>
           <History size={18} />
-          最新10件
+          {t('latestTen')}
         </h2>
-        <button type="button" className="icon-button" onClick={onDownload} title="履歴をCSV出力">
+        <button type="button" className="icon-button" onClick={onDownload} title={t('exportHistoryCsv')}>
           <Download size={18} />
         </button>
       </div>
       {history.length === 0 ? (
-        <p className="empty">まだ保存された結果はありません。</p>
+        <p className="empty">{t('noSavedResults')}</p>
       ) : (
         <div className="history-table-wrap">
           <table>
             <thead>
               <tr>
-                <th>日時</th>
-                <th>ポケモン</th>
+                <th>{t('dateTime')}</th>
+                <th>{t('pokemon')}</th>
                 <th>Lv</th>
-                <th>せいかく</th>
-                <th>サブスキル</th>
+                <th>{t('selectedNature')}</th>
+                <th>{t('subskills')}</th>
                 <th></th>
               </tr>
             </thead>
@@ -1824,13 +2093,13 @@ function HistoryTable({
                   className={selectedId === item.id ? 'selected' : ''}
                   onClick={() => onSelect(item)}
                 >
-                  <td data-label="日時">
-                    {new Date(item.result.createdAt).toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}
+                  <td data-label={t('dateTime')}>
+                    {new Date(item.result.createdAt).toLocaleTimeString(localeFor(language), { hour: '2-digit', minute: '2-digit' })}
                   </td>
-                  <td data-label="ポケモン">{item.result.speciesName}</td>
+                  <td data-label={t('pokemon')}>{pokemonName(pokemonById.get(item.input.speciesId) ?? firstPlayableSpecies(), language)}</td>
                   <td data-label="Lv">{item.input.level}</td>
-                  <td data-label="せいかく">{natureById.get(item.input.natureId)?.nameJa ?? item.input.natureId}</td>
-                  <td data-label="サブスキル">
+                  <td data-label={t('selectedNature')}>{formatNatureName(item.input.natureId, language)}</td>
+                  <td data-label={t('subskills')}>
                     <HistorySubskillTags input={item.input} />
                   </td>
                   <td className="history-action-cell">
@@ -1841,7 +2110,7 @@ function HistoryTable({
                         event.stopPropagation();
                         onDelete(item.id);
                       }}
-                      title="履歴を削除"
+                      title={t('deleteHistory')}
                     >
                       <Trash2 size={16} />
                     </button>
@@ -1860,28 +2129,29 @@ const MATRIX_MODIFIERS = ['speed', 'ingredient', 'skill', 'energy', 'exp'];
 const NEUTRAL_NATURE_IDS = ['Bashful', 'Hardy', 'Docile', 'Quirky', 'Serious'];
 
 function NaturePicker({ value, onChange }: { value: string; onChange: (natureId: string) => void }) {
+  const { language, t } = useI18n();
   const selected = natureById.get(value);
 
   return (
     <fieldset className="nature-matrix-fieldset">
-      <legend>せいかく</legend>
+      <legend>{t('nature')}</legend>
       <div className="nature-selected">
-        <strong>{selected?.nameJa ?? value}</strong>
+        <strong>{selected ? natureName(selected, language) : value}</strong>
         <span>
-          {modifierLabel(selected?.positiveModifier ?? 'neutral')}↑ / {modifierLabel(selected?.negativeModifier ?? 'neutral')}↓
+          {localizedModifierLabel(selected?.positiveModifier ?? 'neutral', language)}↑ / {localizedModifierLabel(selected?.negativeModifier ?? 'neutral', language)}↓
         </span>
       </div>
-      <div className="nature-matrix" role="grid" aria-label="せいかく補正">
+      <div className="nature-matrix" role="grid" aria-label={t('natureModifierAria')}>
         <div className="matrix-corner" />
         {MATRIX_MODIFIERS.map((modifier) => (
           <div key={`down-${modifier}`} className="matrix-axis down">
-            {modifierLabel(modifier)}↓
+            {localizedModifierLabel(modifier, language)}↓
           </div>
         ))}
         {MATRIX_MODIFIERS.map((positiveModifier, rowIndex) => (
           <Fragment key={positiveModifier}>
             <div key={`up-${positiveModifier}`} className="matrix-axis up">
-              {modifierLabel(positiveModifier)}↑
+              {localizedModifierLabel(positiveModifier, language)}↑
             </div>
             {MATRIX_MODIFIERS.map((negativeModifier, columnIndex) => {
               const nature = natureForMatrixCell(positiveModifier, negativeModifier, rowIndex);
@@ -1897,8 +2167,8 @@ function NaturePicker({ value, onChange }: { value: string; onChange: (natureId:
                     }
                   }}
                 >
-                  <strong>{nature?.nameJa ?? '-'}</strong>
-                  {positiveModifier === negativeModifier ? <span>無補正</span> : null}
+                  <strong>{nature ? natureName(nature, language) : '-'}</strong>
+                  {positiveModifier === negativeModifier ? <span>{t('noModifier')}</span> : null}
                 </button>
               );
             })}
@@ -1910,6 +2180,7 @@ function NaturePicker({ value, onChange }: { value: string; onChange: (natureId:
 }
 
 function SubskillCheckboxPicker({ value, onChange }: { value: string[]; onChange: (subskillIds: string[]) => void }) {
+  const { language, t } = useI18n();
   const [query, setQuery] = useState('');
   const selected = new Set(value);
   const normalizedQuery = normalizeSearchText(query);
@@ -1917,16 +2188,16 @@ function SubskillCheckboxPicker({ value, onChange }: { value: string[]; onChange
     () =>
       dataset.subskills
         .slice()
-        .sort((left, right) => subskillSortRank(left.name) - subskillSortRank(right.name) || left.nameJa.localeCompare(right.nameJa, 'ja'))
+        .sort((left, right) => subskillSortRank(left.name) - subskillSortRank(right.name) || subskillName(left, language).localeCompare(subskillName(right, language), localeFor(language)))
         .filter((subskill) => {
           if (!normalizedQuery) {
             return true;
           }
-          return normalizeSearchText(`${subskill.nameJa} ${subskill.name} ${subskill.shortName} ${subskillRarityLabel(subskill.rarity)}`).includes(
+          return normalizeSearchText(`${subskill.nameJa} ${subskill.name} ${subskill.shortName} ${subskillRarityLabel(subskill.rarity, language)}`).includes(
             normalizedQuery
           );
         }),
-    [normalizedQuery]
+    [language, normalizedQuery]
   );
 
   function toggleSubskill(subskillId: string, checked: boolean) {
@@ -1947,9 +2218,9 @@ function SubskillCheckboxPicker({ value, onChange }: { value: string[]; onChange
           {value.map((id, index) => {
             const subskill = subskillById.get(id);
             return (
-              <button key={`${id}-${index}`} type="button" onClick={() => toggleSubskill(id, false)} title="選択を解除">
+              <button key={`${id}-${index}`} type="button" onClick={() => toggleSubskill(id, false)} title={t('clearSelection')}>
                 <b>{index + 1}</b>
-                <span>{subskill?.nameJa ?? id}</span>
+                <span>{subskill ? subskillName(subskill, language) : id}</span>
               </button>
             );
           })}
@@ -1958,7 +2229,7 @@ function SubskillCheckboxPicker({ value, onChange }: { value: string[]; onChange
       <input
         type="search"
         value={query}
-        placeholder="サブスキル名で絞り込み"
+        placeholder={t('filterSubskills')}
         onChange={(event) => setQuery(event.target.value)}
       />
       <div className="subskill-check-grid">
@@ -1973,8 +2244,8 @@ function SubskillCheckboxPicker({ value, onChange }: { value: string[]; onChange
                 disabled={disabled}
                 onChange={(event) => toggleSubskill(subskill.id, event.target.checked)}
               />
-              <span className={`rarity-badge rarity-${subskill.rarity}`}>{subskillRarityLabel(subskill.rarity)}</span>
-              <strong>{subskill.nameJa}</strong>
+              <span className={`rarity-badge rarity-${subskill.rarity}`}>{subskillRarityLabel(subskill.rarity, language)}</span>
+              <strong>{subskillName(subskill, language)}</strong>
             </label>
           );
         })}
@@ -1984,8 +2255,9 @@ function SubskillCheckboxPicker({ value, onChange }: { value: string[]; onChange
 }
 
 function HistorySubskillTags({ input }: { input: CalcInput }) {
+  const { language, t } = useI18n();
   if (input.subskillIds.length === 0) {
-    return <span className="history-tag muted">サブスキルなし</span>;
+    return <span className="history-tag muted">{t('noSubskills')}</span>;
   }
 
   const visibleSubskills = input.subskillIds.slice(0, 4);
@@ -1996,8 +2268,8 @@ function HistorySubskillTags({ input }: { input: CalcInput }) {
       {visibleSubskills.map((id) => {
         const subskill = subskillById.get(id);
         return (
-          <span key={id} className="history-tag" title={subskill?.nameJa ?? id}>
-            {subskill?.nameJa ?? id}
+          <span key={id} className="history-tag" title={subskill ? subskillName(subskill, language) : id}>
+            {subskill ? subskillName(subskill, language) : id}
           </span>
         );
       })}
@@ -2021,14 +2293,8 @@ function subskillSortRank(name: string) {
   return index >= 0 ? index : SUBSKILL_PRIORITY.length;
 }
 
-function subskillRarityLabel(rarity: string) {
-  if (rarity === 'gold') {
-    return '金';
-  }
-  if (rarity === 'silver') {
-    return '青';
-  }
-  return '白';
+function subskillRarityLabel(rarity: string, language: Language) {
+  return localizedSubskillRarityLabel(rarity, language);
 }
 
 function Metric({ label, value }: { label: string; value: string }) {
@@ -2041,29 +2307,30 @@ function Metric({ label, value }: { label: string; value: string }) {
 }
 
 function PokemonSearch({ speciesId, onChange }: { speciesId: string; onChange: (speciesId: string) => void }) {
+  const { language, t } = useI18n();
   const selected = pokemonById.get(speciesId) ?? firstPlayableSpecies();
-  const [query, setQuery] = useState(formatPokemonCandidate(selected));
+  const [query, setQuery] = useState(formatPokemonCandidate(selected, language));
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const suggestions = useMemo(() => searchPokemon(query, selected.id), [query, selected.id]);
 
   useEffect(() => {
-    setQuery(formatPokemonCandidate(selected));
-  }, [selected]);
+    setQuery(formatPokemonCandidate(selected, language));
+  }, [language, selected]);
 
   useEffect(() => {
     setActiveIndex(0);
   }, [query]);
 
   function choose(pokemon: PokemonSpecies) {
-    setQuery(formatPokemonCandidate(pokemon));
+    setQuery(formatPokemonCandidate(pokemon, language));
     setIsOpen(false);
     onChange(pokemon.id);
   }
 
   return (
     <div className="combobox">
-      <label htmlFor="species-search">ポケモン</label>
+      <label htmlFor="species-search">{t('pokemon')}</label>
       <input
         id="species-search"
         type="search"
@@ -2077,7 +2344,7 @@ function PokemonSearch({ speciesId, onChange }: { speciesId: string; onChange: (
         onBlur={() => {
           window.setTimeout(() => {
             setIsOpen(false);
-            setQuery(formatPokemonCandidate(selected));
+            setQuery(formatPokemonCandidate(selected, language));
           }, 120);
         }}
         onKeyDown={(event) => {
@@ -2096,7 +2363,7 @@ function PokemonSearch({ speciesId, onChange }: { speciesId: string; onChange: (
             }
           } else if (event.key === 'Escape') {
             setIsOpen(false);
-            setQuery(formatPokemonCandidate(selected));
+            setQuery(formatPokemonCandidate(selected, language));
           }
         }}
       />
@@ -2112,8 +2379,8 @@ function PokemonSearch({ speciesId, onChange }: { speciesId: string; onChange: (
               onMouseDown={(event) => event.preventDefault()}
               onClick={() => choose(pokemon)}
             >
-              <strong>{pokemon.displayNameJa}</strong>
-              <span>{pokemon.displayName}</span>
+              <strong>{pokemonName(pokemon, language)}</strong>
+              <span>{language === 'en' ? pokemon.displayNameJa : pokemon.displayName}</span>
             </button>
           ))}
         </div>
@@ -2122,8 +2389,8 @@ function PokemonSearch({ speciesId, onChange }: { speciesId: string; onChange: (
   );
 }
 
-function formatPokemonCandidate(pokemon: PokemonSpecies) {
-  return `${pokemon.displayNameJa} / ${pokemon.displayName}`;
+function formatPokemonCandidate(pokemon: PokemonSpecies, language: Language) {
+  return pokemonCandidateName(pokemon, language);
 }
 
 function searchPokemon(query: string, selectedId: string) {
@@ -2237,6 +2504,7 @@ function IngredientSelect({
   disabled?: boolean;
   onChange: (value: string) => void;
 }) {
+  const { language } = useI18n();
   return (
     <div className="field ingredient-field">
       <label>{label}</label>
@@ -2245,7 +2513,7 @@ function IngredientSelect({
           const ingredient = ingredientById.get(drop.ingredientId);
           return (
             <option key={`${drop.ingredientId}-${index}`} value={drop.ingredientId}>
-              {ingredient?.nameJa ?? drop.ingredientId} x{drop.amount}
+              {ingredient ? ingredientName(ingredient, language) : drop.ingredientId} x{drop.amount}
             </option>
           );
         })}
@@ -2338,7 +2606,7 @@ function summarizeCalcResults(results: CalcResult[]) {
   };
 }
 
-function cookingChanceSourceFor(input: CalcInput, result: CalcResult): CookingChanceSource | null {
+function cookingChanceSourceFor(input: CalcInput, result: CalcResult, language: Language): CookingChanceSource | null {
   const species = pokemonById.get(input.speciesId);
   const skill = species ? mainSkillById.get(species.skillId) : undefined;
   if (!species || !skill) {
@@ -2355,7 +2623,7 @@ function cookingChanceSourceFor(input: CalcInput, result: CalcResult): CookingCh
   }
   return {
     id: result.speciesId,
-    label: `${result.speciesName} Lv${skillLevel}`,
+    label: `${pokemonName(species, language)} Lv${skillLevel}`,
     triggersPerDay: result.expectedSkillTriggers,
     chancePercent
   };
@@ -2381,41 +2649,49 @@ function mergeIngredientBreakdowns(items: IngredientBreakdown[]) {
   return Array.from(map.values()).filter((item) => Math.abs(item.amount) > 0.0001 || Math.abs(item.energy) > 0.0001);
 }
 
-function formatTeamInputTitle(input: CalcInput) {
-  const species = pokemonById.get(input.speciesId);
-  return `${species?.displayNameJa ?? input.speciesId} Lv${input.level}`;
+function formatNatureName(natureId: string, language: Language) {
+  const nature = natureById.get(natureId);
+  return nature ? natureName(nature, language) : natureId;
 }
 
-function formatShortSubskills(input: CalcInput) {
+function formatTeamInputTitle(input: CalcInput, language: Language) {
+  const species = pokemonById.get(input.speciesId);
+  return `${species ? pokemonName(species, language) : input.speciesId} Lv${input.level}`;
+}
+
+function formatShortSubskills(input: CalcInput, language: Language) {
   if (input.subskillIds.length === 0) {
-    return 'サブスキルなし';
+    return translate(language, 'noSubskills');
   }
   const labels = input.subskillIds
     .slice(0, 2)
-    .map((id) => subskillById.get(id)?.nameJa ?? id)
+    .map((id) => {
+      const subskill = subskillById.get(id);
+      return subskill ? subskillName(subskill, language) : id;
+    })
     .join(' / ');
   const hiddenCount = input.subskillIds.length - 2;
   return hiddenCount > 0 ? `${labels} +${hiddenCount}` : labels;
 }
 
-function formatSkillTitle(input: CalcInput) {
+function formatSkillTitle(input: CalcInput, language: Language) {
   const species = pokemonById.get(input.speciesId);
   const skill = species ? mainSkillById.get(species.skillId) : undefined;
-  return `${skill?.nameJa ?? species?.skillId ?? 'メインスキル'} Lv${skill && species ? effectiveSkillLevel(input, species, skill) : input.skillLevel}`;
+  return `${skill ? mainSkillName(skill, language) : species?.skillId ?? translate(language, 'mainSkillFallback')} Lv${skill && species ? effectiveSkillLevel(input, species, skill) : input.skillLevel}`;
 }
 
-function formatSkillEffectSummary(input: CalcInput) {
+function formatSkillEffectSummary(input: CalcInput, language: Language) {
   const species = pokemonById.get(input.speciesId);
   const skill = species ? mainSkillById.get(species.skillId) : undefined;
   if (!species || !skill) {
-    return 'メインスキルの効果データがありません。';
+    return translate(language, 'noMainSkillData');
   }
   const skillLevel = effectiveSkillLevel(input, species, skill);
   const labels = skill.activations
-    .map((activation) => skillActivationLabel(activation, skillLevel, input, species))
+    .map((activation) => skillActivationLabel(activation, skillLevel, input, species, language))
     .filter((label) => label.length > 0);
   if (labels.length === 0) {
-    return 'このスキルは特殊効果を含むため、現状の数値換算では未対応の部分があります。';
+    return translate(language, 'unsupportedSkillEffect');
   }
   return labels.join(' + ');
 }
@@ -2429,7 +2705,8 @@ function skillActivationLabel(
   activation: MainSkill['activations'][number],
   skillLevel: number,
   input: CalcInput,
-  species: PokemonSpecies
+  species: PokemonSpecies,
+  language: Language
 ) {
   const amount = activation.amounts[Math.min(skillLevel, activation.amounts.length) - 1] ?? 0;
   const unit = activation.unit.toLowerCase();
@@ -2437,24 +2714,26 @@ function skillActivationLabel(
     return '';
   }
   if (unit === 'strength') {
-    return `${formatNumber(amount)}エナジー`;
+    return language === 'en' ? `${formatNumber(amount)} strength` : `${formatNumber(amount)}エナジー`;
   }
   if (unit === 'energy' || unit === 'team energy') {
-    return `${formatNumber(amount, 1)}げんき回復`;
+    return language === 'en' ? `${formatNumber(amount, 1)} energy recovery` : `${formatNumber(amount, 1)}げんき回復`;
   }
   if (unit === 'ingredients' || unit === 'random ingredients') {
-    return `${formatNumber(amount, 1)}個の食材`;
+    return language === 'en' ? `${countWithUnit(formatNumber(amount, 1), 'pieces', language)} ingredients` : `${formatNumber(amount, 1)}個の食材`;
   }
   if (unit === 'berries') {
     const berry = berryById.get(species.berryId);
     const berryEnergy = skillBerryEnergyPerBerry(input, species);
-    return `${berry?.nameJa ?? 'きのみ'} ${formatNumber(amount, 1)}個（${formatNumber(amount * berryEnergy)}エナジー相当）`;
+    return language === 'en'
+      ? `${berry ? berryName(berry, language) : translate(language, 'berries')} ${countWithUnit(formatNumber(amount, 1), 'pieces', language)} (${formatNumber(amount * berryEnergy)} strength equivalent)`
+      : `${berry ? berryName(berry, language) : 'きのみ'} ${formatNumber(amount, 1)}個（${formatNumber(amount * berryEnergy)}エナジー相当）`;
   }
   if (unit === 'helps' || unit === 'extra helpful') {
-    return `${formatNumber(amount, 1)}回分のおてつだい`;
+    return language === 'en' ? `${countWithUnit(formatNumber(amount, 1), 'times', language)} helps` : `${formatNumber(amount, 1)}回分のおてつだい`;
   }
   if (unit === 'items') {
-    return `${formatNumber(amount, 1)}個の特殊効果`;
+    return language === 'en' ? `${countWithUnit(formatNumber(amount, 1), 'pieces', language)} special effects` : `${formatNumber(amount, 1)}個の特殊効果`;
   }
   return `${formatNumber(amount, 1)} ${activation.unit}`;
 }
@@ -2618,27 +2897,32 @@ function makeClientId() {
   return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
-function specialtyLabel(specialty: string) {
-  if (specialty === 'berry') {
-    return 'きのみ得意';
+function teamNotes(language: Language) {
+  if (language === 'en') {
+    return [
+      'Daily output uses the team energy mode. Morning pillow x1 assumes daytime production starts at 150% energy.',
+      "Greengrass EX modifiers use each team card\'s individual setting.",
+      'Helper Whistle excludes main skill activations, Good Camp Ticket, EX speed, and EX ingredient +1.',
+      "Helping Bonus within the team is counted automatically and overwrites each Pokemon\'s other Helping Bonus count."
+    ];
   }
-  if (specialty === 'ingredient') {
-    return '食材得意';
-  }
-  if (specialty === 'skill') {
-    return 'スキル得意';
-  }
-  return 'オール得意';
+  return [
+    '日産はチーム画面のげんき条件を使います。朝イチ枕1個は日中をげんき150%スタートとして計算します。',
+    'ワカクサEX補正は各チームカードの個別設定を使います。',
+    'ホイッスルはメインスキルが発動せず、いいキャンプチケット・EX速度・EX食材+1も反映しません。',
+    'チーム内のおてつだいボーナスは自動集計し、各個体の「他のおてボ数」を上書きしています。'
+  ];
 }
 
-function modifierLabel(modifier: string) {
-  const labels: Record<string, string> = {
-    speed: 'スピード',
-    ingredient: '食材',
-    skill: 'スキル',
-    energy: 'げんき',
-    exp: 'EXP',
-    neutral: 'なし'
-  };
-  return labels[modifier] ?? modifier;
+function cookingNotes(language: Language) {
+  if (language === 'en') {
+    return [
+      'Weekdays use a 10% base extra-tasty rate and Sunday uses 30%. Tasty Chance stacks up to +70% and resets to 0 after an extra-tasty meal.',
+      'Trigger timing is approximated by assigning activations to the pre-meal windows for three meals per day with a Poisson distribution.'
+    ];
+  }
+  return [
+    '平日10%、日曜30%を基礎大成功率とし、料理チャンスは最大+70%までスタック、実際に大成功したらスタックを0に戻します。',
+    '発動タイミングは1日3食の各食前区間にポアソン分布で割り振る近似です。'
+  ];
 }

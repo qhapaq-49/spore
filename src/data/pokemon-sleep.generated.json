@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-05-27T11:29:33.188Z",
+  "generatedAt": "2026-05-30T11:52:28.067Z",
   "source": {
     "name": "Neroli's Lab",
     "url": "https://github.com/nerolis-lab/nerolis-lab.git",
-    "commit": "b9221b606d75647706163633e4a9818079b93a9f"
+    "commit": "1de2d8c063a901546ef95dd8f9aece072e9f58eb"
   },
   "pokemon": [
     {
@@ -9690,7 +9690,7 @@
       "id": "DRAMPA",
       "name": "DRAMPA",
       "displayName": "Drampa",
-      "displayNameJa": "Drampa",
+      "displayNameJa": "ジジーロン",
       "pokedexNumber": 780,
       "specialty": "ingredient",
       "frequency": 3500,
@@ -10695,7 +10695,7 @@
     {
       "id": "Avocado",
       "name": "Glossy Avocado",
-      "nameJa": "ワカクサアボカド",
+      "nameJa": "つやつやアボカド",
       "energy": 162
     },
     {
