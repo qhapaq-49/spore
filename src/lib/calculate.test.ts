@@ -3,7 +3,7 @@ import { dataset } from '../data/dataset';
 import { berryEnergyAtLevel, calculate, calculatePillowImpact, calculateWhistle } from './calculate';
 import { simulateCookingChanceWeek } from './cooking-chance';
 import { analyzeDistribution } from './distribution';
-import { defaultInput, inputForSpecies } from './input';
+import { activeSubskillCountAtLevel, defaultInput, inputForSpecies } from './input';
 
 describe('defaultInput', () => {
   it('starts with favorite berry matching off', () => {
@@ -24,6 +24,18 @@ describe('berryEnergyAtLevel', () => {
     expect(berryEnergyAtLevel(24, 1)).toBe(24);
     expect(berryEnergyAtLevel(24, 2)).toBe(25);
     expect(berryEnergyAtLevel(25, 60)).toBe(107);
+  });
+});
+
+describe('activeSubskillCountAtLevel', () => {
+  it('uses the current 10/25/50/70/80 unlock levels', () => {
+    expect(activeSubskillCountAtLevel(9)).toBe(0);
+    expect(activeSubskillCountAtLevel(10)).toBe(1);
+    expect(activeSubskillCountAtLevel(25)).toBe(2);
+    expect(activeSubskillCountAtLevel(50)).toBe(3);
+    expect(activeSubskillCountAtLevel(69)).toBe(3);
+    expect(activeSubskillCountAtLevel(70)).toBe(4);
+    expect(activeSubskillCountAtLevel(80)).toBe(5);
   });
 });
 

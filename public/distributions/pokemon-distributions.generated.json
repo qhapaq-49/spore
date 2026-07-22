@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-22T12:37:55.943Z",
+  "generatedAt": "2026-07-22T12:48:30.423Z",
   "modelVersion": "all-species-monte-carlo-v2",
   "source": {
     "name": "Neroli's Lab",
@@ -255,7 +255,8 @@
     "levels": [
       30,
       50,
-      60
+      60,
+      70
     ],
     "assumptions": [
       "全ポケモンを種族ごとのJSONに分割して生成",
@@ -276,7 +277,9 @@
         "BULBASAUR-lv50-fav-on",
         "BULBASAUR-lv50-fav-off",
         "BULBASAUR-lv60-fav-on",
-        "BULBASAUR-lv60-fav-off"
+        "BULBASAUR-lv60-fav-off",
+        "BULBASAUR-lv70-fav-on",
+        "BULBASAUR-lv70-fav-off"
       ],
       "path": "species/BULBASAUR.json"
     },
@@ -288,7 +291,9 @@
         "IVYSAUR-lv50-fav-on",
         "IVYSAUR-lv50-fav-off",
         "IVYSAUR-lv60-fav-on",
-        "IVYSAUR-lv60-fav-off"
+        "IVYSAUR-lv60-fav-off",
+        "IVYSAUR-lv70-fav-on",
+        "IVYSAUR-lv70-fav-off"
       ],
       "path": "species/IVYSAUR.json"
     },
@@ -300,7 +305,9 @@
         "VENUSAUR-lv50-fav-on",
         "VENUSAUR-lv50-fav-off",
         "VENUSAUR-lv60-fav-on",
-        "VENUSAUR-lv60-fav-off"
+        "VENUSAUR-lv60-fav-off",
+        "VENUSAUR-lv70-fav-on",
+        "VENUSAUR-lv70-fav-off"
       ],
       "path": "species/VENUSAUR.json"
     },
@@ -312,7 +319,9 @@
         "CHARMANDER-lv50-fav-on",
         "CHARMANDER-lv50-fav-off",
         "CHARMANDER-lv60-fav-on",
-        "CHARMANDER-lv60-fav-off"
+        "CHARMANDER-lv60-fav-off",
+        "CHARMANDER-lv70-fav-on",
+        "CHARMANDER-lv70-fav-off"
       ],
       "path": "species/CHARMANDER.json"
     },
@@ -324,7 +333,9 @@
         "CHARMELEON-lv50-fav-on",
         "CHARMELEON-lv50-fav-off",
         "CHARMELEON-lv60-fav-on",
-        "CHARMELEON-lv60-fav-off"
+        "CHARMELEON-lv60-fav-off",
+        "CHARMELEON-lv70-fav-on",
+        "CHARMELEON-lv70-fav-off"
       ],
       "path": "species/CHARMELEON.json"
     },
@@ -336,7 +347,9 @@
         "CHARIZARD-lv50-fav-on",
         "CHARIZARD-lv50-fav-off",
         "CHARIZARD-lv60-fav-on",
-        "CHARIZARD-lv60-fav-off"
+        "CHARIZARD-lv60-fav-off",
+        "CHARIZARD-lv70-fav-on",
+        "CHARIZARD-lv70-fav-off"
       ],
       "path": "species/CHARIZARD.json"
     },
@@ -348,7 +361,9 @@
         "SQUIRTLE-lv50-fav-on",
         "SQUIRTLE-lv50-fav-off",
         "SQUIRTLE-lv60-fav-on",
-        "SQUIRTLE-lv60-fav-off"
+        "SQUIRTLE-lv60-fav-off",
+        "SQUIRTLE-lv70-fav-on",
+        "SQUIRTLE-lv70-fav-off"
       ],
       "path": "species/SQUIRTLE.json"
     },
@@ -360,7 +375,9 @@
         "WARTORTLE-lv50-fav-on",
         "WARTORTLE-lv50-fav-off",
         "WARTORTLE-lv60-fav-on",
-        "WARTORTLE-lv60-fav-off"
+        "WARTORTLE-lv60-fav-off",
+        "WARTORTLE-lv70-fav-on",
+        "WARTORTLE-lv70-fav-off"
       ],
       "path": "species/WARTORTLE.json"
     },
@@ -372,7 +389,9 @@
         "BLASTOISE-lv50-fav-on",
         "BLASTOISE-lv50-fav-off",
         "BLASTOISE-lv60-fav-on",
-        "BLASTOISE-lv60-fav-off"
+        "BLASTOISE-lv60-fav-off",
+        "BLASTOISE-lv70-fav-on",
+        "BLASTOISE-lv70-fav-off"
       ],
       "path": "species/BLASTOISE.json"
     },
@@ -384,7 +403,9 @@
         "CATERPIE-lv50-fav-on",
         "CATERPIE-lv50-fav-off",
         "CATERPIE-lv60-fav-on",
-        "CATERPIE-lv60-fav-off"
+        "CATERPIE-lv60-fav-off",
+        "CATERPIE-lv70-fav-on",
+        "CATERPIE-lv70-fav-off"
       ],
       "path": "species/CATERPIE.json"
     },
@@ -396,7 +417,9 @@
         "METAPOD-lv50-fav-on",
         "METAPOD-lv50-fav-off",
         "METAPOD-lv60-fav-on",
-        "METAPOD-lv60-fav-off"
+        "METAPOD-lv60-fav-off",
+        "METAPOD-lv70-fav-on",
+        "METAPOD-lv70-fav-off"
       ],
       "path": "species/METAPOD.json"
     },
@@ -408,7 +431,9 @@
         "BUTTERFREE-lv50-fav-on",
         "BUTTERFREE-lv50-fav-off",
         "BUTTERFREE-lv60-fav-on",
-        "BUTTERFREE-lv60-fav-off"
+        "BUTTERFREE-lv60-fav-off",
+        "BUTTERFREE-lv70-fav-on",
+        "BUTTERFREE-lv70-fav-off"
       ],
       "path": "species/BUTTERFREE.json"
     },
@@ -420,7 +445,9 @@
         "RATTATA-lv50-fav-on",
         "RATTATA-lv50-fav-off",
         "RATTATA-lv60-fav-on",
-        "RATTATA-lv60-fav-off"
+        "RATTATA-lv60-fav-off",
+        "RATTATA-lv70-fav-on",
+        "RATTATA-lv70-fav-off"
       ],
       "path": "species/RATTATA.json"
     },
@@ -432,7 +459,9 @@
         "RATICATE-lv50-fav-on",
         "RATICATE-lv50-fav-off",
         "RATICATE-lv60-fav-on",
-        "RATICATE-lv60-fav-off"
+        "RATICATE-lv60-fav-off",
+        "RATICATE-lv70-fav-on",
+        "RATICATE-lv70-fav-off"
       ],
       "path": "species/RATICATE.json"
     },
@@ -444,7 +473,9 @@
         "EKANS-lv50-fav-on",
         "EKANS-lv50-fav-off",
         "EKANS-lv60-fav-on",
-        "EKANS-lv60-fav-off"
+        "EKANS-lv60-fav-off",
+        "EKANS-lv70-fav-on",
+        "EKANS-lv70-fav-off"
       ],
       "path": "species/EKANS.json"
     },
@@ -456,7 +487,9 @@
         "ARBOK-lv50-fav-on",
         "ARBOK-lv50-fav-off",
         "ARBOK-lv60-fav-on",
-        "ARBOK-lv60-fav-off"
+        "ARBOK-lv60-fav-off",
+        "ARBOK-lv70-fav-on",
+        "ARBOK-lv70-fav-off"
       ],
       "path": "species/ARBOK.json"
     },
@@ -468,7 +501,9 @@
         "PIKACHU_HALLOWEEN-lv50-fav-on",
         "PIKACHU_HALLOWEEN-lv50-fav-off",
         "PIKACHU_HALLOWEEN-lv60-fav-on",
-        "PIKACHU_HALLOWEEN-lv60-fav-off"
+        "PIKACHU_HALLOWEEN-lv60-fav-off",
+        "PIKACHU_HALLOWEEN-lv70-fav-on",
+        "PIKACHU_HALLOWEEN-lv70-fav-off"
       ],
       "path": "species/PIKACHU_HALLOWEEN.json"
     },
@@ -480,7 +515,9 @@
         "PIKACHU-lv50-fav-on",
         "PIKACHU-lv50-fav-off",
         "PIKACHU-lv60-fav-on",
-        "PIKACHU-lv60-fav-off"
+        "PIKACHU-lv60-fav-off",
+        "PIKACHU-lv70-fav-on",
+        "PIKACHU-lv70-fav-off"
       ],
       "path": "species/PIKACHU.json"
     },
@@ -492,7 +529,9 @@
         "PIKACHU_HOLIDAY-lv50-fav-on",
         "PIKACHU_HOLIDAY-lv50-fav-off",
         "PIKACHU_HOLIDAY-lv60-fav-on",
-        "PIKACHU_HOLIDAY-lv60-fav-off"
+        "PIKACHU_HOLIDAY-lv60-fav-off",
+        "PIKACHU_HOLIDAY-lv70-fav-on",
+        "PIKACHU_HOLIDAY-lv70-fav-off"
       ],
       "path": "species/PIKACHU_HOLIDAY.json"
     },
@@ -504,7 +543,9 @@
         "RAICHU-lv50-fav-on",
         "RAICHU-lv50-fav-off",
         "RAICHU-lv60-fav-on",
-        "RAICHU-lv60-fav-off"
+        "RAICHU-lv60-fav-off",
+        "RAICHU-lv70-fav-on",
+        "RAICHU-lv70-fav-off"
       ],
       "path": "species/RAICHU.json"
     },
@@ -516,7 +557,9 @@
         "SANDSHREW-lv50-fav-on",
         "SANDSHREW-lv50-fav-off",
         "SANDSHREW-lv60-fav-on",
-        "SANDSHREW-lv60-fav-off"
+        "SANDSHREW-lv60-fav-off",
+        "SANDSHREW-lv70-fav-on",
+        "SANDSHREW-lv70-fav-off"
       ],
       "path": "species/SANDSHREW.json"
     },
@@ -528,7 +571,9 @@
         "SANDSLASH-lv50-fav-on",
         "SANDSLASH-lv50-fav-off",
         "SANDSLASH-lv60-fav-on",
-        "SANDSLASH-lv60-fav-off"
+        "SANDSLASH-lv60-fav-off",
+        "SANDSLASH-lv70-fav-on",
+        "SANDSLASH-lv70-fav-off"
       ],
       "path": "species/SANDSLASH.json"
     },
@@ -540,7 +585,9 @@
         "CLEFAIRY-lv50-fav-on",
         "CLEFAIRY-lv50-fav-off",
         "CLEFAIRY-lv60-fav-on",
-        "CLEFAIRY-lv60-fav-off"
+        "CLEFAIRY-lv60-fav-off",
+        "CLEFAIRY-lv70-fav-on",
+        "CLEFAIRY-lv70-fav-off"
       ],
       "path": "species/CLEFAIRY.json"
     },
@@ -552,7 +599,9 @@
         "CLEFABLE-lv50-fav-on",
         "CLEFABLE-lv50-fav-off",
         "CLEFABLE-lv60-fav-on",
-        "CLEFABLE-lv60-fav-off"
+        "CLEFABLE-lv60-fav-off",
+        "CLEFABLE-lv70-fav-on",
+        "CLEFABLE-lv70-fav-off"
       ],
       "path": "species/CLEFABLE.json"
     },
@@ -564,7 +613,9 @@
         "VULPIX-lv50-fav-on",
         "VULPIX-lv50-fav-off",
         "VULPIX-lv60-fav-on",
-        "VULPIX-lv60-fav-off"
+        "VULPIX-lv60-fav-off",
+        "VULPIX-lv70-fav-on",
+        "VULPIX-lv70-fav-off"
       ],
       "path": "species/VULPIX.json"
     },
@@ -576,7 +627,9 @@
         "VULPIX_ALOLAN-lv50-fav-on",
         "VULPIX_ALOLAN-lv50-fav-off",
         "VULPIX_ALOLAN-lv60-fav-on",
-        "VULPIX_ALOLAN-lv60-fav-off"
+        "VULPIX_ALOLAN-lv60-fav-off",
+        "VULPIX_ALOLAN-lv70-fav-on",
+        "VULPIX_ALOLAN-lv70-fav-off"
       ],
       "path": "species/VULPIX_ALOLAN.json"
     },
@@ -588,7 +641,9 @@
         "NINETALES-lv50-fav-on",
         "NINETALES-lv50-fav-off",
         "NINETALES-lv60-fav-on",
-        "NINETALES-lv60-fav-off"
+        "NINETALES-lv60-fav-off",
+        "NINETALES-lv70-fav-on",
+        "NINETALES-lv70-fav-off"
       ],
       "path": "species/NINETALES.json"
     },
@@ -600,7 +655,9 @@
         "NINETALES_ALOLAN-lv50-fav-on",
         "NINETALES_ALOLAN-lv50-fav-off",
         "NINETALES_ALOLAN-lv60-fav-on",
-        "NINETALES_ALOLAN-lv60-fav-off"
+        "NINETALES_ALOLAN-lv60-fav-off",
+        "NINETALES_ALOLAN-lv70-fav-on",
+        "NINETALES_ALOLAN-lv70-fav-off"
       ],
       "path": "species/NINETALES_ALOLAN.json"
     },
@@ -612,7 +669,9 @@
         "JIGGLYPUFF-lv50-fav-on",
         "JIGGLYPUFF-lv50-fav-off",
         "JIGGLYPUFF-lv60-fav-on",
-        "JIGGLYPUFF-lv60-fav-off"
+        "JIGGLYPUFF-lv60-fav-off",
+        "JIGGLYPUFF-lv70-fav-on",
+        "JIGGLYPUFF-lv70-fav-off"
       ],
       "path": "species/JIGGLYPUFF.json"
     },
@@ -624,7 +683,9 @@
         "WIGGLYTUFF-lv50-fav-on",
         "WIGGLYTUFF-lv50-fav-off",
         "WIGGLYTUFF-lv60-fav-on",
-        "WIGGLYTUFF-lv60-fav-off"
+        "WIGGLYTUFF-lv60-fav-off",
+        "WIGGLYTUFF-lv70-fav-on",
+        "WIGGLYTUFF-lv70-fav-off"
       ],
       "path": "species/WIGGLYTUFF.json"
     },
@@ -636,7 +697,9 @@
         "DIGLETT-lv50-fav-on",
         "DIGLETT-lv50-fav-off",
         "DIGLETT-lv60-fav-on",
-        "DIGLETT-lv60-fav-off"
+        "DIGLETT-lv60-fav-off",
+        "DIGLETT-lv70-fav-on",
+        "DIGLETT-lv70-fav-off"
       ],
       "path": "species/DIGLETT.json"
     },
@@ -648,7 +711,9 @@
         "DUGTRIO-lv50-fav-on",
         "DUGTRIO-lv50-fav-off",
         "DUGTRIO-lv60-fav-on",
-        "DUGTRIO-lv60-fav-off"
+        "DUGTRIO-lv60-fav-off",
+        "DUGTRIO-lv70-fav-on",
+        "DUGTRIO-lv70-fav-off"
       ],
       "path": "species/DUGTRIO.json"
     },
@@ -660,7 +725,9 @@
         "MEOWTH-lv50-fav-on",
         "MEOWTH-lv50-fav-off",
         "MEOWTH-lv60-fav-on",
-        "MEOWTH-lv60-fav-off"
+        "MEOWTH-lv60-fav-off",
+        "MEOWTH-lv70-fav-on",
+        "MEOWTH-lv70-fav-off"
       ],
       "path": "species/MEOWTH.json"
     },
@@ -672,7 +739,9 @@
         "PERSIAN-lv50-fav-on",
         "PERSIAN-lv50-fav-off",
         "PERSIAN-lv60-fav-on",
-        "PERSIAN-lv60-fav-off"
+        "PERSIAN-lv60-fav-off",
+        "PERSIAN-lv70-fav-on",
+        "PERSIAN-lv70-fav-off"
       ],
       "path": "species/PERSIAN.json"
     },
@@ -684,7 +753,9 @@
         "PSYDUCK-lv50-fav-on",
         "PSYDUCK-lv50-fav-off",
         "PSYDUCK-lv60-fav-on",
-        "PSYDUCK-lv60-fav-off"
+        "PSYDUCK-lv60-fav-off",
+        "PSYDUCK-lv70-fav-on",
+        "PSYDUCK-lv70-fav-off"
       ],
       "path": "species/PSYDUCK.json"
     },
@@ -696,7 +767,9 @@
         "GOLDUCK-lv50-fav-on",
         "GOLDUCK-lv50-fav-off",
         "GOLDUCK-lv60-fav-on",
-        "GOLDUCK-lv60-fav-off"
+        "GOLDUCK-lv60-fav-off",
+        "GOLDUCK-lv70-fav-on",
+        "GOLDUCK-lv70-fav-off"
       ],
       "path": "species/GOLDUCK.json"
     },
@@ -708,7 +781,9 @@
         "MANKEY-lv50-fav-on",
         "MANKEY-lv50-fav-off",
         "MANKEY-lv60-fav-on",
-        "MANKEY-lv60-fav-off"
+        "MANKEY-lv60-fav-off",
+        "MANKEY-lv70-fav-on",
+        "MANKEY-lv70-fav-off"
       ],
       "path": "species/MANKEY.json"
     },
@@ -720,7 +795,9 @@
         "PRIMEAPE-lv50-fav-on",
         "PRIMEAPE-lv50-fav-off",
         "PRIMEAPE-lv60-fav-on",
-        "PRIMEAPE-lv60-fav-off"
+        "PRIMEAPE-lv60-fav-off",
+        "PRIMEAPE-lv70-fav-on",
+        "PRIMEAPE-lv70-fav-off"
       ],
       "path": "species/PRIMEAPE.json"
     },
@@ -732,7 +809,9 @@
         "GROWLITHE-lv50-fav-on",
         "GROWLITHE-lv50-fav-off",
         "GROWLITHE-lv60-fav-on",
-        "GROWLITHE-lv60-fav-off"
+        "GROWLITHE-lv60-fav-off",
+        "GROWLITHE-lv70-fav-on",
+        "GROWLITHE-lv70-fav-off"
       ],
       "path": "species/GROWLITHE.json"
     },
@@ -744,7 +823,9 @@
         "ARCANINE-lv50-fav-on",
         "ARCANINE-lv50-fav-off",
         "ARCANINE-lv60-fav-on",
-        "ARCANINE-lv60-fav-off"
+        "ARCANINE-lv60-fav-off",
+        "ARCANINE-lv70-fav-on",
+        "ARCANINE-lv70-fav-off"
       ],
       "path": "species/ARCANINE.json"
     },
@@ -756,7 +837,9 @@
         "BELLSPROUT-lv50-fav-on",
         "BELLSPROUT-lv50-fav-off",
         "BELLSPROUT-lv60-fav-on",
-        "BELLSPROUT-lv60-fav-off"
+        "BELLSPROUT-lv60-fav-off",
+        "BELLSPROUT-lv70-fav-on",
+        "BELLSPROUT-lv70-fav-off"
       ],
       "path": "species/BELLSPROUT.json"
     },
@@ -768,7 +851,9 @@
         "WEEPINBELL-lv50-fav-on",
         "WEEPINBELL-lv50-fav-off",
         "WEEPINBELL-lv60-fav-on",
-        "WEEPINBELL-lv60-fav-off"
+        "WEEPINBELL-lv60-fav-off",
+        "WEEPINBELL-lv70-fav-on",
+        "WEEPINBELL-lv70-fav-off"
       ],
       "path": "species/WEEPINBELL.json"
     },
@@ -780,7 +865,9 @@
         "VICTREEBEL-lv50-fav-on",
         "VICTREEBEL-lv50-fav-off",
         "VICTREEBEL-lv60-fav-on",
-        "VICTREEBEL-lv60-fav-off"
+        "VICTREEBEL-lv60-fav-off",
+        "VICTREEBEL-lv70-fav-on",
+        "VICTREEBEL-lv70-fav-off"
       ],
       "path": "species/VICTREEBEL.json"
     },
@@ -792,7 +879,9 @@
         "GEODUDE-lv50-fav-on",
         "GEODUDE-lv50-fav-off",
         "GEODUDE-lv60-fav-on",
-        "GEODUDE-lv60-fav-off"
+        "GEODUDE-lv60-fav-off",
+        "GEODUDE-lv70-fav-on",
+        "GEODUDE-lv70-fav-off"
       ],
       "path": "species/GEODUDE.json"
     },
@@ -804,7 +893,9 @@
         "GRAVELER-lv50-fav-on",
         "GRAVELER-lv50-fav-off",
         "GRAVELER-lv60-fav-on",
-        "GRAVELER-lv60-fav-off"
+        "GRAVELER-lv60-fav-off",
+        "GRAVELER-lv70-fav-on",
+        "GRAVELER-lv70-fav-off"
       ],
       "path": "species/GRAVELER.json"
     },
@@ -816,7 +907,9 @@
         "GOLEM-lv50-fav-on",
         "GOLEM-lv50-fav-off",
         "GOLEM-lv60-fav-on",
-        "GOLEM-lv60-fav-off"
+        "GOLEM-lv60-fav-off",
+        "GOLEM-lv70-fav-on",
+        "GOLEM-lv70-fav-off"
       ],
       "path": "species/GOLEM.json"
     },
@@ -828,7 +921,9 @@
         "SLOWPOKE-lv50-fav-on",
         "SLOWPOKE-lv50-fav-off",
         "SLOWPOKE-lv60-fav-on",
-        "SLOWPOKE-lv60-fav-off"
+        "SLOWPOKE-lv60-fav-off",
+        "SLOWPOKE-lv70-fav-on",
+        "SLOWPOKE-lv70-fav-off"
       ],
       "path": "species/SLOWPOKE.json"
     },
@@ -840,7 +935,9 @@
         "SLOWBRO-lv50-fav-on",
         "SLOWBRO-lv50-fav-off",
         "SLOWBRO-lv60-fav-on",
-        "SLOWBRO-lv60-fav-off"
+        "SLOWBRO-lv60-fav-off",
+        "SLOWBRO-lv70-fav-on",
+        "SLOWBRO-lv70-fav-off"
       ],
       "path": "species/SLOWBRO.json"
     },
@@ -852,7 +949,9 @@
         "MAGNEMITE-lv50-fav-on",
         "MAGNEMITE-lv50-fav-off",
         "MAGNEMITE-lv60-fav-on",
-        "MAGNEMITE-lv60-fav-off"
+        "MAGNEMITE-lv60-fav-off",
+        "MAGNEMITE-lv70-fav-on",
+        "MAGNEMITE-lv70-fav-off"
       ],
       "path": "species/MAGNEMITE.json"
     },
@@ -864,7 +963,9 @@
         "MAGNETON-lv50-fav-on",
         "MAGNETON-lv50-fav-off",
         "MAGNETON-lv60-fav-on",
-        "MAGNETON-lv60-fav-off"
+        "MAGNETON-lv60-fav-off",
+        "MAGNETON-lv70-fav-on",
+        "MAGNETON-lv70-fav-off"
       ],
       "path": "species/MAGNETON.json"
     },
@@ -876,7 +977,9 @@
         "FARFETCHD-lv50-fav-on",
         "FARFETCHD-lv50-fav-off",
         "FARFETCHD-lv60-fav-on",
-        "FARFETCHD-lv60-fav-off"
+        "FARFETCHD-lv60-fav-off",
+        "FARFETCHD-lv70-fav-on",
+        "FARFETCHD-lv70-fav-off"
       ],
       "path": "species/FARFETCHD.json"
     },
@@ -888,7 +991,9 @@
         "DODUO-lv50-fav-on",
         "DODUO-lv50-fav-off",
         "DODUO-lv60-fav-on",
-        "DODUO-lv60-fav-off"
+        "DODUO-lv60-fav-off",
+        "DODUO-lv70-fav-on",
+        "DODUO-lv70-fav-off"
       ],
       "path": "species/DODUO.json"
     },
@@ -900,7 +1005,9 @@
         "DODRIO-lv50-fav-on",
         "DODRIO-lv50-fav-off",
         "DODRIO-lv60-fav-on",
-        "DODRIO-lv60-fav-off"
+        "DODRIO-lv60-fav-off",
+        "DODRIO-lv70-fav-on",
+        "DODRIO-lv70-fav-off"
       ],
       "path": "species/DODRIO.json"
     },
@@ -912,7 +1019,9 @@
         "GASTLY-lv50-fav-on",
         "GASTLY-lv50-fav-off",
         "GASTLY-lv60-fav-on",
-        "GASTLY-lv60-fav-off"
+        "GASTLY-lv60-fav-off",
+        "GASTLY-lv70-fav-on",
+        "GASTLY-lv70-fav-off"
       ],
       "path": "species/GASTLY.json"
     },
@@ -924,7 +1033,9 @@
         "HAUNTER-lv50-fav-on",
         "HAUNTER-lv50-fav-off",
         "HAUNTER-lv60-fav-on",
-        "HAUNTER-lv60-fav-off"
+        "HAUNTER-lv60-fav-off",
+        "HAUNTER-lv70-fav-on",
+        "HAUNTER-lv70-fav-off"
       ],
       "path": "species/HAUNTER.json"
     },
@@ -936,7 +1047,9 @@
         "GENGAR-lv50-fav-on",
         "GENGAR-lv50-fav-off",
         "GENGAR-lv60-fav-on",
-        "GENGAR-lv60-fav-off"
+        "GENGAR-lv60-fav-off",
+        "GENGAR-lv70-fav-on",
+        "GENGAR-lv70-fav-off"
       ],
       "path": "species/GENGAR.json"
     },
@@ -948,7 +1061,9 @@
         "ONIX-lv50-fav-on",
         "ONIX-lv50-fav-off",
         "ONIX-lv60-fav-on",
-        "ONIX-lv60-fav-off"
+        "ONIX-lv60-fav-off",
+        "ONIX-lv70-fav-on",
+        "ONIX-lv70-fav-off"
       ],
       "path": "species/ONIX.json"
     },
@@ -960,7 +1075,9 @@
         "CUBONE-lv50-fav-on",
         "CUBONE-lv50-fav-off",
         "CUBONE-lv60-fav-on",
-        "CUBONE-lv60-fav-off"
+        "CUBONE-lv60-fav-off",
+        "CUBONE-lv70-fav-on",
+        "CUBONE-lv70-fav-off"
       ],
       "path": "species/CUBONE.json"
     },
@@ -972,7 +1089,9 @@
         "MAROWAK-lv50-fav-on",
         "MAROWAK-lv50-fav-off",
         "MAROWAK-lv60-fav-on",
-        "MAROWAK-lv60-fav-off"
+        "MAROWAK-lv60-fav-off",
+        "MAROWAK-lv70-fav-on",
+        "MAROWAK-lv70-fav-off"
       ],
       "path": "species/MAROWAK.json"
     },
@@ -984,7 +1103,9 @@
         "CHANSEY-lv50-fav-on",
         "CHANSEY-lv50-fav-off",
         "CHANSEY-lv60-fav-on",
-        "CHANSEY-lv60-fav-off"
+        "CHANSEY-lv60-fav-off",
+        "CHANSEY-lv70-fav-on",
+        "CHANSEY-lv70-fav-off"
       ],
       "path": "species/CHANSEY.json"
     },
@@ -996,7 +1117,9 @@
         "KANGASKHAN-lv50-fav-on",
         "KANGASKHAN-lv50-fav-off",
         "KANGASKHAN-lv60-fav-on",
-        "KANGASKHAN-lv60-fav-off"
+        "KANGASKHAN-lv60-fav-off",
+        "KANGASKHAN-lv70-fav-on",
+        "KANGASKHAN-lv70-fav-off"
       ],
       "path": "species/KANGASKHAN.json"
     },
@@ -1008,7 +1131,9 @@
         "MR_MIME-lv50-fav-on",
         "MR_MIME-lv50-fav-off",
         "MR_MIME-lv60-fav-on",
-        "MR_MIME-lv60-fav-off"
+        "MR_MIME-lv60-fav-off",
+        "MR_MIME-lv70-fav-on",
+        "MR_MIME-lv70-fav-off"
       ],
       "path": "species/MR_MIME.json"
     },
@@ -1020,7 +1145,9 @@
         "PINSIR-lv50-fav-on",
         "PINSIR-lv50-fav-off",
         "PINSIR-lv60-fav-on",
-        "PINSIR-lv60-fav-off"
+        "PINSIR-lv60-fav-off",
+        "PINSIR-lv70-fav-on",
+        "PINSIR-lv70-fav-off"
       ],
       "path": "species/PINSIR.json"
     },
@@ -1032,7 +1159,9 @@
         "DITTO-lv50-fav-on",
         "DITTO-lv50-fav-off",
         "DITTO-lv60-fav-on",
-        "DITTO-lv60-fav-off"
+        "DITTO-lv60-fav-off",
+        "DITTO-lv70-fav-on",
+        "DITTO-lv70-fav-off"
       ],
       "path": "species/DITTO.json"
     },
@@ -1044,7 +1173,9 @@
         "EEVEE-lv50-fav-on",
         "EEVEE-lv50-fav-off",
         "EEVEE-lv60-fav-on",
-        "EEVEE-lv60-fav-off"
+        "EEVEE-lv60-fav-off",
+        "EEVEE-lv70-fav-on",
+        "EEVEE-lv70-fav-off"
       ],
       "path": "species/EEVEE.json"
     },
@@ -1056,7 +1187,9 @@
         "EEVEE_HALLOWEEN-lv50-fav-on",
         "EEVEE_HALLOWEEN-lv50-fav-off",
         "EEVEE_HALLOWEEN-lv60-fav-on",
-        "EEVEE_HALLOWEEN-lv60-fav-off"
+        "EEVEE_HALLOWEEN-lv60-fav-off",
+        "EEVEE_HALLOWEEN-lv70-fav-on",
+        "EEVEE_HALLOWEEN-lv70-fav-off"
       ],
       "path": "species/EEVEE_HALLOWEEN.json"
     },
@@ -1068,7 +1201,9 @@
         "EEVEE_HOLIDAY-lv50-fav-on",
         "EEVEE_HOLIDAY-lv50-fav-off",
         "EEVEE_HOLIDAY-lv60-fav-on",
-        "EEVEE_HOLIDAY-lv60-fav-off"
+        "EEVEE_HOLIDAY-lv60-fav-off",
+        "EEVEE_HOLIDAY-lv70-fav-on",
+        "EEVEE_HOLIDAY-lv70-fav-off"
       ],
       "path": "species/EEVEE_HOLIDAY.json"
     },
@@ -1080,7 +1215,9 @@
         "VAPOREON-lv50-fav-on",
         "VAPOREON-lv50-fav-off",
         "VAPOREON-lv60-fav-on",
-        "VAPOREON-lv60-fav-off"
+        "VAPOREON-lv60-fav-off",
+        "VAPOREON-lv70-fav-on",
+        "VAPOREON-lv70-fav-off"
       ],
       "path": "species/VAPOREON.json"
     },
@@ -1092,7 +1229,9 @@
         "JOLTEON-lv50-fav-on",
         "JOLTEON-lv50-fav-off",
         "JOLTEON-lv60-fav-on",
-        "JOLTEON-lv60-fav-off"
+        "JOLTEON-lv60-fav-off",
+        "JOLTEON-lv70-fav-on",
+        "JOLTEON-lv70-fav-off"
       ],
       "path": "species/JOLTEON.json"
     },
@@ -1104,7 +1243,9 @@
         "FLAREON-lv50-fav-on",
         "FLAREON-lv50-fav-off",
         "FLAREON-lv60-fav-on",
-        "FLAREON-lv60-fav-off"
+        "FLAREON-lv60-fav-off",
+        "FLAREON-lv70-fav-on",
+        "FLAREON-lv70-fav-off"
       ],
       "path": "species/FLAREON.json"
     },
@@ -1116,7 +1257,9 @@
         "DRATINI-lv50-fav-on",
         "DRATINI-lv50-fav-off",
         "DRATINI-lv60-fav-on",
-        "DRATINI-lv60-fav-off"
+        "DRATINI-lv60-fav-off",
+        "DRATINI-lv70-fav-on",
+        "DRATINI-lv70-fav-off"
       ],
       "path": "species/DRATINI.json"
     },
@@ -1128,7 +1271,9 @@
         "DRAGONAIR-lv50-fav-on",
         "DRAGONAIR-lv50-fav-off",
         "DRAGONAIR-lv60-fav-on",
-        "DRAGONAIR-lv60-fav-off"
+        "DRAGONAIR-lv60-fav-off",
+        "DRAGONAIR-lv70-fav-on",
+        "DRAGONAIR-lv70-fav-off"
       ],
       "path": "species/DRAGONAIR.json"
     },
@@ -1140,7 +1285,9 @@
         "DRAGONITE-lv50-fav-on",
         "DRAGONITE-lv50-fav-off",
         "DRAGONITE-lv60-fav-on",
-        "DRAGONITE-lv60-fav-off"
+        "DRAGONITE-lv60-fav-off",
+        "DRAGONITE-lv70-fav-on",
+        "DRAGONITE-lv70-fav-off"
       ],
       "path": "species/DRAGONITE.json"
     },
@@ -1152,7 +1299,9 @@
         "CHIKORITA-lv50-fav-on",
         "CHIKORITA-lv50-fav-off",
         "CHIKORITA-lv60-fav-on",
-        "CHIKORITA-lv60-fav-off"
+        "CHIKORITA-lv60-fav-off",
+        "CHIKORITA-lv70-fav-on",
+        "CHIKORITA-lv70-fav-off"
       ],
       "path": "species/CHIKORITA.json"
     },
@@ -1164,7 +1313,9 @@
         "BAYLEEF-lv50-fav-on",
         "BAYLEEF-lv50-fav-off",
         "BAYLEEF-lv60-fav-on",
-        "BAYLEEF-lv60-fav-off"
+        "BAYLEEF-lv60-fav-off",
+        "BAYLEEF-lv70-fav-on",
+        "BAYLEEF-lv70-fav-off"
       ],
       "path": "species/BAYLEEF.json"
     },
@@ -1176,7 +1327,9 @@
         "MEGANIUM-lv50-fav-on",
         "MEGANIUM-lv50-fav-off",
         "MEGANIUM-lv60-fav-on",
-        "MEGANIUM-lv60-fav-off"
+        "MEGANIUM-lv60-fav-off",
+        "MEGANIUM-lv70-fav-on",
+        "MEGANIUM-lv70-fav-off"
       ],
       "path": "species/MEGANIUM.json"
     },
@@ -1188,7 +1341,9 @@
         "CYNDAQUIL-lv50-fav-on",
         "CYNDAQUIL-lv50-fav-off",
         "CYNDAQUIL-lv60-fav-on",
-        "CYNDAQUIL-lv60-fav-off"
+        "CYNDAQUIL-lv60-fav-off",
+        "CYNDAQUIL-lv70-fav-on",
+        "CYNDAQUIL-lv70-fav-off"
       ],
       "path": "species/CYNDAQUIL.json"
     },
@@ -1200,7 +1355,9 @@
         "QUILAVA-lv50-fav-on",
         "QUILAVA-lv50-fav-off",
         "QUILAVA-lv60-fav-on",
-        "QUILAVA-lv60-fav-off"
+        "QUILAVA-lv60-fav-off",
+        "QUILAVA-lv70-fav-on",
+        "QUILAVA-lv70-fav-off"
       ],
       "path": "species/QUILAVA.json"
     },
@@ -1212,7 +1369,9 @@
         "TYPHLOSION-lv50-fav-on",
         "TYPHLOSION-lv50-fav-off",
         "TYPHLOSION-lv60-fav-on",
-        "TYPHLOSION-lv60-fav-off"
+        "TYPHLOSION-lv60-fav-off",
+        "TYPHLOSION-lv70-fav-on",
+        "TYPHLOSION-lv70-fav-off"
       ],
       "path": "species/TYPHLOSION.json"
     },
@@ -1224,7 +1383,9 @@
         "TOTODILE-lv50-fav-on",
         "TOTODILE-lv50-fav-off",
         "TOTODILE-lv60-fav-on",
-        "TOTODILE-lv60-fav-off"
+        "TOTODILE-lv60-fav-off",
+        "TOTODILE-lv70-fav-on",
+        "TOTODILE-lv70-fav-off"
       ],
       "path": "species/TOTODILE.json"
     },
@@ -1236,7 +1397,9 @@
         "CROCONAW-lv50-fav-on",
         "CROCONAW-lv50-fav-off",
         "CROCONAW-lv60-fav-on",
-        "CROCONAW-lv60-fav-off"
+        "CROCONAW-lv60-fav-off",
+        "CROCONAW-lv70-fav-on",
+        "CROCONAW-lv70-fav-off"
       ],
       "path": "species/CROCONAW.json"
     },
@@ -1248,7 +1411,9 @@
         "FERALIGATR-lv50-fav-on",
         "FERALIGATR-lv50-fav-off",
         "FERALIGATR-lv60-fav-on",
-        "FERALIGATR-lv60-fav-off"
+        "FERALIGATR-lv60-fav-off",
+        "FERALIGATR-lv70-fav-on",
+        "FERALIGATR-lv70-fav-off"
       ],
       "path": "species/FERALIGATR.json"
     },
@@ -1260,7 +1425,9 @@
         "PICHU-lv50-fav-on",
         "PICHU-lv50-fav-off",
         "PICHU-lv60-fav-on",
-        "PICHU-lv60-fav-off"
+        "PICHU-lv60-fav-off",
+        "PICHU-lv70-fav-on",
+        "PICHU-lv70-fav-off"
       ],
       "path": "species/PICHU.json"
     },
@@ -1272,7 +1439,9 @@
         "CLEFFA-lv50-fav-on",
         "CLEFFA-lv50-fav-off",
         "CLEFFA-lv60-fav-on",
-        "CLEFFA-lv60-fav-off"
+        "CLEFFA-lv60-fav-off",
+        "CLEFFA-lv70-fav-on",
+        "CLEFFA-lv70-fav-off"
       ],
       "path": "species/CLEFFA.json"
     },
@@ -1284,7 +1453,9 @@
         "IGGLYBUFF-lv50-fav-on",
         "IGGLYBUFF-lv50-fav-off",
         "IGGLYBUFF-lv60-fav-on",
-        "IGGLYBUFF-lv60-fav-off"
+        "IGGLYBUFF-lv60-fav-off",
+        "IGGLYBUFF-lv70-fav-on",
+        "IGGLYBUFF-lv70-fav-off"
       ],
       "path": "species/IGGLYBUFF.json"
     },
@@ -1296,7 +1467,9 @@
         "TOGEPI-lv50-fav-on",
         "TOGEPI-lv50-fav-off",
         "TOGEPI-lv60-fav-on",
-        "TOGEPI-lv60-fav-off"
+        "TOGEPI-lv60-fav-off",
+        "TOGEPI-lv70-fav-on",
+        "TOGEPI-lv70-fav-off"
       ],
       "path": "species/TOGEPI.json"
     },
@@ -1308,7 +1481,9 @@
         "TOGETIC-lv50-fav-on",
         "TOGETIC-lv50-fav-off",
         "TOGETIC-lv60-fav-on",
-        "TOGETIC-lv60-fav-off"
+        "TOGETIC-lv60-fav-off",
+        "TOGETIC-lv70-fav-on",
+        "TOGETIC-lv70-fav-off"
       ],
       "path": "species/TOGETIC.json"
     },
@@ -1320,7 +1495,9 @@
         "NATU-lv50-fav-on",
         "NATU-lv50-fav-off",
         "NATU-lv60-fav-on",
-        "NATU-lv60-fav-off"
+        "NATU-lv60-fav-off",
+        "NATU-lv70-fav-on",
+        "NATU-lv70-fav-off"
       ],
       "path": "species/NATU.json"
     },
@@ -1332,7 +1509,9 @@
         "XATU-lv50-fav-on",
         "XATU-lv50-fav-off",
         "XATU-lv60-fav-on",
-        "XATU-lv60-fav-off"
+        "XATU-lv60-fav-off",
+        "XATU-lv70-fav-on",
+        "XATU-lv70-fav-off"
       ],
       "path": "species/XATU.json"
     },
@@ -1344,7 +1523,9 @@
         "MAREEP-lv50-fav-on",
         "MAREEP-lv50-fav-off",
         "MAREEP-lv60-fav-on",
-        "MAREEP-lv60-fav-off"
+        "MAREEP-lv60-fav-off",
+        "MAREEP-lv70-fav-on",
+        "MAREEP-lv70-fav-off"
       ],
       "path": "species/MAREEP.json"
     },
@@ -1356,7 +1537,9 @@
         "FLAAFFY-lv50-fav-on",
         "FLAAFFY-lv50-fav-off",
         "FLAAFFY-lv60-fav-on",
-        "FLAAFFY-lv60-fav-off"
+        "FLAAFFY-lv60-fav-off",
+        "FLAAFFY-lv70-fav-on",
+        "FLAAFFY-lv70-fav-off"
       ],
       "path": "species/FLAAFFY.json"
     },
@@ -1368,7 +1551,9 @@
         "AMPHAROS-lv50-fav-on",
         "AMPHAROS-lv50-fav-off",
         "AMPHAROS-lv60-fav-on",
-        "AMPHAROS-lv60-fav-off"
+        "AMPHAROS-lv60-fav-off",
+        "AMPHAROS-lv70-fav-on",
+        "AMPHAROS-lv70-fav-off"
       ],
       "path": "species/AMPHAROS.json"
     },
@@ -1380,7 +1565,9 @@
         "SUDOWOODO-lv50-fav-on",
         "SUDOWOODO-lv50-fav-off",
         "SUDOWOODO-lv60-fav-on",
-        "SUDOWOODO-lv60-fav-off"
+        "SUDOWOODO-lv60-fav-off",
+        "SUDOWOODO-lv70-fav-on",
+        "SUDOWOODO-lv70-fav-off"
       ],
       "path": "species/SUDOWOODO.json"
     },
@@ -1392,7 +1579,9 @@
         "WOOPER-lv50-fav-on",
         "WOOPER-lv50-fav-off",
         "WOOPER-lv60-fav-on",
-        "WOOPER-lv60-fav-off"
+        "WOOPER-lv60-fav-off",
+        "WOOPER-lv70-fav-on",
+        "WOOPER-lv70-fav-off"
       ],
       "path": "species/WOOPER.json"
     },
@@ -1404,7 +1593,9 @@
         "WOOPER_PALDEAN-lv50-fav-on",
         "WOOPER_PALDEAN-lv50-fav-off",
         "WOOPER_PALDEAN-lv60-fav-on",
-        "WOOPER_PALDEAN-lv60-fav-off"
+        "WOOPER_PALDEAN-lv60-fav-off",
+        "WOOPER_PALDEAN-lv70-fav-on",
+        "WOOPER_PALDEAN-lv70-fav-off"
       ],
       "path": "species/WOOPER_PALDEAN.json"
     },
@@ -1416,7 +1607,9 @@
         "QUAGSIRE-lv50-fav-on",
         "QUAGSIRE-lv50-fav-off",
         "QUAGSIRE-lv60-fav-on",
-        "QUAGSIRE-lv60-fav-off"
+        "QUAGSIRE-lv60-fav-off",
+        "QUAGSIRE-lv70-fav-on",
+        "QUAGSIRE-lv70-fav-off"
       ],
       "path": "species/QUAGSIRE.json"
     },
@@ -1428,7 +1621,9 @@
         "ESPEON-lv50-fav-on",
         "ESPEON-lv50-fav-off",
         "ESPEON-lv60-fav-on",
-        "ESPEON-lv60-fav-off"
+        "ESPEON-lv60-fav-off",
+        "ESPEON-lv70-fav-on",
+        "ESPEON-lv70-fav-off"
       ],
       "path": "species/ESPEON.json"
     },
@@ -1440,7 +1635,9 @@
         "UMBREON-lv50-fav-on",
         "UMBREON-lv50-fav-off",
         "UMBREON-lv60-fav-on",
-        "UMBREON-lv60-fav-off"
+        "UMBREON-lv60-fav-off",
+        "UMBREON-lv70-fav-on",
+        "UMBREON-lv70-fav-off"
       ],
       "path": "species/UMBREON.json"
     },
@@ -1452,7 +1649,9 @@
         "MURKROW-lv50-fav-on",
         "MURKROW-lv50-fav-off",
         "MURKROW-lv60-fav-on",
-        "MURKROW-lv60-fav-off"
+        "MURKROW-lv60-fav-off",
+        "MURKROW-lv70-fav-on",
+        "MURKROW-lv70-fav-off"
       ],
       "path": "species/MURKROW.json"
     },
@@ -1464,7 +1663,9 @@
         "SLOWKING-lv50-fav-on",
         "SLOWKING-lv50-fav-off",
         "SLOWKING-lv60-fav-on",
-        "SLOWKING-lv60-fav-off"
+        "SLOWKING-lv60-fav-off",
+        "SLOWKING-lv70-fav-on",
+        "SLOWKING-lv70-fav-off"
       ],
       "path": "species/SLOWKING.json"
     },
@@ -1476,7 +1677,9 @@
         "WOBBUFFET-lv50-fav-on",
         "WOBBUFFET-lv50-fav-off",
         "WOBBUFFET-lv60-fav-on",
-        "WOBBUFFET-lv60-fav-off"
+        "WOBBUFFET-lv60-fav-off",
+        "WOBBUFFET-lv70-fav-on",
+        "WOBBUFFET-lv70-fav-off"
       ],
       "path": "species/WOBBUFFET.json"
     },
@@ -1488,7 +1691,9 @@
         "STEELIX-lv50-fav-on",
         "STEELIX-lv50-fav-off",
         "STEELIX-lv60-fav-on",
-        "STEELIX-lv60-fav-off"
+        "STEELIX-lv60-fav-off",
+        "STEELIX-lv70-fav-on",
+        "STEELIX-lv70-fav-off"
       ],
       "path": "species/STEELIX.json"
     },
@@ -1500,7 +1705,9 @@
         "SHUCKLE-lv50-fav-on",
         "SHUCKLE-lv50-fav-off",
         "SHUCKLE-lv60-fav-on",
-        "SHUCKLE-lv60-fav-off"
+        "SHUCKLE-lv60-fav-off",
+        "SHUCKLE-lv70-fav-on",
+        "SHUCKLE-lv70-fav-off"
       ],
       "path": "species/SHUCKLE.json"
     },
@@ -1512,7 +1719,9 @@
         "HERACROSS-lv50-fav-on",
         "HERACROSS-lv50-fav-off",
         "HERACROSS-lv60-fav-on",
-        "HERACROSS-lv60-fav-off"
+        "HERACROSS-lv60-fav-off",
+        "HERACROSS-lv70-fav-on",
+        "HERACROSS-lv70-fav-off"
       ],
       "path": "species/HERACROSS.json"
     },
@@ -1524,7 +1733,9 @@
         "SNEASEL-lv50-fav-on",
         "SNEASEL-lv50-fav-off",
         "SNEASEL-lv60-fav-on",
-        "SNEASEL-lv60-fav-off"
+        "SNEASEL-lv60-fav-off",
+        "SNEASEL-lv70-fav-on",
+        "SNEASEL-lv70-fav-off"
       ],
       "path": "species/SNEASEL.json"
     },
@@ -1536,7 +1747,9 @@
         "DELIBIRD-lv50-fav-on",
         "DELIBIRD-lv50-fav-off",
         "DELIBIRD-lv60-fav-on",
-        "DELIBIRD-lv60-fav-off"
+        "DELIBIRD-lv60-fav-off",
+        "DELIBIRD-lv70-fav-on",
+        "DELIBIRD-lv70-fav-off"
       ],
       "path": "species/DELIBIRD.json"
     },
@@ -1548,7 +1761,9 @@
         "HOUNDOUR-lv50-fav-on",
         "HOUNDOUR-lv50-fav-off",
         "HOUNDOUR-lv60-fav-on",
-        "HOUNDOUR-lv60-fav-off"
+        "HOUNDOUR-lv60-fav-off",
+        "HOUNDOUR-lv70-fav-on",
+        "HOUNDOUR-lv70-fav-off"
       ],
       "path": "species/HOUNDOUR.json"
     },
@@ -1560,7 +1775,9 @@
         "HOUNDOOM-lv50-fav-on",
         "HOUNDOOM-lv50-fav-off",
         "HOUNDOOM-lv60-fav-on",
-        "HOUNDOOM-lv60-fav-off"
+        "HOUNDOOM-lv60-fav-off",
+        "HOUNDOOM-lv70-fav-on",
+        "HOUNDOOM-lv70-fav-off"
       ],
       "path": "species/HOUNDOOM.json"
     },
@@ -1572,7 +1789,9 @@
         "BLISSEY-lv50-fav-on",
         "BLISSEY-lv50-fav-off",
         "BLISSEY-lv60-fav-on",
-        "BLISSEY-lv60-fav-off"
+        "BLISSEY-lv60-fav-off",
+        "BLISSEY-lv70-fav-on",
+        "BLISSEY-lv70-fav-off"
       ],
       "path": "species/BLISSEY.json"
     },
@@ -1584,7 +1803,9 @@
         "RAIKOU-lv50-fav-on",
         "RAIKOU-lv50-fav-off",
         "RAIKOU-lv60-fav-on",
-        "RAIKOU-lv60-fav-off"
+        "RAIKOU-lv60-fav-off",
+        "RAIKOU-lv70-fav-on",
+        "RAIKOU-lv70-fav-off"
       ],
       "path": "species/RAIKOU.json"
     },
@@ -1596,7 +1817,9 @@
         "ENTEI-lv50-fav-on",
         "ENTEI-lv50-fav-off",
         "ENTEI-lv60-fav-on",
-        "ENTEI-lv60-fav-off"
+        "ENTEI-lv60-fav-off",
+        "ENTEI-lv70-fav-on",
+        "ENTEI-lv70-fav-off"
       ],
       "path": "species/ENTEI.json"
     },
@@ -1608,7 +1831,9 @@
         "SUICUNE-lv50-fav-on",
         "SUICUNE-lv50-fav-off",
         "SUICUNE-lv60-fav-on",
-        "SUICUNE-lv60-fav-off"
+        "SUICUNE-lv60-fav-off",
+        "SUICUNE-lv70-fav-on",
+        "SUICUNE-lv70-fav-off"
       ],
       "path": "species/SUICUNE.json"
     },
@@ -1620,7 +1845,9 @@
         "LARVITAR-lv50-fav-on",
         "LARVITAR-lv50-fav-off",
         "LARVITAR-lv60-fav-on",
-        "LARVITAR-lv60-fav-off"
+        "LARVITAR-lv60-fav-off",
+        "LARVITAR-lv70-fav-on",
+        "LARVITAR-lv70-fav-off"
       ],
       "path": "species/LARVITAR.json"
     },
@@ -1632,7 +1859,9 @@
         "PUPITAR-lv50-fav-on",
         "PUPITAR-lv50-fav-off",
         "PUPITAR-lv60-fav-on",
-        "PUPITAR-lv60-fav-off"
+        "PUPITAR-lv60-fav-off",
+        "PUPITAR-lv70-fav-on",
+        "PUPITAR-lv70-fav-off"
       ],
       "path": "species/PUPITAR.json"
     },
@@ -1644,7 +1873,9 @@
         "TYRANITAR-lv50-fav-on",
         "TYRANITAR-lv50-fav-off",
         "TYRANITAR-lv60-fav-on",
-        "TYRANITAR-lv60-fav-off"
+        "TYRANITAR-lv60-fav-off",
+        "TYRANITAR-lv70-fav-on",
+        "TYRANITAR-lv70-fav-off"
       ],
       "path": "species/TYRANITAR.json"
     },
@@ -1656,7 +1887,9 @@
         "TREECKO-lv50-fav-on",
         "TREECKO-lv50-fav-off",
         "TREECKO-lv60-fav-on",
-        "TREECKO-lv60-fav-off"
+        "TREECKO-lv60-fav-off",
+        "TREECKO-lv70-fav-on",
+        "TREECKO-lv70-fav-off"
       ],
       "path": "species/TREECKO.json"
     },
@@ -1668,7 +1901,9 @@
         "GROVYLE-lv50-fav-on",
         "GROVYLE-lv50-fav-off",
         "GROVYLE-lv60-fav-on",
-        "GROVYLE-lv60-fav-off"
+        "GROVYLE-lv60-fav-off",
+        "GROVYLE-lv70-fav-on",
+        "GROVYLE-lv70-fav-off"
       ],
       "path": "species/GROVYLE.json"
     },
@@ -1680,7 +1915,9 @@
         "SCEPTILE-lv50-fav-on",
         "SCEPTILE-lv50-fav-off",
         "SCEPTILE-lv60-fav-on",
-        "SCEPTILE-lv60-fav-off"
+        "SCEPTILE-lv60-fav-off",
+        "SCEPTILE-lv70-fav-on",
+        "SCEPTILE-lv70-fav-off"
       ],
       "path": "species/SCEPTILE.json"
     },
@@ -1692,7 +1929,9 @@
         "TORCHIC-lv50-fav-on",
         "TORCHIC-lv50-fav-off",
         "TORCHIC-lv60-fav-on",
-        "TORCHIC-lv60-fav-off"
+        "TORCHIC-lv60-fav-off",
+        "TORCHIC-lv70-fav-on",
+        "TORCHIC-lv70-fav-off"
       ],
       "path": "species/TORCHIC.json"
     },
@@ -1704,7 +1943,9 @@
         "COMBUSKEN-lv50-fav-on",
         "COMBUSKEN-lv50-fav-off",
         "COMBUSKEN-lv60-fav-on",
-        "COMBUSKEN-lv60-fav-off"
+        "COMBUSKEN-lv60-fav-off",
+        "COMBUSKEN-lv70-fav-on",
+        "COMBUSKEN-lv70-fav-off"
       ],
       "path": "species/COMBUSKEN.json"
     },
@@ -1716,7 +1957,9 @@
         "BLAZIKEN-lv50-fav-on",
         "BLAZIKEN-lv50-fav-off",
         "BLAZIKEN-lv60-fav-on",
-        "BLAZIKEN-lv60-fav-off"
+        "BLAZIKEN-lv60-fav-off",
+        "BLAZIKEN-lv70-fav-on",
+        "BLAZIKEN-lv70-fav-off"
       ],
       "path": "species/BLAZIKEN.json"
     },
@@ -1728,7 +1971,9 @@
         "MUDKIP-lv50-fav-on",
         "MUDKIP-lv50-fav-off",
         "MUDKIP-lv60-fav-on",
-        "MUDKIP-lv60-fav-off"
+        "MUDKIP-lv60-fav-off",
+        "MUDKIP-lv70-fav-on",
+        "MUDKIP-lv70-fav-off"
       ],
       "path": "species/MUDKIP.json"
     },
@@ -1740,7 +1985,9 @@
         "MARSHTOMP-lv50-fav-on",
         "MARSHTOMP-lv50-fav-off",
         "MARSHTOMP-lv60-fav-on",
-        "MARSHTOMP-lv60-fav-off"
+        "MARSHTOMP-lv60-fav-off",
+        "MARSHTOMP-lv70-fav-on",
+        "MARSHTOMP-lv70-fav-off"
       ],
       "path": "species/MARSHTOMP.json"
     },
@@ -1752,7 +1999,9 @@
         "SWAMPERT-lv50-fav-on",
         "SWAMPERT-lv50-fav-off",
         "SWAMPERT-lv60-fav-on",
-        "SWAMPERT-lv60-fav-off"
+        "SWAMPERT-lv60-fav-off",
+        "SWAMPERT-lv70-fav-on",
+        "SWAMPERT-lv70-fav-off"
       ],
       "path": "species/SWAMPERT.json"
     },
@@ -1764,7 +2013,9 @@
         "RALTS-lv50-fav-on",
         "RALTS-lv50-fav-off",
         "RALTS-lv60-fav-on",
-        "RALTS-lv60-fav-off"
+        "RALTS-lv60-fav-off",
+        "RALTS-lv70-fav-on",
+        "RALTS-lv70-fav-off"
       ],
       "path": "species/RALTS.json"
     },
@@ -1776,7 +2027,9 @@
         "KIRLIA-lv50-fav-on",
         "KIRLIA-lv50-fav-off",
         "KIRLIA-lv60-fav-on",
-        "KIRLIA-lv60-fav-off"
+        "KIRLIA-lv60-fav-off",
+        "KIRLIA-lv70-fav-on",
+        "KIRLIA-lv70-fav-off"
       ],
       "path": "species/KIRLIA.json"
     },
@@ -1788,7 +2041,9 @@
         "GARDEVOIR-lv50-fav-on",
         "GARDEVOIR-lv50-fav-off",
         "GARDEVOIR-lv60-fav-on",
-        "GARDEVOIR-lv60-fav-off"
+        "GARDEVOIR-lv60-fav-off",
+        "GARDEVOIR-lv70-fav-on",
+        "GARDEVOIR-lv70-fav-off"
       ],
       "path": "species/GARDEVOIR.json"
     },
@@ -1800,7 +2055,9 @@
         "SLAKOTH-lv50-fav-on",
         "SLAKOTH-lv50-fav-off",
         "SLAKOTH-lv60-fav-on",
-        "SLAKOTH-lv60-fav-off"
+        "SLAKOTH-lv60-fav-off",
+        "SLAKOTH-lv70-fav-on",
+        "SLAKOTH-lv70-fav-off"
       ],
       "path": "species/SLAKOTH.json"
     },
@@ -1812,7 +2069,9 @@
         "VIGOROTH-lv50-fav-on",
         "VIGOROTH-lv50-fav-off",
         "VIGOROTH-lv60-fav-on",
-        "VIGOROTH-lv60-fav-off"
+        "VIGOROTH-lv60-fav-off",
+        "VIGOROTH-lv70-fav-on",
+        "VIGOROTH-lv70-fav-off"
       ],
       "path": "species/VIGOROTH.json"
     },
@@ -1824,7 +2083,9 @@
         "SLAKING-lv50-fav-on",
         "SLAKING-lv50-fav-off",
         "SLAKING-lv60-fav-on",
-        "SLAKING-lv60-fav-off"
+        "SLAKING-lv60-fav-off",
+        "SLAKING-lv70-fav-on",
+        "SLAKING-lv70-fav-off"
       ],
       "path": "species/SLAKING.json"
     },
@@ -1836,7 +2097,9 @@
         "SABLEYE-lv50-fav-on",
         "SABLEYE-lv50-fav-off",
         "SABLEYE-lv60-fav-on",
-        "SABLEYE-lv60-fav-off"
+        "SABLEYE-lv60-fav-off",
+        "SABLEYE-lv70-fav-on",
+        "SABLEYE-lv70-fav-off"
       ],
       "path": "species/SABLEYE.json"
     },
@@ -1848,7 +2111,9 @@
         "MAWILE-lv50-fav-on",
         "MAWILE-lv50-fav-off",
         "MAWILE-lv60-fav-on",
-        "MAWILE-lv60-fav-off"
+        "MAWILE-lv60-fav-off",
+        "MAWILE-lv70-fav-on",
+        "MAWILE-lv70-fav-off"
       ],
       "path": "species/MAWILE.json"
     },
@@ -1860,7 +2125,9 @@
         "ARON-lv50-fav-on",
         "ARON-lv50-fav-off",
         "ARON-lv60-fav-on",
-        "ARON-lv60-fav-off"
+        "ARON-lv60-fav-off",
+        "ARON-lv70-fav-on",
+        "ARON-lv70-fav-off"
       ],
       "path": "species/ARON.json"
     },
@@ -1872,7 +2139,9 @@
         "LAIRON-lv50-fav-on",
         "LAIRON-lv50-fav-off",
         "LAIRON-lv60-fav-on",
-        "LAIRON-lv60-fav-off"
+        "LAIRON-lv60-fav-off",
+        "LAIRON-lv70-fav-on",
+        "LAIRON-lv70-fav-off"
       ],
       "path": "species/LAIRON.json"
     },
@@ -1884,7 +2153,9 @@
         "AGGRON-lv50-fav-on",
         "AGGRON-lv50-fav-off",
         "AGGRON-lv60-fav-on",
-        "AGGRON-lv60-fav-off"
+        "AGGRON-lv60-fav-off",
+        "AGGRON-lv70-fav-on",
+        "AGGRON-lv70-fav-off"
       ],
       "path": "species/AGGRON.json"
     },
@@ -1896,7 +2167,9 @@
         "PLUSLE-lv50-fav-on",
         "PLUSLE-lv50-fav-off",
         "PLUSLE-lv60-fav-on",
-        "PLUSLE-lv60-fav-off"
+        "PLUSLE-lv60-fav-off",
+        "PLUSLE-lv70-fav-on",
+        "PLUSLE-lv70-fav-off"
       ],
       "path": "species/PLUSLE.json"
     },
@@ -1908,7 +2181,9 @@
         "MINUN-lv50-fav-on",
         "MINUN-lv50-fav-off",
         "MINUN-lv60-fav-on",
-        "MINUN-lv60-fav-off"
+        "MINUN-lv60-fav-off",
+        "MINUN-lv70-fav-on",
+        "MINUN-lv70-fav-off"
       ],
       "path": "species/MINUN.json"
     },
@@ -1920,7 +2195,9 @@
         "GULPIN-lv50-fav-on",
         "GULPIN-lv50-fav-off",
         "GULPIN-lv60-fav-on",
-        "GULPIN-lv60-fav-off"
+        "GULPIN-lv60-fav-off",
+        "GULPIN-lv70-fav-on",
+        "GULPIN-lv70-fav-off"
       ],
       "path": "species/GULPIN.json"
     },
@@ -1932,7 +2209,9 @@
         "SWALOT-lv50-fav-on",
         "SWALOT-lv50-fav-off",
         "SWALOT-lv60-fav-on",
-        "SWALOT-lv60-fav-off"
+        "SWALOT-lv60-fav-off",
+        "SWALOT-lv70-fav-on",
+        "SWALOT-lv70-fav-off"
       ],
       "path": "species/SWALOT.json"
     },
@@ -1944,7 +2223,9 @@
         "TRAPINCH-lv50-fav-on",
         "TRAPINCH-lv50-fav-off",
         "TRAPINCH-lv60-fav-on",
-        "TRAPINCH-lv60-fav-off"
+        "TRAPINCH-lv60-fav-off",
+        "TRAPINCH-lv70-fav-on",
+        "TRAPINCH-lv70-fav-off"
       ],
       "path": "species/TRAPINCH.json"
     },
@@ -1956,7 +2237,9 @@
         "VIBRAVA-lv50-fav-on",
         "VIBRAVA-lv50-fav-off",
         "VIBRAVA-lv60-fav-on",
-        "VIBRAVA-lv60-fav-off"
+        "VIBRAVA-lv60-fav-off",
+        "VIBRAVA-lv70-fav-on",
+        "VIBRAVA-lv70-fav-off"
       ],
       "path": "species/VIBRAVA.json"
     },
@@ -1968,7 +2251,9 @@
         "FLYGON-lv50-fav-on",
         "FLYGON-lv50-fav-off",
         "FLYGON-lv60-fav-on",
-        "FLYGON-lv60-fav-off"
+        "FLYGON-lv60-fav-off",
+        "FLYGON-lv70-fav-on",
+        "FLYGON-lv70-fav-off"
       ],
       "path": "species/FLYGON.json"
     },
@@ -1980,7 +2265,9 @@
         "SWABLU-lv50-fav-on",
         "SWABLU-lv50-fav-off",
         "SWABLU-lv60-fav-on",
-        "SWABLU-lv60-fav-off"
+        "SWABLU-lv60-fav-off",
+        "SWABLU-lv70-fav-on",
+        "SWABLU-lv70-fav-off"
       ],
       "path": "species/SWABLU.json"
     },
@@ -1992,7 +2279,9 @@
         "ALTARIA-lv50-fav-on",
         "ALTARIA-lv50-fav-off",
         "ALTARIA-lv60-fav-on",
-        "ALTARIA-lv60-fav-off"
+        "ALTARIA-lv60-fav-off",
+        "ALTARIA-lv70-fav-on",
+        "ALTARIA-lv70-fav-off"
       ],
       "path": "species/ALTARIA.json"
     },
@@ -2004,7 +2293,9 @@
         "SHUPPET-lv50-fav-on",
         "SHUPPET-lv50-fav-off",
         "SHUPPET-lv60-fav-on",
-        "SHUPPET-lv60-fav-off"
+        "SHUPPET-lv60-fav-off",
+        "SHUPPET-lv70-fav-on",
+        "SHUPPET-lv70-fav-off"
       ],
       "path": "species/SHUPPET.json"
     },
@@ -2016,7 +2307,9 @@
         "BANETTE-lv50-fav-on",
         "BANETTE-lv50-fav-off",
         "BANETTE-lv60-fav-on",
-        "BANETTE-lv60-fav-off"
+        "BANETTE-lv60-fav-off",
+        "BANETTE-lv70-fav-on",
+        "BANETTE-lv70-fav-off"
       ],
       "path": "species/BANETTE.json"
     },
@@ -2028,7 +2321,9 @@
         "ABSOL-lv50-fav-on",
         "ABSOL-lv50-fav-off",
         "ABSOL-lv60-fav-on",
-        "ABSOL-lv60-fav-off"
+        "ABSOL-lv60-fav-off",
+        "ABSOL-lv70-fav-on",
+        "ABSOL-lv70-fav-off"
       ],
       "path": "species/ABSOL.json"
     },
@@ -2040,7 +2335,9 @@
         "WYNAUT-lv50-fav-on",
         "WYNAUT-lv50-fav-off",
         "WYNAUT-lv60-fav-on",
-        "WYNAUT-lv60-fav-off"
+        "WYNAUT-lv60-fav-off",
+        "WYNAUT-lv70-fav-on",
+        "WYNAUT-lv70-fav-off"
       ],
       "path": "species/WYNAUT.json"
     },
@@ -2052,7 +2349,9 @@
         "SPHEAL-lv50-fav-on",
         "SPHEAL-lv50-fav-off",
         "SPHEAL-lv60-fav-on",
-        "SPHEAL-lv60-fav-off"
+        "SPHEAL-lv60-fav-off",
+        "SPHEAL-lv70-fav-on",
+        "SPHEAL-lv70-fav-off"
       ],
       "path": "species/SPHEAL.json"
     },
@@ -2064,7 +2363,9 @@
         "SPHEAL_HOLIDAY-lv50-fav-on",
         "SPHEAL_HOLIDAY-lv50-fav-off",
         "SPHEAL_HOLIDAY-lv60-fav-on",
-        "SPHEAL_HOLIDAY-lv60-fav-off"
+        "SPHEAL_HOLIDAY-lv60-fav-off",
+        "SPHEAL_HOLIDAY-lv70-fav-on",
+        "SPHEAL_HOLIDAY-lv70-fav-off"
       ],
       "path": "species/SPHEAL_HOLIDAY.json"
     },
@@ -2076,7 +2377,9 @@
         "SEALEO-lv50-fav-on",
         "SEALEO-lv50-fav-off",
         "SEALEO-lv60-fav-on",
-        "SEALEO-lv60-fav-off"
+        "SEALEO-lv60-fav-off",
+        "SEALEO-lv70-fav-on",
+        "SEALEO-lv70-fav-off"
       ],
       "path": "species/SEALEO.json"
     },
@@ -2088,7 +2391,9 @@
         "WALREIN-lv50-fav-on",
         "WALREIN-lv50-fav-off",
         "WALREIN-lv60-fav-on",
-        "WALREIN-lv60-fav-off"
+        "WALREIN-lv60-fav-off",
+        "WALREIN-lv70-fav-on",
+        "WALREIN-lv70-fav-off"
       ],
       "path": "species/WALREIN.json"
     },
@@ -2100,7 +2405,9 @@
         "BAGON-lv50-fav-on",
         "BAGON-lv50-fav-off",
         "BAGON-lv60-fav-on",
-        "BAGON-lv60-fav-off"
+        "BAGON-lv60-fav-off",
+        "BAGON-lv70-fav-on",
+        "BAGON-lv70-fav-off"
       ],
       "path": "species/BAGON.json"
     },
@@ -2112,7 +2419,9 @@
         "SHELGON-lv50-fav-on",
         "SHELGON-lv50-fav-off",
         "SHELGON-lv60-fav-on",
-        "SHELGON-lv60-fav-off"
+        "SHELGON-lv60-fav-off",
+        "SHELGON-lv70-fav-on",
+        "SHELGON-lv70-fav-off"
       ],
       "path": "species/SHELGON.json"
     },
@@ -2124,7 +2433,9 @@
         "SALAMENCE-lv50-fav-on",
         "SALAMENCE-lv50-fav-off",
         "SALAMENCE-lv60-fav-on",
-        "SALAMENCE-lv60-fav-off"
+        "SALAMENCE-lv60-fav-off",
+        "SALAMENCE-lv70-fav-on",
+        "SALAMENCE-lv70-fav-off"
       ],
       "path": "species/SALAMENCE.json"
     },
@@ -2136,7 +2447,9 @@
         "LATIAS-lv50-fav-on",
         "LATIAS-lv50-fav-off",
         "LATIAS-lv60-fav-on",
-        "LATIAS-lv60-fav-off"
+        "LATIAS-lv60-fav-off",
+        "LATIAS-lv70-fav-on",
+        "LATIAS-lv70-fav-off"
       ],
       "path": "species/LATIAS.json"
     },
@@ -2148,7 +2461,9 @@
         "LATIOS-lv50-fav-on",
         "LATIOS-lv50-fav-off",
         "LATIOS-lv60-fav-on",
-        "LATIOS-lv60-fav-off"
+        "LATIOS-lv60-fav-off",
+        "LATIOS-lv70-fav-on",
+        "LATIOS-lv70-fav-off"
       ],
       "path": "species/LATIOS.json"
     },
@@ -2160,7 +2475,9 @@
         "TURTWIG-lv50-fav-on",
         "TURTWIG-lv50-fav-off",
         "TURTWIG-lv60-fav-on",
-        "TURTWIG-lv60-fav-off"
+        "TURTWIG-lv60-fav-off",
+        "TURTWIG-lv70-fav-on",
+        "TURTWIG-lv70-fav-off"
       ],
       "path": "species/TURTWIG.json"
     },
@@ -2172,7 +2489,9 @@
         "GROTLE-lv50-fav-on",
         "GROTLE-lv50-fav-off",
         "GROTLE-lv60-fav-on",
-        "GROTLE-lv60-fav-off"
+        "GROTLE-lv60-fav-off",
+        "GROTLE-lv70-fav-on",
+        "GROTLE-lv70-fav-off"
       ],
       "path": "species/GROTLE.json"
     },
@@ -2184,7 +2503,9 @@
         "TORTERRA-lv50-fav-on",
         "TORTERRA-lv50-fav-off",
         "TORTERRA-lv60-fav-on",
-        "TORTERRA-lv60-fav-off"
+        "TORTERRA-lv60-fav-off",
+        "TORTERRA-lv70-fav-on",
+        "TORTERRA-lv70-fav-off"
       ],
       "path": "species/TORTERRA.json"
     },
@@ -2196,7 +2517,9 @@
         "CHIMCHAR-lv50-fav-on",
         "CHIMCHAR-lv50-fav-off",
         "CHIMCHAR-lv60-fav-on",
-        "CHIMCHAR-lv60-fav-off"
+        "CHIMCHAR-lv60-fav-off",
+        "CHIMCHAR-lv70-fav-on",
+        "CHIMCHAR-lv70-fav-off"
       ],
       "path": "species/CHIMCHAR.json"
     },
@@ -2208,7 +2531,9 @@
         "MONFERNO-lv50-fav-on",
         "MONFERNO-lv50-fav-off",
         "MONFERNO-lv60-fav-on",
-        "MONFERNO-lv60-fav-off"
+        "MONFERNO-lv60-fav-off",
+        "MONFERNO-lv70-fav-on",
+        "MONFERNO-lv70-fav-off"
       ],
       "path": "species/MONFERNO.json"
     },
@@ -2220,7 +2545,9 @@
         "INFERNAPE-lv50-fav-on",
         "INFERNAPE-lv50-fav-off",
         "INFERNAPE-lv60-fav-on",
-        "INFERNAPE-lv60-fav-off"
+        "INFERNAPE-lv60-fav-off",
+        "INFERNAPE-lv70-fav-on",
+        "INFERNAPE-lv70-fav-off"
       ],
       "path": "species/INFERNAPE.json"
     },
@@ -2232,7 +2559,9 @@
         "PIPLUP-lv50-fav-on",
         "PIPLUP-lv50-fav-off",
         "PIPLUP-lv60-fav-on",
-        "PIPLUP-lv60-fav-off"
+        "PIPLUP-lv60-fav-off",
+        "PIPLUP-lv70-fav-on",
+        "PIPLUP-lv70-fav-off"
       ],
       "path": "species/PIPLUP.json"
     },
@@ -2244,7 +2573,9 @@
         "PRINPLUP-lv50-fav-on",
         "PRINPLUP-lv50-fav-off",
         "PRINPLUP-lv60-fav-on",
-        "PRINPLUP-lv60-fav-off"
+        "PRINPLUP-lv60-fav-off",
+        "PRINPLUP-lv70-fav-on",
+        "PRINPLUP-lv70-fav-off"
       ],
       "path": "species/PRINPLUP.json"
     },
@@ -2256,7 +2587,9 @@
         "EMPOLEON-lv50-fav-on",
         "EMPOLEON-lv50-fav-off",
         "EMPOLEON-lv60-fav-on",
-        "EMPOLEON-lv60-fav-off"
+        "EMPOLEON-lv60-fav-off",
+        "EMPOLEON-lv70-fav-on",
+        "EMPOLEON-lv70-fav-off"
       ],
       "path": "species/EMPOLEON.json"
     },
@@ -2268,7 +2601,9 @@
         "SHINX-lv50-fav-on",
         "SHINX-lv50-fav-off",
         "SHINX-lv60-fav-on",
-        "SHINX-lv60-fav-off"
+        "SHINX-lv60-fav-off",
+        "SHINX-lv70-fav-on",
+        "SHINX-lv70-fav-off"
       ],
       "path": "species/SHINX.json"
     },
@@ -2280,7 +2615,9 @@
         "LUXIO-lv50-fav-on",
         "LUXIO-lv50-fav-off",
         "LUXIO-lv60-fav-on",
-        "LUXIO-lv60-fav-off"
+        "LUXIO-lv60-fav-off",
+        "LUXIO-lv70-fav-on",
+        "LUXIO-lv70-fav-off"
       ],
       "path": "species/LUXIO.json"
     },
@@ -2292,7 +2629,9 @@
         "LUXRAY-lv50-fav-on",
         "LUXRAY-lv50-fav-off",
         "LUXRAY-lv60-fav-on",
-        "LUXRAY-lv60-fav-off"
+        "LUXRAY-lv60-fav-off",
+        "LUXRAY-lv70-fav-on",
+        "LUXRAY-lv70-fav-off"
       ],
       "path": "species/LUXRAY.json"
     },
@@ -2304,7 +2643,9 @@
         "DRIFLOON-lv50-fav-on",
         "DRIFLOON-lv50-fav-off",
         "DRIFLOON-lv60-fav-on",
-        "DRIFLOON-lv60-fav-off"
+        "DRIFLOON-lv60-fav-off",
+        "DRIFLOON-lv70-fav-on",
+        "DRIFLOON-lv70-fav-off"
       ],
       "path": "species/DRIFLOON.json"
     },
@@ -2316,7 +2657,9 @@
         "DRIFBLIM-lv50-fav-on",
         "DRIFBLIM-lv50-fav-off",
         "DRIFBLIM-lv60-fav-on",
-        "DRIFBLIM-lv60-fav-off"
+        "DRIFBLIM-lv60-fav-off",
+        "DRIFBLIM-lv70-fav-on",
+        "DRIFBLIM-lv70-fav-off"
       ],
       "path": "species/DRIFBLIM.json"
     },
@@ -2328,7 +2671,9 @@
         "HONCHKROW-lv50-fav-on",
         "HONCHKROW-lv50-fav-off",
         "HONCHKROW-lv60-fav-on",
-        "HONCHKROW-lv60-fav-off"
+        "HONCHKROW-lv60-fav-off",
+        "HONCHKROW-lv70-fav-on",
+        "HONCHKROW-lv70-fav-off"
       ],
       "path": "species/HONCHKROW.json"
     },
@@ -2340,7 +2685,9 @@
         "BONSLY-lv50-fav-on",
         "BONSLY-lv50-fav-off",
         "BONSLY-lv60-fav-on",
-        "BONSLY-lv60-fav-off"
+        "BONSLY-lv60-fav-off",
+        "BONSLY-lv70-fav-on",
+        "BONSLY-lv70-fav-off"
       ],
       "path": "species/BONSLY.json"
     },
@@ -2352,7 +2699,9 @@
         "MIME_JR-lv50-fav-on",
         "MIME_JR-lv50-fav-off",
         "MIME_JR-lv60-fav-on",
-        "MIME_JR-lv60-fav-off"
+        "MIME_JR-lv60-fav-off",
+        "MIME_JR-lv70-fav-on",
+        "MIME_JR-lv70-fav-off"
       ],
       "path": "species/MIME_JR.json"
     },
@@ -2364,7 +2713,9 @@
         "HAPPINY-lv50-fav-on",
         "HAPPINY-lv50-fav-off",
         "HAPPINY-lv60-fav-on",
-        "HAPPINY-lv60-fav-off"
+        "HAPPINY-lv60-fav-off",
+        "HAPPINY-lv70-fav-on",
+        "HAPPINY-lv70-fav-off"
       ],
       "path": "species/HAPPINY.json"
     },
@@ -2376,7 +2727,9 @@
         "SPIRITOMB-lv50-fav-on",
         "SPIRITOMB-lv50-fav-off",
         "SPIRITOMB-lv60-fav-on",
-        "SPIRITOMB-lv60-fav-off"
+        "SPIRITOMB-lv60-fav-off",
+        "SPIRITOMB-lv70-fav-on",
+        "SPIRITOMB-lv70-fav-off"
       ],
       "path": "species/SPIRITOMB.json"
     },
@@ -2388,7 +2741,9 @@
         "RIOLU-lv50-fav-on",
         "RIOLU-lv50-fav-off",
         "RIOLU-lv60-fav-on",
-        "RIOLU-lv60-fav-off"
+        "RIOLU-lv60-fav-off",
+        "RIOLU-lv70-fav-on",
+        "RIOLU-lv70-fav-off"
       ],
       "path": "species/RIOLU.json"
     },
@@ -2400,7 +2755,9 @@
         "LUCARIO-lv50-fav-on",
         "LUCARIO-lv50-fav-off",
         "LUCARIO-lv60-fav-on",
-        "LUCARIO-lv60-fav-off"
+        "LUCARIO-lv60-fav-off",
+        "LUCARIO-lv70-fav-on",
+        "LUCARIO-lv70-fav-off"
       ],
       "path": "species/LUCARIO.json"
     },
@@ -2412,7 +2769,9 @@
         "CROAGUNK-lv50-fav-on",
         "CROAGUNK-lv50-fav-off",
         "CROAGUNK-lv60-fav-on",
-        "CROAGUNK-lv60-fav-off"
+        "CROAGUNK-lv60-fav-off",
+        "CROAGUNK-lv70-fav-on",
+        "CROAGUNK-lv70-fav-off"
       ],
       "path": "species/CROAGUNK.json"
     },
@@ -2424,7 +2783,9 @@
         "TOXICROAK-lv50-fav-on",
         "TOXICROAK-lv50-fav-off",
         "TOXICROAK-lv60-fav-on",
-        "TOXICROAK-lv60-fav-off"
+        "TOXICROAK-lv60-fav-off",
+        "TOXICROAK-lv70-fav-on",
+        "TOXICROAK-lv70-fav-off"
       ],
       "path": "species/TOXICROAK.json"
     },
@@ -2436,7 +2797,9 @@
         "SNOVER-lv50-fav-on",
         "SNOVER-lv50-fav-off",
         "SNOVER-lv60-fav-on",
-        "SNOVER-lv60-fav-off"
+        "SNOVER-lv60-fav-off",
+        "SNOVER-lv70-fav-on",
+        "SNOVER-lv70-fav-off"
       ],
       "path": "species/SNOVER.json"
     },
@@ -2448,7 +2811,9 @@
         "ABOMASNOW-lv50-fav-on",
         "ABOMASNOW-lv50-fav-off",
         "ABOMASNOW-lv60-fav-on",
-        "ABOMASNOW-lv60-fav-off"
+        "ABOMASNOW-lv60-fav-off",
+        "ABOMASNOW-lv70-fav-on",
+        "ABOMASNOW-lv70-fav-off"
       ],
       "path": "species/ABOMASNOW.json"
     },
@@ -2460,7 +2825,9 @@
         "WEAVILE-lv50-fav-on",
         "WEAVILE-lv50-fav-off",
         "WEAVILE-lv60-fav-on",
-        "WEAVILE-lv60-fav-off"
+        "WEAVILE-lv60-fav-off",
+        "WEAVILE-lv70-fav-on",
+        "WEAVILE-lv70-fav-off"
       ],
       "path": "species/WEAVILE.json"
     },
@@ -2472,7 +2839,9 @@
         "MAGNEZONE-lv50-fav-on",
         "MAGNEZONE-lv50-fav-off",
         "MAGNEZONE-lv60-fav-on",
-        "MAGNEZONE-lv60-fav-off"
+        "MAGNEZONE-lv60-fav-off",
+        "MAGNEZONE-lv70-fav-on",
+        "MAGNEZONE-lv70-fav-off"
       ],
       "path": "species/MAGNEZONE.json"
     },
@@ -2484,7 +2853,9 @@
         "TOGEKISS-lv50-fav-on",
         "TOGEKISS-lv50-fav-off",
         "TOGEKISS-lv60-fav-on",
-        "TOGEKISS-lv60-fav-off"
+        "TOGEKISS-lv60-fav-off",
+        "TOGEKISS-lv70-fav-on",
+        "TOGEKISS-lv70-fav-off"
       ],
       "path": "species/TOGEKISS.json"
     },
@@ -2496,7 +2867,9 @@
         "LEAFEON-lv50-fav-on",
         "LEAFEON-lv50-fav-off",
         "LEAFEON-lv60-fav-on",
-        "LEAFEON-lv60-fav-off"
+        "LEAFEON-lv60-fav-off",
+        "LEAFEON-lv70-fav-on",
+        "LEAFEON-lv70-fav-off"
       ],
       "path": "species/LEAFEON.json"
     },
@@ -2508,7 +2881,9 @@
         "GLACEON-lv50-fav-on",
         "GLACEON-lv50-fav-off",
         "GLACEON-lv60-fav-on",
-        "GLACEON-lv60-fav-off"
+        "GLACEON-lv60-fav-off",
+        "GLACEON-lv70-fav-on",
+        "GLACEON-lv70-fav-off"
       ],
       "path": "species/GLACEON.json"
     },
@@ -2520,7 +2895,9 @@
         "GALLADE-lv50-fav-on",
         "GALLADE-lv50-fav-off",
         "GALLADE-lv60-fav-on",
-        "GALLADE-lv60-fav-off"
+        "GALLADE-lv60-fav-off",
+        "GALLADE-lv70-fav-on",
+        "GALLADE-lv70-fav-off"
       ],
       "path": "species/GALLADE.json"
     },
@@ -2532,7 +2909,9 @@
         "CRESSELIA-lv50-fav-on",
         "CRESSELIA-lv50-fav-off",
         "CRESSELIA-lv60-fav-on",
-        "CRESSELIA-lv60-fav-off"
+        "CRESSELIA-lv60-fav-off",
+        "CRESSELIA-lv70-fav-on",
+        "CRESSELIA-lv70-fav-off"
       ],
       "path": "species/CRESSELIA.json"
     },
@@ -2544,7 +2923,9 @@
         "DARKRAI-lv50-fav-on",
         "DARKRAI-lv50-fav-off",
         "DARKRAI-lv60-fav-on",
-        "DARKRAI-lv60-fav-off"
+        "DARKRAI-lv60-fav-off",
+        "DARKRAI-lv70-fav-on",
+        "DARKRAI-lv70-fav-off"
       ],
       "path": "species/DARKRAI.json"
     },
@@ -2556,7 +2937,9 @@
         "MUNNA-lv50-fav-on",
         "MUNNA-lv50-fav-off",
         "MUNNA-lv60-fav-on",
-        "MUNNA-lv60-fav-off"
+        "MUNNA-lv60-fav-off",
+        "MUNNA-lv70-fav-on",
+        "MUNNA-lv70-fav-off"
       ],
       "path": "species/MUNNA.json"
     },
@@ -2568,7 +2951,9 @@
         "MUSHARNA-lv50-fav-on",
         "MUSHARNA-lv50-fav-off",
         "MUSHARNA-lv60-fav-on",
-        "MUSHARNA-lv60-fav-off"
+        "MUSHARNA-lv60-fav-off",
+        "MUSHARNA-lv70-fav-on",
+        "MUSHARNA-lv70-fav-off"
       ],
       "path": "species/MUSHARNA.json"
     },
@@ -2580,7 +2965,9 @@
         "DWEBBLE-lv50-fav-on",
         "DWEBBLE-lv50-fav-off",
         "DWEBBLE-lv60-fav-on",
-        "DWEBBLE-lv60-fav-off"
+        "DWEBBLE-lv60-fav-off",
+        "DWEBBLE-lv70-fav-on",
+        "DWEBBLE-lv70-fav-off"
       ],
       "path": "species/DWEBBLE.json"
     },
@@ -2592,7 +2979,9 @@
         "CRUSTLE-lv50-fav-on",
         "CRUSTLE-lv50-fav-off",
         "CRUSTLE-lv60-fav-on",
-        "CRUSTLE-lv60-fav-off"
+        "CRUSTLE-lv60-fav-off",
+        "CRUSTLE-lv70-fav-on",
+        "CRUSTLE-lv70-fav-off"
       ],
       "path": "species/CRUSTLE.json"
     },
@@ -2604,7 +2993,9 @@
         "RUFFLET-lv50-fav-on",
         "RUFFLET-lv50-fav-off",
         "RUFFLET-lv60-fav-on",
-        "RUFFLET-lv60-fav-off"
+        "RUFFLET-lv60-fav-off",
+        "RUFFLET-lv70-fav-on",
+        "RUFFLET-lv70-fav-off"
       ],
       "path": "species/RUFFLET.json"
     },
@@ -2616,7 +3007,9 @@
         "BRAVIARY-lv50-fav-on",
         "BRAVIARY-lv50-fav-off",
         "BRAVIARY-lv60-fav-on",
-        "BRAVIARY-lv60-fav-off"
+        "BRAVIARY-lv60-fav-off",
+        "BRAVIARY-lv70-fav-on",
+        "BRAVIARY-lv70-fav-off"
       ],
       "path": "species/BRAVIARY.json"
     },
@@ -2628,7 +3021,9 @@
         "TYRUNT-lv50-fav-on",
         "TYRUNT-lv50-fav-off",
         "TYRUNT-lv60-fav-on",
-        "TYRUNT-lv60-fav-off"
+        "TYRUNT-lv60-fav-off",
+        "TYRUNT-lv70-fav-on",
+        "TYRUNT-lv70-fav-off"
       ],
       "path": "species/TYRUNT.json"
     },
@@ -2640,7 +3035,9 @@
         "TYRANTRUM-lv50-fav-on",
         "TYRANTRUM-lv50-fav-off",
         "TYRANTRUM-lv60-fav-on",
-        "TYRANTRUM-lv60-fav-off"
+        "TYRANTRUM-lv60-fav-off",
+        "TYRANTRUM-lv70-fav-on",
+        "TYRANTRUM-lv70-fav-off"
       ],
       "path": "species/TYRANTRUM.json"
     },
@@ -2652,7 +3049,9 @@
         "SYLVEON-lv50-fav-on",
         "SYLVEON-lv50-fav-off",
         "SYLVEON-lv60-fav-on",
-        "SYLVEON-lv60-fav-off"
+        "SYLVEON-lv60-fav-off",
+        "SYLVEON-lv70-fav-on",
+        "SYLVEON-lv70-fav-off"
       ],
       "path": "species/SYLVEON.json"
     },
@@ -2664,7 +3063,9 @@
         "DEDENNE-lv50-fav-on",
         "DEDENNE-lv50-fav-off",
         "DEDENNE-lv60-fav-on",
-        "DEDENNE-lv60-fav-off"
+        "DEDENNE-lv60-fav-off",
+        "DEDENNE-lv70-fav-on",
+        "DEDENNE-lv70-fav-off"
       ],
       "path": "species/DEDENNE.json"
     },
@@ -2676,7 +3077,9 @@
         "PUMPKABOO_LARGE-lv50-fav-on",
         "PUMPKABOO_LARGE-lv50-fav-off",
         "PUMPKABOO_LARGE-lv60-fav-on",
-        "PUMPKABOO_LARGE-lv60-fav-off"
+        "PUMPKABOO_LARGE-lv60-fav-off",
+        "PUMPKABOO_LARGE-lv70-fav-on",
+        "PUMPKABOO_LARGE-lv70-fav-off"
       ],
       "path": "species/PUMPKABOO_LARGE.json"
     },
@@ -2688,7 +3091,9 @@
         "PUMPKABOO_SMALL-lv50-fav-on",
         "PUMPKABOO_SMALL-lv50-fav-off",
         "PUMPKABOO_SMALL-lv60-fav-on",
-        "PUMPKABOO_SMALL-lv60-fav-off"
+        "PUMPKABOO_SMALL-lv60-fav-off",
+        "PUMPKABOO_SMALL-lv70-fav-on",
+        "PUMPKABOO_SMALL-lv70-fav-off"
       ],
       "path": "species/PUMPKABOO_SMALL.json"
     },
@@ -2700,7 +3105,9 @@
         "PUMPKABOO_JUMBO-lv50-fav-on",
         "PUMPKABOO_JUMBO-lv50-fav-off",
         "PUMPKABOO_JUMBO-lv60-fav-on",
-        "PUMPKABOO_JUMBO-lv60-fav-off"
+        "PUMPKABOO_JUMBO-lv60-fav-off",
+        "PUMPKABOO_JUMBO-lv70-fav-on",
+        "PUMPKABOO_JUMBO-lv70-fav-off"
       ],
       "path": "species/PUMPKABOO_JUMBO.json"
     },
@@ -2712,7 +3119,9 @@
         "PUMPKABOO_MEDIUM-lv50-fav-on",
         "PUMPKABOO_MEDIUM-lv50-fav-off",
         "PUMPKABOO_MEDIUM-lv60-fav-on",
-        "PUMPKABOO_MEDIUM-lv60-fav-off"
+        "PUMPKABOO_MEDIUM-lv60-fav-off",
+        "PUMPKABOO_MEDIUM-lv70-fav-on",
+        "PUMPKABOO_MEDIUM-lv70-fav-off"
       ],
       "path": "species/PUMPKABOO_MEDIUM.json"
     },
@@ -2724,7 +3133,9 @@
         "GOURGEIST_LARGE-lv50-fav-on",
         "GOURGEIST_LARGE-lv50-fav-off",
         "GOURGEIST_LARGE-lv60-fav-on",
-        "GOURGEIST_LARGE-lv60-fav-off"
+        "GOURGEIST_LARGE-lv60-fav-off",
+        "GOURGEIST_LARGE-lv70-fav-on",
+        "GOURGEIST_LARGE-lv70-fav-off"
       ],
       "path": "species/GOURGEIST_LARGE.json"
     },
@@ -2736,7 +3147,9 @@
         "GOURGEIST_SMALL-lv50-fav-on",
         "GOURGEIST_SMALL-lv50-fav-off",
         "GOURGEIST_SMALL-lv60-fav-on",
-        "GOURGEIST_SMALL-lv60-fav-off"
+        "GOURGEIST_SMALL-lv60-fav-off",
+        "GOURGEIST_SMALL-lv70-fav-on",
+        "GOURGEIST_SMALL-lv70-fav-off"
       ],
       "path": "species/GOURGEIST_SMALL.json"
     },
@@ -2748,7 +3161,9 @@
         "GOURGEIST_JUMBO-lv50-fav-on",
         "GOURGEIST_JUMBO-lv50-fav-off",
         "GOURGEIST_JUMBO-lv60-fav-on",
-        "GOURGEIST_JUMBO-lv60-fav-off"
+        "GOURGEIST_JUMBO-lv60-fav-off",
+        "GOURGEIST_JUMBO-lv70-fav-on",
+        "GOURGEIST_JUMBO-lv70-fav-off"
       ],
       "path": "species/GOURGEIST_JUMBO.json"
     },
@@ -2760,7 +3175,9 @@
         "GOURGEIST_MEDIUM-lv50-fav-on",
         "GOURGEIST_MEDIUM-lv50-fav-off",
         "GOURGEIST_MEDIUM-lv60-fav-on",
-        "GOURGEIST_MEDIUM-lv60-fav-off"
+        "GOURGEIST_MEDIUM-lv60-fav-off",
+        "GOURGEIST_MEDIUM-lv70-fav-on",
+        "GOURGEIST_MEDIUM-lv70-fav-off"
       ],
       "path": "species/GOURGEIST_MEDIUM.json"
     },
@@ -2772,7 +3189,9 @@
         "NOIBAT-lv50-fav-on",
         "NOIBAT-lv50-fav-off",
         "NOIBAT-lv60-fav-on",
-        "NOIBAT-lv60-fav-off"
+        "NOIBAT-lv60-fav-off",
+        "NOIBAT-lv70-fav-on",
+        "NOIBAT-lv70-fav-off"
       ],
       "path": "species/NOIBAT.json"
     },
@@ -2784,7 +3203,9 @@
         "NOIVERN-lv50-fav-on",
         "NOIVERN-lv50-fav-off",
         "NOIVERN-lv60-fav-on",
-        "NOIVERN-lv60-fav-off"
+        "NOIVERN-lv60-fav-off",
+        "NOIVERN-lv70-fav-on",
+        "NOIVERN-lv70-fav-off"
       ],
       "path": "species/NOIVERN.json"
     },
@@ -2796,7 +3217,9 @@
         "GRUBBIN-lv50-fav-on",
         "GRUBBIN-lv50-fav-off",
         "GRUBBIN-lv60-fav-on",
-        "GRUBBIN-lv60-fav-off"
+        "GRUBBIN-lv60-fav-off",
+        "GRUBBIN-lv70-fav-on",
+        "GRUBBIN-lv70-fav-off"
       ],
       "path": "species/GRUBBIN.json"
     },
@@ -2808,7 +3231,9 @@
         "CHARJABUG-lv50-fav-on",
         "CHARJABUG-lv50-fav-off",
         "CHARJABUG-lv60-fav-on",
-        "CHARJABUG-lv60-fav-off"
+        "CHARJABUG-lv60-fav-off",
+        "CHARJABUG-lv70-fav-on",
+        "CHARJABUG-lv70-fav-off"
       ],
       "path": "species/CHARJABUG.json"
     },
@@ -2820,7 +3245,9 @@
         "VIKAVOLT-lv50-fav-on",
         "VIKAVOLT-lv50-fav-off",
         "VIKAVOLT-lv60-fav-on",
-        "VIKAVOLT-lv60-fav-off"
+        "VIKAVOLT-lv60-fav-off",
+        "VIKAVOLT-lv70-fav-on",
+        "VIKAVOLT-lv70-fav-off"
       ],
       "path": "species/VIKAVOLT.json"
     },
@@ -2832,7 +3259,9 @@
         "CUTIEFLY-lv50-fav-on",
         "CUTIEFLY-lv50-fav-off",
         "CUTIEFLY-lv60-fav-on",
-        "CUTIEFLY-lv60-fav-off"
+        "CUTIEFLY-lv60-fav-off",
+        "CUTIEFLY-lv70-fav-on",
+        "CUTIEFLY-lv70-fav-off"
       ],
       "path": "species/CUTIEFLY.json"
     },
@@ -2844,7 +3273,9 @@
         "RIBOMBEE-lv50-fav-on",
         "RIBOMBEE-lv50-fav-off",
         "RIBOMBEE-lv60-fav-on",
-        "RIBOMBEE-lv60-fav-off"
+        "RIBOMBEE-lv60-fav-off",
+        "RIBOMBEE-lv70-fav-on",
+        "RIBOMBEE-lv70-fav-off"
       ],
       "path": "species/RIBOMBEE.json"
     },
@@ -2856,7 +3287,9 @@
         "STUFFUL-lv50-fav-on",
         "STUFFUL-lv50-fav-off",
         "STUFFUL-lv60-fav-on",
-        "STUFFUL-lv60-fav-off"
+        "STUFFUL-lv60-fav-off",
+        "STUFFUL-lv70-fav-on",
+        "STUFFUL-lv70-fav-off"
       ],
       "path": "species/STUFFUL.json"
     },
@@ -2868,7 +3301,9 @@
         "BEWEAR-lv50-fav-on",
         "BEWEAR-lv50-fav-off",
         "BEWEAR-lv60-fav-on",
-        "BEWEAR-lv60-fav-off"
+        "BEWEAR-lv60-fav-off",
+        "BEWEAR-lv70-fav-on",
+        "BEWEAR-lv70-fav-off"
       ],
       "path": "species/BEWEAR.json"
     },
@@ -2880,7 +3315,9 @@
         "COMFEY-lv50-fav-on",
         "COMFEY-lv50-fav-off",
         "COMFEY-lv60-fav-on",
-        "COMFEY-lv60-fav-off"
+        "COMFEY-lv60-fav-off",
+        "COMFEY-lv70-fav-on",
+        "COMFEY-lv70-fav-off"
       ],
       "path": "species/COMFEY.json"
     },
@@ -2892,7 +3329,9 @@
         "TOGEDEMARU-lv50-fav-on",
         "TOGEDEMARU-lv50-fav-off",
         "TOGEDEMARU-lv60-fav-on",
-        "TOGEDEMARU-lv60-fav-off"
+        "TOGEDEMARU-lv60-fav-off",
+        "TOGEDEMARU-lv70-fav-on",
+        "TOGEDEMARU-lv70-fav-off"
       ],
       "path": "species/TOGEDEMARU.json"
     },
@@ -2904,7 +3343,9 @@
         "MIMIKYU-lv50-fav-on",
         "MIMIKYU-lv50-fav-off",
         "MIMIKYU-lv60-fav-on",
-        "MIMIKYU-lv60-fav-off"
+        "MIMIKYU-lv60-fav-off",
+        "MIMIKYU-lv70-fav-on",
+        "MIMIKYU-lv70-fav-off"
       ],
       "path": "species/MIMIKYU.json"
     },
@@ -2916,7 +3357,9 @@
         "DRAMPA-lv50-fav-on",
         "DRAMPA-lv50-fav-off",
         "DRAMPA-lv60-fav-on",
-        "DRAMPA-lv60-fav-off"
+        "DRAMPA-lv60-fav-off",
+        "DRAMPA-lv70-fav-on",
+        "DRAMPA-lv70-fav-off"
       ],
       "path": "species/DRAMPA.json"
     },
@@ -2928,7 +3371,9 @@
         "CRAMORANT-lv50-fav-on",
         "CRAMORANT-lv50-fav-off",
         "CRAMORANT-lv60-fav-on",
-        "CRAMORANT-lv60-fav-off"
+        "CRAMORANT-lv60-fav-off",
+        "CRAMORANT-lv70-fav-on",
+        "CRAMORANT-lv70-fav-off"
       ],
       "path": "species/CRAMORANT.json"
     },
@@ -2940,7 +3385,9 @@
         "TOXEL-lv50-fav-on",
         "TOXEL-lv50-fav-off",
         "TOXEL-lv60-fav-on",
-        "TOXEL-lv60-fav-off"
+        "TOXEL-lv60-fav-off",
+        "TOXEL-lv70-fav-on",
+        "TOXEL-lv70-fav-off"
       ],
       "path": "species/TOXEL.json"
     },
@@ -2952,7 +3399,9 @@
         "TOXTRICITY_AMPED-lv50-fav-on",
         "TOXTRICITY_AMPED-lv50-fav-off",
         "TOXTRICITY_AMPED-lv60-fav-on",
-        "TOXTRICITY_AMPED-lv60-fav-off"
+        "TOXTRICITY_AMPED-lv60-fav-off",
+        "TOXTRICITY_AMPED-lv70-fav-on",
+        "TOXTRICITY_AMPED-lv70-fav-off"
       ],
       "path": "species/TOXTRICITY_AMPED.json"
     },
@@ -2964,7 +3413,9 @@
         "TOXTRICITY_LOW_KEY-lv50-fav-on",
         "TOXTRICITY_LOW_KEY-lv50-fav-off",
         "TOXTRICITY_LOW_KEY-lv60-fav-on",
-        "TOXTRICITY_LOW_KEY-lv60-fav-off"
+        "TOXTRICITY_LOW_KEY-lv60-fav-off",
+        "TOXTRICITY_LOW_KEY-lv70-fav-on",
+        "TOXTRICITY_LOW_KEY-lv70-fav-off"
       ],
       "path": "species/TOXTRICITY_LOW_KEY.json"
     },
@@ -2976,7 +3427,9 @@
         "SPRIGATITO-lv50-fav-on",
         "SPRIGATITO-lv50-fav-off",
         "SPRIGATITO-lv60-fav-on",
-        "SPRIGATITO-lv60-fav-off"
+        "SPRIGATITO-lv60-fav-off",
+        "SPRIGATITO-lv70-fav-on",
+        "SPRIGATITO-lv70-fav-off"
       ],
       "path": "species/SPRIGATITO.json"
     },
@@ -2988,7 +3441,9 @@
         "FLORAGATO-lv50-fav-on",
         "FLORAGATO-lv50-fav-off",
         "FLORAGATO-lv60-fav-on",
-        "FLORAGATO-lv60-fav-off"
+        "FLORAGATO-lv60-fav-off",
+        "FLORAGATO-lv70-fav-on",
+        "FLORAGATO-lv70-fav-off"
       ],
       "path": "species/FLORAGATO.json"
     },
@@ -3000,7 +3455,9 @@
         "MEOWSCARADA-lv50-fav-on",
         "MEOWSCARADA-lv50-fav-off",
         "MEOWSCARADA-lv60-fav-on",
-        "MEOWSCARADA-lv60-fav-off"
+        "MEOWSCARADA-lv60-fav-off",
+        "MEOWSCARADA-lv70-fav-on",
+        "MEOWSCARADA-lv70-fav-off"
       ],
       "path": "species/MEOWSCARADA.json"
     },
@@ -3012,7 +3469,9 @@
         "FUECOCO-lv50-fav-on",
         "FUECOCO-lv50-fav-off",
         "FUECOCO-lv60-fav-on",
-        "FUECOCO-lv60-fav-off"
+        "FUECOCO-lv60-fav-off",
+        "FUECOCO-lv70-fav-on",
+        "FUECOCO-lv70-fav-off"
       ],
       "path": "species/FUECOCO.json"
     },
@@ -3024,7 +3483,9 @@
         "CROCALOR-lv50-fav-on",
         "CROCALOR-lv50-fav-off",
         "CROCALOR-lv60-fav-on",
-        "CROCALOR-lv60-fav-off"
+        "CROCALOR-lv60-fav-off",
+        "CROCALOR-lv70-fav-on",
+        "CROCALOR-lv70-fav-off"
       ],
       "path": "species/CROCALOR.json"
     },
@@ -3036,7 +3497,9 @@
         "SKELEDIRGE-lv50-fav-on",
         "SKELEDIRGE-lv50-fav-off",
         "SKELEDIRGE-lv60-fav-on",
-        "SKELEDIRGE-lv60-fav-off"
+        "SKELEDIRGE-lv60-fav-off",
+        "SKELEDIRGE-lv70-fav-on",
+        "SKELEDIRGE-lv70-fav-off"
       ],
       "path": "species/SKELEDIRGE.json"
     },
@@ -3048,7 +3511,9 @@
         "QUAXLY-lv50-fav-on",
         "QUAXLY-lv50-fav-off",
         "QUAXLY-lv60-fav-on",
-        "QUAXLY-lv60-fav-off"
+        "QUAXLY-lv60-fav-off",
+        "QUAXLY-lv70-fav-on",
+        "QUAXLY-lv70-fav-off"
       ],
       "path": "species/QUAXLY.json"
     },
@@ -3060,7 +3525,9 @@
         "QUAXWELL-lv50-fav-on",
         "QUAXWELL-lv50-fav-off",
         "QUAXWELL-lv60-fav-on",
-        "QUAXWELL-lv60-fav-off"
+        "QUAXWELL-lv60-fav-off",
+        "QUAXWELL-lv70-fav-on",
+        "QUAXWELL-lv70-fav-off"
       ],
       "path": "species/QUAXWELL.json"
     },
@@ -3072,7 +3539,9 @@
         "QUAQUAVAL-lv50-fav-on",
         "QUAQUAVAL-lv50-fav-off",
         "QUAQUAVAL-lv60-fav-on",
-        "QUAQUAVAL-lv60-fav-off"
+        "QUAQUAVAL-lv60-fav-off",
+        "QUAQUAVAL-lv70-fav-on",
+        "QUAQUAVAL-lv70-fav-off"
       ],
       "path": "species/QUAQUAVAL.json"
     },
@@ -3084,7 +3553,9 @@
         "PAWMI-lv50-fav-on",
         "PAWMI-lv50-fav-off",
         "PAWMI-lv60-fav-on",
-        "PAWMI-lv60-fav-off"
+        "PAWMI-lv60-fav-off",
+        "PAWMI-lv70-fav-on",
+        "PAWMI-lv70-fav-off"
       ],
       "path": "species/PAWMI.json"
     },
@@ -3096,7 +3567,9 @@
         "PAWMO-lv50-fav-on",
         "PAWMO-lv50-fav-off",
         "PAWMO-lv60-fav-on",
-        "PAWMO-lv60-fav-off"
+        "PAWMO-lv60-fav-off",
+        "PAWMO-lv70-fav-on",
+        "PAWMO-lv70-fav-off"
       ],
       "path": "species/PAWMO.json"
     },
@@ -3108,7 +3581,9 @@
         "PAWMOT-lv50-fav-on",
         "PAWMOT-lv50-fav-off",
         "PAWMOT-lv60-fav-on",
-        "PAWMOT-lv60-fav-off"
+        "PAWMOT-lv60-fav-off",
+        "PAWMOT-lv70-fav-on",
+        "PAWMOT-lv70-fav-off"
       ],
       "path": "species/PAWMOT.json"
     },
@@ -3120,7 +3595,9 @@
         "CETODDLE-lv50-fav-on",
         "CETODDLE-lv50-fav-off",
         "CETODDLE-lv60-fav-on",
-        "CETODDLE-lv60-fav-off"
+        "CETODDLE-lv60-fav-off",
+        "CETODDLE-lv70-fav-on",
+        "CETODDLE-lv70-fav-off"
       ],
       "path": "species/CETODDLE.json"
     },
@@ -3132,7 +3609,9 @@
         "CETITAN-lv50-fav-on",
         "CETITAN-lv50-fav-off",
         "CETITAN-lv60-fav-on",
-        "CETITAN-lv60-fav-off"
+        "CETITAN-lv60-fav-off",
+        "CETITAN-lv70-fav-on",
+        "CETITAN-lv70-fav-off"
       ],
       "path": "species/CETITAN.json"
     },
@@ -3144,7 +3623,9 @@
         "CLODSIRE-lv50-fav-on",
         "CLODSIRE-lv50-fav-off",
         "CLODSIRE-lv60-fav-on",
-        "CLODSIRE-lv60-fav-off"
+        "CLODSIRE-lv60-fav-off",
+        "CLODSIRE-lv70-fav-on",
+        "CLODSIRE-lv70-fav-off"
       ],
       "path": "species/CLODSIRE.json"
     }

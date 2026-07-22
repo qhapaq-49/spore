@@ -70,7 +70,7 @@ const SCORE_SETTINGS_STORAGE_KEY = 'pokemon-sleep-checker-score-settings-v1';
 const MAX_HISTORY = 10;
 const MAX_SCORE_TEAM = 5;
 const MAX_CANDY_PLANS = 12;
-const DISTRIBUTION_LEVELS = [30, 50, 60];
+const DISTRIBUTION_LEVELS = [30, 50, 60, 70];
 const MAX_SUBSKILLS = 5;
 const TOOL_TABS = [
   { id: 'expected', labelKey: 'tabExpected' },
@@ -1012,7 +1012,7 @@ function HowToPanel() {
             </div>
             <ol>
               <li>Open Individual Distribution on the right side of the Expected tab.</li>
-              <li>Select a fixed Lv30, Lv50, or Lv60 evaluation level.</li>
+              <li>Select a fixed Lv30, Lv50, Lv60, or Lv70 evaluation level.</li>
               <li>The current ingredient pattern is fixed, so AAA is compared against the AAA population.</li>
               <li>Current uses your nature and subskills; population mean is the random individual average.</li>
               <li>Top % is the share of the population that is at least as good as the current individual.</li>
@@ -1145,7 +1145,7 @@ function HowToPanel() {
           </div>
           <ol>
             <li>期待値タブ右側の個体値分布を開きます。</li>
-            <li>Lv30/50/60の固定Lvを選びます。厳選評価は入力Lvそのものではなく、この固定Lvに投影します。</li>
+            <li>Lv30/50/60/70の固定Lvを選びます。厳選評価は入力Lvそのものではなく、この固定Lvに投影します。</li>
             <li>食材構成は現在入力の構成で固定されます。AAA個体はAAAの母集団内で評価されます。</li>
             <li>現在個体は入力した性格・サブスキルでの期待値、母集団平均は同条件のランダム個体の平均です。</li>
             <li>上位%は、その母集団で現在個体以上の個体が出る割合です。</li>
@@ -1373,7 +1373,7 @@ function DistributionPanel({ input, species }: { input: CalcInput; species: Poke
           {!analysis ? (
             <div className="distribution-empty">
               <p>{t('distributionLoading')}</p>
-              <span>{pokemonName(species, language)} Lv30/50/60{t('distributionUsesMonteCarlo')}</span>
+              <span>{pokemonName(species, language)} Lv30/50/60/70{t('distributionUsesMonteCarlo')}</span>
             </div>
           ) : analysis.scenario ? (
             <>

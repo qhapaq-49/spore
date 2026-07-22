@@ -23,7 +23,7 @@ const speciesOutputDir = resolve(outputDir, 'species');
 const indexOutputPath = resolve(outputDir, 'pokemon-distributions.generated.json');
 
 const MODEL_VERSION = 'all-species-monte-carlo-v2';
-const LEVELS = [30, 50, 60];
+const LEVELS = [30, 50, 60, 70];
 const FAVORITE_BERRY_OPTIONS = [true, false];
 const SAMPLE_SIZE = numberEnv('DISTRIBUTION_SAMPLE_SIZE', 10_000);
 const QUANTILE_COUNT = numberEnv('DISTRIBUTION_QUANTILE_COUNT', 251);

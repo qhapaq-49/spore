@@ -178,8 +178,8 @@ const TRANSLATIONS = {
   median: { ja: '中央値', en: 'Median' },
   distributionUnavailable: { ja: 'この条件の分布はまだありません。', en: 'No distribution is available for this condition yet.' },
   distributionSupported: {
-    ja: '対応条件は Lv30/50/60、FB0%、キャンプoff、通常マップ、EX off、他のおてボ0です。',
-    en: 'Supported conditions: Lv30/50/60, FB 0%, Camp off, normal map, EX off, and 0 other Helping Bonus.'
+    ja: '対応条件は Lv30/50/60/70、FB0%、キャンプoff、通常マップ、EX off、他のおてボ0です。',
+    en: 'Supported conditions: Lv30/50/60/70, FB 0%, Camp off, normal map, EX off, and 0 other Helping Bonus.'
   },
   teamProductivity: { ja: 'チーム生産性', en: 'Team Output' },
   dailyAndWhistle: { ja: '日産とホイッスル', en: 'Daily output and whistles' },

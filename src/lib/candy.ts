@@ -43,7 +43,7 @@ export interface CandyPlanResult {
   budget: CandySimulationResult;
 }
 
-export const MAX_CANDY_LEVEL = 65;
+export const MAX_CANDY_LEVEL = 70;
 
 export const CANDY_EXP_TYPES: { id: CandyExpType; label: string; multiplier: number }[] = [
   { id: 600, label: '600タイプ', multiplier: 1 },
@@ -68,14 +68,14 @@ export const CANDY_BOOST_MODES: { id: CandyBoostMode; label: string; expMultipli
 const BASE_EXP_TO_NEXT = [
   0, 54, 71, 108, 128, 164, 202, 244, 274, 315, 345, 376, 407, 419, 429, 440, 454, 469, 483, 497, 515, 537,
   558, 579, 600, 622, 643, 665, 686, 708, 729, 748, 766, 785, 803, 821, 839, 857, 875, 893, 910, 928, 945,
-  963, 980, 997, 1015, 1032, 1049, 1066, 1362, 1562, 1747, 1946, 2195, 2279, 2404, 2533, 2666, 2806, 2850,
-  2922, 2977, 3029, 3077
+  963, 980, 997, 1015, 1032, 1049, 1066, 1362, 1562, 1747, 1946, 2195, 2279, 2404, 2533, 2666, 2806,
+  2865, 2922, 2977, 3029, 3077, 3095, 3116, 3144, 3189, 3255
 ];
 
 const DREAM_SHARDS_PER_CANDY = [
   0, 14, 18, 22, 27, 30, 34, 39, 44, 48, 50, 52, 53, 56, 59, 62, 66, 68, 71, 74, 78, 81, 85, 88, 92, 95,
   100, 105, 111, 117, 122, 126, 130, 136, 143, 151, 160, 167, 174, 184, 192, 201, 211, 221, 227, 236, 250,
-  264, 279, 295, 309, 323, 338, 356, 372, 391, 437, 486, 538, 593, 651, 698, 750, 804, 866
+  264, 279, 295, 309, 323, 338, 356, 372, 391, 437, 486, 538, 593, 651, 698, 750, 804, 866, 932, 1004, 1084, 1173, 1272, 1382
 ];
 
 const PSEUDO_900_SPECIES = new Set([
@@ -116,7 +116,7 @@ export function expNatureFromModifier(expModifier: number): CandyExpNature {
 }
 
 export function candyExpAtLevel(level: number, expNature: CandyExpNature, boostMode: CandyBoostMode) {
-  const baseExp = level >= 30 ? 25 : level >= 25 ? 30 : 35;
+  const baseExp = level >= 30 ? 25 : level >= 25 ? 35 : 40;
   return Math.round(baseExp * expNatureMultiplier(expNature)) * boostExpMultiplier(boostMode);
 }
 

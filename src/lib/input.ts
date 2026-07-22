@@ -80,10 +80,10 @@ export function normalizeInput(input: CalcInput, species: PokemonSpecies): CalcI
 }
 
 export function activeSubskillCountAtLevel(level: number) {
-  if (level >= 100) {
+  if (level >= 80) {
     return 5;
   }
-  if (level >= 75) {
+  if (level >= 70) {
     return 4;
   }
   if (level >= 50) {

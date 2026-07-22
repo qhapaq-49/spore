@@ -10,8 +10,8 @@ import {
 
 describe('candy simulation', () => {
   it('uses the current level candy exp bands and nature modifiers', () => {
-    expect(candyExpAtLevel(1, 'neutral', 'none')).toBe(35);
-    expect(candyExpAtLevel(25, 'neutral', 'none')).toBe(30);
+    expect(candyExpAtLevel(1, 'neutral', 'none')).toBe(40);
+    expect(candyExpAtLevel(25, 'neutral', 'none')).toBe(35);
     expect(candyExpAtLevel(30, 'neutral', 'none')).toBe(25);
     expect(candyExpAtLevel(30, 'up', 'none')).toBe(30);
     expect(candyExpAtLevel(30, 'down', 'none')).toBe(21);
@@ -22,6 +22,8 @@ describe('candy simulation', () => {
     expect(dreamShardsPerCandy(30, 'none')).toBe(122);
     expect(dreamShardsPerCandy(30, 'mini')).toBe(488);
     expect(dreamShardsPerCandy(30, 'custom', 6)).toBe(732);
+    expect(dreamShardsPerCandy(66, 'none')).toBe(1004);
+    expect(dreamShardsPerCandy(70, 'none')).toBe(1382);
   });
 
   it('simulates candies one by one until a target level is reached', () => {
@@ -37,7 +39,7 @@ describe('candy simulation', () => {
     expect(result.usedCandy).toBe(2);
     expect(result.usedShards).toBe(28);
     expect(result.finalLevel).toBe(2);
-    expect(result.finalExp).toBe(16);
+    expect(result.finalExp).toBe(26);
     expect(result.targetReached).toBe(true);
   });
 
@@ -54,7 +56,7 @@ describe('candy simulation', () => {
 
     expect(result.usedCandy).toBe(18);
     expect(result.finalLevel).toBe(25);
-    expect(result.finalExp).toBe(30);
+    expect(result.finalExp).toBe(105);
     expect(result.stoppedBy).toBe('candy');
   });
 
@@ -112,7 +114,7 @@ describe('candy simulation', () => {
           mode: 'budget',
           currentLevel: 1,
           currentExp: 0,
-          targetLevel: 65,
+          targetLevel: 70,
           expType: 600,
           expNature: 'neutral',
           boostMode: 'none',
