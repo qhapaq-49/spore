@@ -94,7 +94,7 @@ export interface PokemonSleepDataset {
 export type EnergyMode = 'normal' | 'morningPillow' | 'constant80';
 export type ExBerryMode = 'none' | 'main' | 'sub';
 export type ExBonusMode = 'berry' | 'ingredient' | 'skill';
-export type MapMode = 'normal' | 'wakakusaEx';
+export type MapMode = 'normal' | 'wakakusaEx' | 'cyanEx';
 
 export interface CalcInput {
   speciesId: string;

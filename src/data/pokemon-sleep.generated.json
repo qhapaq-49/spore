@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-22T12:37:55.869Z",
+  "generatedAt": "2026-08-18T11:10:10.360Z",
   "source": {
     "name": "Neroli's Lab",
     "url": "https://github.com/nerolis-lab/nerolis-lab.git",
-    "commit": "0e7250ac85e69c78ea270d6f34af829c57c539a8"
+    "commit": "4482f92e8ce0b5370974017a1c83ed85b2928a2c"
   },
   "pokemon": [
     {
@@ -1073,7 +1073,7 @@
       "specialty": "berry",
       "frequency": 2800,
       "ingredientPercentage": 16.8,
-      "skillPercentage": 3.6,
+      "skillPercentage": 4,
       "berryId": "PECHA",
       "carrySize": 24,
       "previousEvolutions": 2,
@@ -3339,6 +3339,120 @@
         }
       ],
       "skillId": "Charge Energy S"
+    },
+    {
+      "id": "MEW",
+      "name": "MEW",
+      "displayName": "Mew",
+      "displayNameJa": "ミュウ",
+      "pokedexNumber": 151,
+      "specialty": "all",
+      "frequency": 2900,
+      "ingredientPercentage": 20,
+      "skillPercentage": 4,
+      "berryId": "MAGO",
+      "carrySize": 26,
+      "previousEvolutions": 0,
+      "remainingEvolutions": 0,
+      "ingredient0": [
+        {
+          "ingredientId": "Egg",
+          "amount": 2
+        },
+        {
+          "ingredientId": "Leek",
+          "amount": 2
+        },
+        {
+          "ingredientId": "Herb",
+          "amount": 2
+        },
+        {
+          "ingredientId": "Sausage",
+          "amount": 2
+        },
+        {
+          "ingredientId": "Oil",
+          "amount": 2
+        },
+        {
+          "ingredientId": "Soybean",
+          "amount": 2
+        },
+        {
+          "ingredientId": "Avocado",
+          "amount": 2
+        }
+      ],
+      "ingredient30": [
+        {
+          "ingredientId": "Herb",
+          "amount": 4
+        },
+        {
+          "ingredientId": "Leek",
+          "amount": 3
+        },
+        {
+          "ingredientId": "Egg",
+          "amount": 4
+        },
+        {
+          "ingredientId": "Sausage",
+          "amount": 4
+        },
+        {
+          "ingredientId": "Oil",
+          "amount": 4
+        },
+        {
+          "ingredientId": "Soybean",
+          "amount": 5
+        },
+        {
+          "ingredientId": "Avocado",
+          "amount": 3
+        }
+      ],
+      "ingredient60": [
+        {
+          "ingredientId": "Locked",
+          "amount": 0
+        },
+        {
+          "ingredientId": "Leek",
+          "amount": 4
+        },
+        {
+          "ingredientId": "Egg",
+          "amount": 6
+        },
+        {
+          "ingredientId": "Herb",
+          "amount": 5
+        },
+        {
+          "ingredientId": "Sausage",
+          "amount": 7
+        },
+        {
+          "ingredientId": "Oil",
+          "amount": 6
+        },
+        {
+          "ingredientId": "Tail",
+          "amount": 2
+        },
+        {
+          "ingredientId": "Soybean",
+          "amount": 7
+        },
+        {
+          "ingredientId": "Avocado",
+          "amount": 4
+        }
+      ],
+      "skillId": "Versatile"
     },
     {
       "id": "CHIKORITA",
@@ -8144,7 +8258,7 @@
           "amount": 4
         }
       ],
-      "skillId": "Dream Shard Magnet S"
+      "skillId": "Aura Sphere (Dream Shard Magnet S)"
     },
     {
       "id": "CROAGUNK",
@@ -9179,6 +9293,52 @@
         }
       ],
       "skillId": "Energy For Everyone S"
+    },
+    {
+      "id": "HAWLUCHA",
+      "name": "HAWLUCHA",
+      "displayName": "Hawlucha",
+      "displayNameJa": "ルチャブル",
+      "pokedexNumber": 701,
+      "specialty": "skill",
+      "frequency": 2400,
+      "ingredientPercentage": 19.2,
+      "skillPercentage": 5.2,
+      "berryId": "PAMTRE",
+      "carrySize": 21,
+      "previousEvolutions": 0,
+      "remainingEvolutions": 0,
+      "ingredient0": [
+        {
+          "ingredientId": "Herb",
+          "amount": 1
+        }
+      ],
+      "ingredient30": [
+        {
+          "ingredientId": "Herb",
+          "amount": 2
+        },
+        {
+          "ingredientId": "Ginger",
+          "amount": 3
+        }
+      ],
+      "ingredient60": [
+        {
+          "ingredientId": "Herb",
+          "amount": 4
+        },
+        {
+          "ingredientId": "Ginger",
+          "amount": 4
+        },
+        {
+          "ingredientId": "Sausage",
+          "amount": 5
+        }
+      ],
+      "skillId": "Ingredient Draw S"
     },
     {
       "id": "DEDENNE",
@@ -11319,6 +11479,42 @@
   ],
   "mainSkills": [
     {
+      "id": "Aura Sphere (Dream Shard Magnet S)",
+      "name": "Aura Sphere (Dream Shard Magnet S)",
+      "nameJa": "はどうだん（ゆめのかけらゲットS）",
+      "maxLevel": 8,
+      "activations": [
+        {
+          "name": "dreamShards",
+          "unit": "dream shards",
+          "amounts": [
+            240,
+            340,
+            480,
+            670,
+            920,
+            1260,
+            1800,
+            2500
+          ]
+        },
+        {
+          "name": "strength",
+          "unit": "strength",
+          "amounts": [
+            200,
+            285,
+            393,
+            542,
+            748,
+            1033,
+            1501,
+            2042
+          ]
+        }
+      ]
+    },
+    {
       "id": "Draco Meteor (Berry Burst)",
       "name": "Draco Meteor (Berry Burst)",
       "nameJa": "Draco Meteor (Berry Burst)",
@@ -11350,6 +11546,28 @@
             0,
             0,
             0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Versatile",
+      "name": "Versatile",
+      "nameJa": "オールマイティー",
+      "maxLevel": 8,
+      "activations": [
+        {
+          "name": "candy",
+          "unit": "candy",
+          "amounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
           ]
         }
       ]

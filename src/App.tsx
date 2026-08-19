@@ -1,5 +1,5 @@
 import { BarChart3, Download, Eye, EyeOff, History, Plus, RotateCcw, Save, Trash2, X } from 'lucide-react';
-import { createContext, Fragment, useContext, useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import { createContext, Fragment, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { berryById, dataset, ingredientById, mainSkillById, natureById, pokemonById, subskillById } from './data/dataset';
 import { berryEnergyAtLevel, calculate, calculateWhistle } from './lib/calculate';
 import {
@@ -51,7 +51,7 @@ import {
   type Language,
   type TranslationKey
 } from './lib/i18n';
-import { activeSubskillCountAtLevel, defaultInput, firstPlayableSpecies, inputForSpecies, normalizeInput } from './lib/input';
+import { MAX_FIELD_BONUS, MAX_POKEMON_LEVEL, activeSubskillCountAtLevel, defaultInput, firstPlayableSpecies, inputForSpecies, normalizeInput } from './lib/input';
 import type {
   CalcInput,
   CalcResult,
@@ -362,7 +362,7 @@ export function App() {
                 label="Lv"
                 value={normalizedInput.level}
                 min={1}
-                max={100}
+                max={MAX_POKEMON_LEVEL}
                 onChange={(level) => updateInput({ level })}
               />
               <NumberField
@@ -419,7 +419,7 @@ export function App() {
                   label={t('fieldBonusPercent')}
                   value={normalizedInput.fieldBonus}
                   min={0}
-                  max={100}
+                  max={MAX_FIELD_BONUS}
                   onChange={(fieldBonus) => updateInput({ fieldBonus })}
                 />
                 <div className="field">
@@ -439,7 +439,7 @@ export function App() {
                 <input
                   type="checkbox"
                   checked={normalizedInput.favoriteBerry}
-                  disabled={normalizedInput.exMode}
+                  disabled={normalizedInput.exMode || normalizedInput.mapMode !== 'normal'}
                   onChange={(event) => updateInput({ favoriteBerry: event.target.checked })}
                 />
                 <span>{t('favoriteBerry')}</span>
@@ -452,23 +452,19 @@ export function App() {
                 />
                 <span>{t('goodCamp')}</span>
               </label>
-              <label className="check-row">
-                <input
-                  type="checkbox"
-                  checked={normalizedInput.exMode}
-                  onChange={(event) => updateInput({ exMode: event.target.checked })}
-                />
-                <span>{t('exMode')}</span>
-              </label>
-              <label className="check-row">
-                <input
-                  type="checkbox"
-                  checked={normalizedInput.mapMode === 'wakakusaEx'}
-                  onChange={(event) => updateInput({ mapMode: event.target.checked ? 'wakakusaEx' : 'normal' })}
-                />
-                <span>{t('wakakusaExMap')}</span>
-              </label>
-              {normalizedInput.exMode || normalizedInput.mapMode === 'wakakusaEx' ? (
+              <div className="field">
+                <label htmlFor="ex-map-mode">{t('exField')}</label>
+                <select
+                  id="ex-map-mode"
+                  value={normalizedInput.mapMode}
+                  onChange={(event) => updateInput({ mapMode: event.target.value as CalcInput['mapMode'], exMode: false })}
+                >
+                  <option value="normal">{t('normalField')}</option>
+                  <option value="wakakusaEx">{t('wakakusaEx')}</option>
+                  <option value="cyanEx">{t('cyanEx')}</option>
+                </select>
+              </div>
+              {normalizedInput.exMode || normalizedInput.mapMode !== 'normal' ? (
                 <div className="field-grid">
                   <div className="field">
                     <label htmlFor="ex-berry">{t('exBerry')}</label>
@@ -987,7 +983,7 @@ function HowToPanel() {
             <ol>
               <li>Choose a Pokemon in the Expected tab. The search box matches partial names.</li>
               <li>Enter level, skill level, ingredients, nature, and subskills.</li>
-              <li>Set field bonus, energy mode, favorite berry, camp, and EX/Greengrass EX modifiers.</li>
+              <li>Set field bonus, energy mode, favorite berry, camp, and EX field modifiers.</li>
               <li>Read total strength and the berry, ingredient, skill, and detail breakdowns.</li>
             </ol>
             <p>
@@ -1048,7 +1044,7 @@ function HowToPanel() {
             <ol>
               <li>Add up to five Pokemon in the Team tab.</li>
               <li>Set field bonus, energy mode, and camp for the team.</li>
-              <li>Greengrass EX is configured per team card.</li>
+              <li>EX field modifiers are configured per team card.</li>
               <li>Review total daily output, each member's breakdown, and Helper Whistle gain.</li>
             </ol>
           </section>
@@ -1075,7 +1071,7 @@ function HowToPanel() {
             </div>
             <ol>
               <li>Tasty Chance S users on the team are detected automatically.</li>
-              <li>Enter base meal score to simulate 21 meals across one week.</li>
+              <li>Enter the in-game base meal score (including the current recipe level, capped at Lv70) to simulate 21 meals across one week.</li>
               <li>Manual mode lets you enter triggers per day and effect percent directly.</li>
             </ol>
           </section>
@@ -1119,7 +1115,7 @@ function HowToPanel() {
           <ol>
             <li>期待値タブでポケモン名を入力します。途中まで打つと近い候補が出ます。</li>
             <li>Lv、スキルLv、食材、性格、サブスキルを入力します。</li>
-            <li>補正でフィールドボーナス、げんき条件、好みのきのみ、キャンプ、EX/ワカクサEXを設定します。</li>
+            <li>補正でフィールドボーナス、げんき条件、好みのきのみ、キャンプ、EXフィールドを設定します。</li>
             <li>右側の合計エナジー、きのみ、食材、スキル、詳細内訳を見ます。</li>
           </ol>
           <p>
@@ -1185,7 +1181,7 @@ function HowToPanel() {
           <ol>
             <li>チームタブで最大5匹を追加します。</li>
             <li>チーム画面のフィールドボーナス、げんき条件、キャンプを設定します。</li>
-            <li>ワカクサEXは全体設定ではなく、各チームカードで個別に設定します。</li>
+            <li>EXフィールド補正は全体設定ではなく、各チームカードで個別に設定します。</li>
             <li>日産の合計、各メンバーの内訳、ホイッスル使用時の増分を見ます。</li>
           </ol>
           <p>
@@ -1216,7 +1212,7 @@ function HowToPanel() {
           </div>
           <ol>
             <li>チーム内の料理チャンスS持ちは自動検出されます。</li>
-            <li>料理素点を入力すると、1週間21食の料理スコア分布をMonte Carloで表示します。</li>
+            <li>料理素点（現在のレシピLvを反映したゲーム内表示値。レシピLv上限70）を入力すると、1週間21食の料理スコア分布をMonte Carloで表示します。</li>
             <li>手入力に切り替えると、発動回数/日と効果量%を直接指定できます。</li>
           </ol>
           <p>
@@ -1559,7 +1555,7 @@ function WhistleSimulator({
             label={t('fieldBonusPercent')}
             value={fieldBonus}
             min={0}
-            max={100}
+            max={MAX_FIELD_BONUS}
             onChange={(value) => onSettingsChange({ fieldBonus: value })}
           />
           <div className="field">
@@ -1858,7 +1854,7 @@ function TeamSlotCard({
   if (!species) {
     return null;
   }
-  const isWakakusaEx = input.mapMode === 'wakakusaEx' || input.exMode;
+  const isExpertMode = input.exMode || input.mapMode !== 'normal';
   return (
     <article className="team-card">
       <div className="team-card-main">
@@ -1869,11 +1865,11 @@ function TeamSlotCard({
         <HistorySubskillTags input={input} />
       </div>
       <div className="team-card-actions">
-        <label className="check-row compact-check" title={isWakakusaEx ? t('wakakusaExTitle') : undefined}>
+        <label className="check-row compact-check" title={isExpertMode ? t('wakakusaExTitle') : undefined}>
           <input
             type="checkbox"
             checked={input.favoriteBerry}
-            disabled={isWakakusaEx}
+            disabled={isExpertMode}
             onChange={(event) => onUpdate(slot.id, { favoriteBerry: event.target.checked })}
           />
           <span>{t('favoriteShort')}</span>
@@ -1883,15 +1879,18 @@ function TeamSlotCard({
         </button>
       </div>
       <div className="team-ex-controls">
-        <label className="check-row compact-check">
-          <input
-            type="checkbox"
-            checked={isWakakusaEx}
-            onChange={(event) => onUpdate(slot.id, { mapMode: event.target.checked ? 'wakakusaEx' : 'normal', exMode: false })}
-          />
-          <span>{t('wakakusaEx')}</span>
-        </label>
-        {isWakakusaEx ? (
+        <div className="field compact-field">
+          <label>{t('exField')}</label>
+          <select
+            value={input.mapMode}
+            onChange={(event) => onUpdate(slot.id, { mapMode: event.target.value as CalcInput['mapMode'], exMode: false })}
+          >
+            <option value="normal">{t('normalField')}</option>
+            <option value="wakakusaEx">{t('wakakusaEx')}</option>
+            <option value="cyanEx">{t('cyanEx')}</option>
+          </select>
+        </div>
+        {isExpertMode ? (
           <div className="team-ex-grid">
             <div className="field compact-field">
               <label>{t('exBerry')}</label>
@@ -2535,6 +2534,27 @@ function NumberField({
   max: number;
   onChange: (value: number) => void;
 }) {
+  const [draft, setDraft] = useState(String(value));
+  const editing = useRef(false);
+
+  useEffect(() => {
+    if (!editing.current) {
+      setDraft(String(value));
+    }
+  }, [value]);
+
+  function commit() {
+    editing.current = false;
+    const parsed = Number(draft);
+    if (!Number.isFinite(parsed)) {
+      setDraft(String(value));
+      return;
+    }
+    const next = Math.max(min, Math.min(max, Math.round(parsed)));
+    setDraft(String(next));
+    onChange(next);
+  }
+
   return (
     <div className="field">
       <label>{label}</label>
@@ -2542,8 +2562,22 @@ function NumberField({
         type="number"
         min={min}
         max={max}
-        value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
+        value={draft}
+        onFocus={() => { editing.current = true; }}
+        onChange={(event) => {
+          const nextDraft = event.target.value;
+          setDraft(nextDraft);
+          const parsed = Number(nextDraft);
+          if (nextDraft !== "" && Number.isInteger(parsed) && parsed >= min && parsed <= max) {
+            onChange(parsed);
+          }
+        }}
+        onBlur={commit}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") {
+            event.currentTarget.blur();
+          }
+        }}
       />
     </div>
   );
@@ -2565,7 +2599,7 @@ function prepareTeamInput(
   const normalized = normalizeInput(input, species);
   const helpingBonusOwners = team.filter((slot) => hasActiveSubskill(slot.input, 'Helping Bonus')).length;
   const selfHasHelpingBonus = hasActiveSubskill(normalized, 'Helping Bonus');
-  const mapMode = normalized.mapMode === 'wakakusaEx' || normalized.exMode ? 'wakakusaEx' : 'normal';
+  const mapMode = normalized.exMode ? 'wakakusaEx' : normalized.mapMode;
   return normalizeInput(
     {
       ...normalized,
@@ -2697,7 +2731,7 @@ function formatSkillEffectSummary(input: CalcInput, language: Language) {
 }
 
 function effectiveSkillLevel(input: CalcInput, species: PokemonSpecies, skill: MainSkill) {
-  const exMainBerry = (input.exMode || input.mapMode === 'wakakusaEx') && input.exBerryMode === 'main';
+  const exMainBerry = (input.exMode || input.mapMode !== 'normal') && input.exBerryMode === 'main';
   return Math.max(1, Math.min(input.skillLevel + (exMainBerry ? 1 : 0), Math.max(skill.maxLevel, 1)));
 }
 
@@ -2743,7 +2777,7 @@ function skillBerryEnergyPerBerry(input: CalcInput, species: PokemonSpecies) {
   if (!berry) {
     return 0;
   }
-  const exMode = input.exMode || input.mapMode === 'wakakusaEx';
+  const exMode = input.exMode || input.mapMode !== 'normal';
   const exFavoriteBerry = exMode && input.exBerryMode !== 'none';
   const favoriteMultiplier = exMode
     ? input.exBonusMode === 'berry' && exFavoriteBerry
@@ -2793,7 +2827,7 @@ function loadScoreSettings(): ScoreSettings {
 function normalizeScoreSettings(value: Partial<ScoreSettings>): ScoreSettings {
   return {
     whistleCount: clampNumber(value.whistleCount, 1, 99, 1),
-    fieldBonus: clampNumber(value.fieldBonus, 0, 100, 0),
+    fieldBonus: clampNumber(value.fieldBonus, 0, MAX_FIELD_BONUS, 0),
     goodCamp: typeof value.goodCamp === 'boolean' ? value.goodCamp : false,
     energyMode: isEnergyMode(value.energyMode) ? value.energyMode : 'normal'
   };
@@ -2901,14 +2935,14 @@ function teamNotes(language: Language) {
   if (language === 'en') {
     return [
       'Daily output uses the team energy mode. Morning pillow x1 assumes daytime production starts at 150% energy.',
-      "Greengrass EX modifiers use each team card\'s individual setting.",
+      "EX field modifiers use each team card\'s individual setting.",
       'Helper Whistle excludes main skill activations, Good Camp Ticket, EX speed, and EX ingredient +1.',
       "Helping Bonus within the team is counted automatically and overwrites each Pokemon\'s other Helping Bonus count."
     ];
   }
   return [
     '日産はチーム画面のげんき条件を使います。朝イチ枕1個は日中をげんき150%スタートとして計算します。',
-    'ワカクサEX補正は各チームカードの個別設定を使います。',
+    'EXフィールド補正は各チームカードの個別設定を使います。',
     'ホイッスルはメインスキルが発動せず、いいキャンプチケット・EX速度・EX食材+1も反映しません。',
     'チーム内のおてつだいボーナスは自動集計し、各個体の「他のおてボ数」を上書きしています。'
   ];

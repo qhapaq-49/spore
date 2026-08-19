@@ -104,6 +104,8 @@ const SUBSKILL_JA: Record<string, string> = {
 };
 
 const MAIN_SKILL_JA: Record<string, string> = {
+  'Aura Sphere (Dream Shard Magnet S)': 'はどうだん（ゆめのかけらゲットS）',
+  Versatile: 'オールマイティー',
   'Berry Burst': 'きのみバースト',
   'Berry Juice (Energy For Everyone S)': 'きのみジュース（げんきオールS）',
   'Disguise (Berry Burst)': 'ばけのかわ（きのみバースト）',
@@ -147,6 +149,8 @@ const MAIN_SKILL_JA: Record<string, string> = {
 };
 
 const POKEMON_JA: Record<string, string> = {
+  MEW: 'ミュウ',
+  HAWLUCHA: 'ルチャブル',
   DARKRAI: 'ダークライ',
   CATERPIE: 'キャタピー',
   METAPOD: 'トランセル',

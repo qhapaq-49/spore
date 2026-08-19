@@ -44,7 +44,7 @@ export function calculate(input: CalcInput): CalcResult {
   const activeSubskillIds = normalized.subskillIds.slice(0, activeSubskillCountAtLevel(normalized.level));
   const subskills = activeSubskillIds.map((id) => subskillById.get(id)).filter((item) => item !== undefined);
   const subskillNames = new Set(subskills.map((subskill) => subskill.name));
-  const exMode = normalized.exMode || normalized.mapMode === 'wakakusaEx';
+  const exMode = normalized.exMode || normalized.mapMode !== 'normal';
   const exFavoriteBerry = exMode && normalized.exBerryMode !== 'none';
   const exMainBerry = exMode && normalized.exBerryMode === 'main';
   const exIngredientBonus =
@@ -63,11 +63,14 @@ export function calculate(input: CalcInput): CalcResult {
         .filter((subskill) => subskill.name === 'Helping Speed S' || subskill.name === 'Helping Speed M')
         .reduce((sum, subskill) => sum + subskill.amount, 0)
   );
-  const inventoryLimit = baseInventoryLimit(species) + inventoryBonus(subskills);
+  const inventoryLimit =
+    baseInventoryLimit(species) +
+    inventoryBonus(subskills) +
+    (normalized.mapMode === 'cyanEx' && exMainBerry ? 5 : 0);
   const levelFrequencyMultiplier = 1 - (normalized.level - 1) * 0.002;
   const campSpeedMultiplier = normalized.goodCamp ? 1.2 : 1;
   const natureSpeedMultiplier = speedNatureMultiplier(nature.positiveModifier, nature.negativeModifier);
-  const exSpeedMultiplier = exSpeedTimeMultiplier(exMode, normalized.exBerryMode);
+  const exSpeedMultiplier = exSpeedTimeMultiplier(normalized.mapMode, normalized.exMode, normalized.exBerryMode);
   const displayedFrequency = Math.floor(
     species.frequency *
       levelFrequencyMultiplier *
@@ -134,7 +137,7 @@ export function calculate(input: CalcInput): CalcResult {
     notes.push(`げんき回復スキルは期待回復量 ${expectedRecovery.toFixed(1)} を速度補正に換算しています。`);
   }
   if (exMode) {
-    notes.push(exModeNote(normalized.exBerryMode, normalized.exBonusMode, exIngredientBonus, exSkillMultiplier));
+    notes.push(exModeNote(normalized.mapMode, normalized.exBerryMode, normalized.exBonusMode, exIngredientBonus, exSkillMultiplier));
   }
   if (skillProbability - baseSkillProbability > 0.0005) {
     notes.push(
@@ -241,7 +244,7 @@ export function calculateWhistle(input: CalcInput, whistleCount = 1): WhistlePok
   const activeSubskillIds = normalized.subskillIds.slice(0, activeSubskillCountAtLevel(normalized.level));
   const subskills = activeSubskillIds.map((id) => subskillById.get(id)).filter((item) => item !== undefined);
   const subskillNames = new Set(subskills.map((subskill) => subskill.name));
-  const exMode = normalized.exMode || normalized.mapMode === 'wakakusaEx';
+  const exMode = normalized.exMode || normalized.mapMode !== 'normal';
   const exFavoriteBerry = exMode && normalized.exBerryMode !== 'none';
 
   const speedReduction = Math.min(
@@ -360,7 +363,7 @@ function calculateTimedProduction(input: CalcInput, effectiveSeconds: number): T
   const activeSubskillIds = normalized.subskillIds.slice(0, activeSubskillCountAtLevel(normalized.level));
   const subskills = activeSubskillIds.map((id) => subskillById.get(id)).filter((item) => item !== undefined);
   const subskillNames = new Set(subskills.map((subskill) => subskill.name));
-  const exMode = normalized.exMode || normalized.mapMode === 'wakakusaEx';
+  const exMode = normalized.exMode || normalized.mapMode !== 'normal';
   const exFavoriteBerry = exMode && normalized.exBerryMode !== 'none';
   const exMainBerry = exMode && normalized.exBerryMode === 'main';
   const exIngredientBonus =
@@ -382,7 +385,7 @@ function calculateTimedProduction(input: CalcInput, effectiveSeconds: number): T
   const levelFrequencyMultiplier = 1 - (normalized.level - 1) * 0.002;
   const campSpeedMultiplier = normalized.goodCamp ? 1.2 : 1;
   const natureSpeedMultiplier = speedNatureMultiplier(nature.positiveModifier, nature.negativeModifier);
-  const exSpeedMultiplier = exSpeedTimeMultiplier(exMode, normalized.exBerryMode);
+  const exSpeedMultiplier = exSpeedTimeMultiplier(normalized.mapMode, normalized.exMode, normalized.exBerryMode);
   const displayedFrequency = Math.floor(
     species.frequency *
       levelFrequencyMultiplier *
@@ -692,15 +695,15 @@ function baseInventoryLimit(species: { carrySize: number; previousEvolutions: nu
   return species.carrySize + species.previousEvolutions * 5;
 }
 
-function exSpeedTimeMultiplier(exMode: boolean, berryMode: string) {
-  if (!exMode) {
+function exSpeedTimeMultiplier(mapMode: CalcInput['mapMode'], legacyExMode: boolean, berryMode: string) {
+  if (mapMode === 'normal' && !legacyExMode) {
     return 1;
   }
   if (berryMode === 'main') {
-    return 0.9;
+    return mapMode === 'cyanEx' ? 0.8 : 0.9;
   }
   if (berryMode === 'none') {
-    return 1.15;
+    return mapMode === 'cyanEx' ? 1.35 : 1.15;
   }
   return 1;
 }
@@ -715,12 +718,16 @@ function exFavoriteMultiplier(berryMode: string, bonusMode: string) {
   return 2;
 }
 
-function exModeNote(berryMode: string, bonusMode: string, ingredientBonus: number, skillMultiplier: number) {
+function exModeNote(mapMode: CalcInput['mapMode'], berryMode: string, bonusMode: string, ingredientBonus: number, skillMultiplier: number) {
   const berryLabel = berryMode === 'main' ? 'メインきのみ一致' : berryMode === 'sub' ? 'サブきのみ一致' : 'きのみ不一致';
   if (berryMode === 'none') {
-    return 'EXモード（きのみ不一致）では、おてつだい時間15%増を反映し、対象きのみ効果は適用していません。';
+    return 'EXモード（きのみ不一致）では、おてつだい時間' + (mapMode === 'cyanEx' ? 35 : 15) + '%増を反映し、対象きのみ効果は適用していません。';
   }
-  const mainBonus = berryMode === 'main' ? ' おてつだい時間10%短縮とスキルLv+1も反映しています。' : '';
+  const mainBonus = berryMode === 'main'
+    ? mapMode === 'cyanEx'
+      ? ' おてつだい時間20%短縮、最大所持数+5、スキルLv+1も反映しています。'
+      : ' おてつだい時間10%短縮とスキルLv+1も反映しています。'
+    : '';
   if (bonusMode === 'berry') {
     return `EXモード（${berryLabel}）では、対象きのみのエナジー倍率を2.4倍として計算しています。${mainBonus}`;
   }

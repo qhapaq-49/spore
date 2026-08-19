@@ -3,7 +3,7 @@ import { dataset } from '../data/dataset';
 import { berryEnergyAtLevel, calculate, calculatePillowImpact, calculateWhistle } from './calculate';
 import { simulateCookingChanceWeek } from './cooking-chance';
 import { analyzeDistribution } from './distribution';
-import { activeSubskillCountAtLevel, defaultInput, inputForSpecies } from './input';
+import { activeSubskillCountAtLevel, defaultInput, inputForSpecies, normalizeInput } from './input';
 
 describe('defaultInput', () => {
   it('starts with favorite berry matching off', () => {
@@ -16,6 +16,14 @@ describe('defaultInput', () => {
     const to = dataset.pokemon.find((pokemon) => pokemon.id === 'DRAGONITE') ?? dataset.pokemon[0];
 
     expect(inputForSpecies({ ...defaultInput(from), favoriteBerry: true }, to).favoriteBerry).toBe(false);
+  });
+
+  it('clamps inputs to the current Pokemon and field bonus caps', () => {
+    const species = dataset.pokemon.find((pokemon) => pokemon.id === 'RAICHU') ?? dataset.pokemon[0];
+    const normalized = normalizeInput({ ...defaultInput(species), level: 999, fieldBonus: 999 }, species);
+
+    expect(normalized.level).toBe(70);
+    expect(normalized.fieldBonus).toBe(85);
   });
 });
 
@@ -157,6 +165,20 @@ describe('calculate', () => {
     expect(exNonMatch.displayedFrequency).toBeGreaterThan(normal.displayedFrequency);
     expect(exNonMatch.totalEnergy).toBeLessThan(normal.totalEnergy);
     expect(exMain.displayedFrequency).toBeLessThan(normal.displayedFrequency);
+  });
+
+  it('applies Cyan EX speed and inventory modifiers', () => {
+    const species = dataset.pokemon.find((pokemon) => pokemon.id === 'RAICHU') ?? dataset.pokemon[0];
+    const normal = calculate({ ...defaultInput(species), mapMode: 'normal' });
+    const wakakusaMain = calculate({ ...defaultInput(species), mapMode: 'wakakusaEx', exBerryMode: 'main' });
+    const cyanMain = calculate({ ...defaultInput(species), mapMode: 'cyanEx', exBerryMode: 'main' });
+    const wakakusaNone = calculate({ ...defaultInput(species), mapMode: 'wakakusaEx', exBerryMode: 'none' });
+    const cyanNone = calculate({ ...defaultInput(species), mapMode: 'cyanEx', exBerryMode: 'none' });
+
+    expect(cyanMain.displayedFrequency).toBeLessThan(wakakusaMain.displayedFrequency);
+    expect(cyanMain.inventoryLimit).toBe(normal.inventoryLimit + 5);
+    expect(cyanNone.displayedFrequency).toBeGreaterThan(wakakusaNone.displayedFrequency);
+    expect(cyanMain.notes.some((note) => note.includes('最大所持数+5'))).toBe(true);
   });
 
   it('applies EX skill and ingredient effects only when selected', () => {

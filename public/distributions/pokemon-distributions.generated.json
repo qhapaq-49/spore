@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-07-22T12:48:30.423Z",
+  "generatedAt": "2026-08-18T11:11:40.695Z",
   "modelVersion": "all-species-monte-carlo-v2",
   "source": {
     "name": "Neroli's Lab",
     "url": "https://github.com/nerolis-lab/nerolis-lab.git",
-    "commit": "0e7250ac85e69c78ea270d6f34af829c57c539a8"
+    "commit": "4482f92e8ce0b5370974017a1c83ed85b2928a2c"
   },
   "simulation": {
     "seed": 1374560294,
@@ -84,6 +84,7 @@
       "DRATINI",
       "DRAGONAIR",
       "DRAGONITE",
+      "MEW",
       "CHIKORITA",
       "BAYLEEF",
       "MEGANIUM",
@@ -210,6 +211,7 @@
       "TYRUNT",
       "TYRANTRUM",
       "SYLVEON",
+      "HAWLUCHA",
       "DEDENNE",
       "PUMPKABOO_LARGE",
       "PUMPKABOO_SMALL",
@@ -1290,6 +1292,20 @@
         "DRAGONITE-lv70-fav-off"
       ],
       "path": "species/DRAGONITE.json"
+    },
+    "MEW": {
+      "speciesId": "MEW",
+      "scenarioIds": [
+        "MEW-lv30-fav-on",
+        "MEW-lv30-fav-off",
+        "MEW-lv50-fav-on",
+        "MEW-lv50-fav-off",
+        "MEW-lv60-fav-on",
+        "MEW-lv60-fav-off",
+        "MEW-lv70-fav-on",
+        "MEW-lv70-fav-off"
+      ],
+      "path": "species/MEW.json"
     },
     "CHIKORITA": {
       "speciesId": "CHIKORITA",
@@ -3054,6 +3070,20 @@
         "SYLVEON-lv70-fav-off"
       ],
       "path": "species/SYLVEON.json"
+    },
+    "HAWLUCHA": {
+      "speciesId": "HAWLUCHA",
+      "scenarioIds": [
+        "HAWLUCHA-lv30-fav-on",
+        "HAWLUCHA-lv30-fav-off",
+        "HAWLUCHA-lv50-fav-on",
+        "HAWLUCHA-lv50-fav-off",
+        "HAWLUCHA-lv60-fav-on",
+        "HAWLUCHA-lv60-fav-off",
+        "HAWLUCHA-lv70-fav-on",
+        "HAWLUCHA-lv70-fav-off"
+      ],
+      "path": "species/HAWLUCHA.json"
     },
     "DEDENNE": {
       "speciesId": "DEDENNE",

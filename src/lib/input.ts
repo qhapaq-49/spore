@@ -5,7 +5,10 @@ const DEFAULT_NATURE_ID = 'Bashful';
 const ENERGY_MODES = new Set<EnergyMode>(['normal', 'morningPillow', 'constant80']);
 const EX_BERRY_MODES = new Set<ExBerryMode>(['none', 'main', 'sub']);
 const EX_BONUS_MODES = new Set<ExBonusMode>(['berry', 'ingredient', 'skill']);
-const MAP_MODES = new Set<MapMode>(['normal', 'wakakusaEx']);
+const MAP_MODES = new Set<MapMode>(['normal', 'wakakusaEx', 'cyanEx']);
+
+export const MAX_POKEMON_LEVEL = 70;
+export const MAX_FIELD_BONUS = 85;
 
 export function firstPlayableSpecies() {
   const species = dataset.pokemon.find((pokemon) => pokemon.id === 'VENUSAUR') ?? dataset.pokemon[0];
@@ -59,19 +62,25 @@ export function inputForSpecies(previous: CalcInput, species: PokemonSpecies): C
 export function normalizeInput(input: CalcInput, species: PokemonSpecies): CalcInput {
   const fallback = defaultInput(species);
   const { excludeSelfEnergySkill: _unused, ...rawInput } = input as CalcInput & { excludeSelfEnergySkill?: boolean };
+  const legacyExMode = booleanOrDefault(rawInput.exMode, fallback.exMode);
+  const mapMode = legacyExMode && rawInput.mapMode === 'normal'
+    ? 'wakakusaEx'
+    : MAP_MODES.has(rawInput.mapMode)
+      ? rawInput.mapMode
+      : fallback.mapMode;
   return {
     ...rawInput,
-    level: clampInt(rawInput.level, 1, 100),
+    level: clampInt(rawInput.level, 1, MAX_POKEMON_LEVEL),
     skillLevel: clampInt(rawInput.skillLevel, 1, 8),
     evolutionCount: clampInt(rawInput.evolutionCount, 0, 2),
     helpingBonusCount: clampInt(rawInput.helpingBonusCount, 0, 4),
-    fieldBonus: clampInt(rawInput.fieldBonus, 0, 100),
+    fieldBonus: clampInt(rawInput.fieldBonus, 0, MAX_FIELD_BONUS),
     energyMode: ENERGY_MODES.has(rawInput.energyMode) ? rawInput.energyMode : fallback.energyMode,
     exBerryMode: EX_BERRY_MODES.has(rawInput.exBerryMode) ? rawInput.exBerryMode : fallback.exBerryMode,
     exBonusMode: EX_BONUS_MODES.has(rawInput.exBonusMode) ? rawInput.exBonusMode : fallback.exBonusMode,
-    mapMode: MAP_MODES.has(rawInput.mapMode) ? rawInput.mapMode : fallback.mapMode,
+    mapMode,
     favoriteBerry: booleanOrDefault(rawInput.favoriteBerry, fallback.favoriteBerry),
-    exMode: booleanOrDefault(rawInput.exMode, fallback.exMode),
+    exMode: false,
     goodCamp: booleanOrDefault(rawInput.goodCamp, fallback.goodCamp),
     ingredient0Id: ensureIngredient(species.ingredient0, rawInput.ingredient0Id, fallback.ingredient0Id),
     ingredient30Id: ensureIngredient(species.ingredient30, rawInput.ingredient30Id, fallback.ingredient30Id),
