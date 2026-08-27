@@ -252,6 +252,24 @@ describe('score attack tools', () => {
   });
 });
 
+describe('current generated Pokemon Sleep data', () => {
+  it('includes the Tinkatink line and Captain Pikachu', () => {
+    expect(dataset.pokemon.map((pokemon) => pokemon.id)).toEqual(
+      expect.arrayContaining(['PIKACHU_CAPTAIN', 'TINKATINK', 'TINKATUFF', 'TINKATON'])
+    );
+  });
+
+  it('contains current recipes with exact Lv1-Lv70 energies', () => {
+    expect(dataset.recipes.length).toBeGreaterThanOrEqual(78);
+    const stew = dataset.recipes.find((recipe) => recipe.id === 'ROLE_PLAY_PUMPKABOO_STEW');
+
+    expect(stew?.nameJa).toBe('なりきりバケッチャシチュー');
+    expect(stew?.levelEnergies).toHaveLength(70);
+    expect(stew?.levelEnergies[0]).toBe(15_621);
+    expect(stew?.levelEnergies[69]).toBe(55_925);
+  });
+});
+
 describe('distribution analysis', () => {
   it('reports ingredient distribution as the total count only', () => {
     const species = dataset.pokemon.find((pokemon) => pokemon.id === 'DRAGONITE') ?? dataset.pokemon[0];

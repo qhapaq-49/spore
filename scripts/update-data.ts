@@ -3,7 +3,7 @@ import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-import type { Berry, Ingredient, MainSkill, Nature, PokemonSleepDataset, PokemonSpecies, Subskill } from '../src/types';
+import type { Berry, Ingredient, MainSkill, Nature, PokemonSleepDataset, PokemonSpecies, Recipe, Subskill } from '../src/types';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = resolve(__dirname, '..');
@@ -29,9 +29,51 @@ const INGREDIENT_JA: Record<string, string> = {
   Avocado: 'つやつやアボカド',
   Mushroom: 'あじわいキノコ',
   Leek: 'ふといながねぎ',
-  Pumpkin: 'おおきなパンプキン',
+  Pumpkin: 'ずっしりカボチャ',
   Tail: 'おいしいシッポ',
   Locked: '未解放'
+};
+
+const RECIPE_JA: Record<string, string> = {
+  FANCY_APPLE_CURRY: 'とくせんリンゴカレー', SIMPLE_CHOWDER: 'たんじゅんホワイトシチュー',
+  MILD_HONEY_CURRY: 'ベイビィハニーカレー', BEANBURGER_CURRY: 'マメバーグカレー',
+  HEARTY_CHEESEBURGER_CURRY: '満腹チーズバーグカレー', DROUGHT_KATSU_CURRY: 'ひでりカツレツカレー',
+  SOLAR_POWER_TOMATO_CURRY: 'サンパワートマトカレー', MELTY_OMELETTE_CURRY: 'とけるオムカレー',
+  SOFT_POTATO_CHOWDER: 'ほっこりホワイトシチュー', BULK_UP_BEAN_CURRY: 'ビルドアップマメカレー',
+  SPORE_MUSHROOM_CURRY: 'キノコのほうしカレー', EGG_BOMB_CURRY: 'おやこあいカレー',
+  LIMBER_CORN_STEW: 'じゅうなんコーンシチュー', DIZZY_PUNCH_SPICY_CURRY: 'ピヨピヨパンチ辛口カレー',
+  SPICY_LEEK_CURRY: 'からくちネギもりカレー', NINJA_CURRY: 'ニンジャカレー',
+  GRILLED_TAIL_CURRY: 'あぶりテールカレー', DREAM_EATER_BUTTER_CURRY: 'ぜったいねむりバターカレー',
+  INFERNO_CORN_KEEMA_CURRY: 'れんごくコーンキーマカレー', HIDDEN_POWER_PERK_UP_STEW: 'めざめるパワーシチュー',
+  CUT_SUKIYAKI_CURRY: 'いあいぎりすき焼きカレー', ROLE_PLAY_PUMPKABOO_STEW: 'なりきりバケッチャシチュー',
+  OVERGROW_AVOCADO_GRATIN: 'しんりょくアボカドグラタン', GREENGRASS_CURRY_BUN: 'ワカクサカレーパン',
+  BOUNCE_CURRY_UDON: 'とびはねるカレーうどん', FANCY_APPLE_SALAD: 'とくせんリンゴサラダ',
+  BEAN_HAM_SALAD: 'マメハムサラダ', SNOOZY_TOMATO_SALAD: 'あんみんトマトサラダ',
+  SNOW_CLOAK_CAESAR_SALAD: 'ゆきかきシーザーサラダ', WATER_VEIL_TOFU_SALAD: 'うるおいとうふサラダ',
+  HEAT_WAVE_TOFU_SALAD: 'ねっぷうとうふサラダ', FURY_ATTACK_CORN_SALAD: 'みだれづきコーンサラダ',
+  DAZZLING_APPLE_CHEESE_SALAD: 'メロメロりんごのチーズサラダ', MOOMOO_CAPRESE_SALAD: 'モーモーカプレーゼ',
+  IMMUNITY_LEEK_SALAD: 'めんえきねぎサラダ', SUPERPOWER_EXTREME_SALAD: 'ばかぢからワイルドサラダ',
+  CONTRARY_CHOCOLATE_MEAT_SALAD: 'ムラっけチョコミートサラダ', GLUTTONY_POTATO_SALAD: 'くいしんぼうポテトサラダ',
+  OVERHEAT_GINGER_SALAD: 'オーバーヒートサラダ', SPORE_MUSHROOM_SALAD: 'キノコのほうしサラダ',
+  CALM_MIND_FRUIT_SALAD: 'めいそうスイートサラダ', SLOWPOKE_TAIL_PEPPER_SALAD: 'ヤドンテールのペッパーサラダ',
+  CROSS_CHOP_SALAD: 'クロスチョップドサラダ', GREENGRASS_SALAD: 'ワカクササラダ', NINJA_SALAD: 'ニンジャサラダ',
+  PETAL_BLIZZARD_LAYERED_SALAD: 'はなふぶきミモザサラダ', APPLE_ACID_YOGURT_DRESSED_SALAD: 'りんごさんヨーグルトサラダ',
+  DEFIANT_COFFEE_DRESSED_SALAD: 'まけんきコーヒーサラダ', LUSCIOUS_AVOCADO_SALAD: 'くだけるアボカドサラダ',
+  BULLDOZE_GUACAMOLE_AND_CHIPS: 'じならしワカモレチップス', SCALD_CHUNKY_SALAD: 'ごろごろねっとうサラダ',
+  WARM_MOOMOO_MILK: 'モーモーホットミルク', FANCY_APPLE_JUICE: 'とくせんリンゴジュース',
+  CRAFT_SODA_POP: 'クラフトサイコソーダ', LUCKY_CHANT_APPLE_PIE: 'ねがいごとアップルパイ',
+  FLUFFY_SWEET_POTATOES: 'じゅくせいスイートポテト', EMBER_GINGER_TEA: 'ひのこのジンジャーティー',
+  CLOUD_NINE_SOY_CAKE: 'かるわざソイケーキ', STALWART_VEGETABLE_JUICE: 'マイペースやさいジュース',
+  BIG_MALASADA: 'おおきいマラサダ', HUSTLE_PROTEIN_SMOOTHIE: 'はりきりプロテインスムージー',
+  HUGE_POWER_SOY_DONUTS: 'ちからもちソイドーナッツ', SWEET_SCENT_CHOCOLATE_CAKE: 'あまいかおりチョコケーキ',
+  PETAL_DANCE_CHOCOLATE_TART: 'はなびらのまいチョコタルト', LOVELY_KISS_SMOOTHIE: 'あくまのキッスフルーツオレ',
+  STEADFAST_GINGER_COOKIES: 'ふくつのジンジャークッキー', NEROLIS_RESTORATIVE_TEA: 'ネロリのデトックスティー',
+  EXPLOSION_POPCORN: 'だいばくはつポップコーン', EARLY_BIRD_COFFEE_JELLY: 'はやおきコーヒーゼリー',
+  MOLD_BREAKER_CORN_TIRAMISU: 'かたやぶりコーンティラミス', JIGGLYPUFFS_FRUITY_FLAN: 'プリンのプリンアラモード',
+  TEATIME_CORN_SCONES: 'おちゃかいコーンスコーン', FLOWER_GIFT_MACARONS: 'フラワーギフトマカロン',
+  ZING_ZAP_SPICED_COLA: 'スパークスパイスコーラ', CLODSIRE_ECLAIR: 'ドオーのエクレア',
+  HONEY_GATHER_CHOCOLATE_WAFFLES: 'みつあつめチョコワッフル', SCARY_FACE_PANCAKES: 'ドキドキこわいかおパンケーキ',
+  LEAF_TORNADO_SMOOTHIE: 'グラスミキサースムージー'
 };
 
 const BERRY_JA: Record<string, string> = {
@@ -390,7 +432,11 @@ const POKEMON_JA: Record<string, string> = {
   TOXTRICITY_LOW_KEY: 'ストリンダー（ロー）',
   PAWMI: 'パモ',
   PAWMO: 'パモット',
-  PAWMOT: 'パーモット'
+  PAWMOT: 'パーモット',
+  PIKACHU_CAPTAIN: 'ピカチュウ（キャプテン）',
+  TINKATINK: 'カヌチャン',
+  TINKATUFF: 'ナカヌチャン',
+  TINKATON: 'デカヌチャン'
 };
 
 interface UpstreamIngredient {
@@ -408,6 +454,14 @@ interface UpstreamBerry {
 interface UpstreamIngredientDrop {
   ingredient: UpstreamIngredient;
   amount: number;
+}
+
+interface UpstreamRecipe {
+  name: string;
+  displayName: string;
+  ingredients: UpstreamIngredientDrop[];
+  type: Recipe['type'];
+  bonus: number;
 }
 
 interface UpstreamPokemon {
@@ -578,16 +632,32 @@ function normalizeSubskill(subskill: UpstreamSubskill): Subskill {
   };
 }
 
+function normalizeRecipe(recipe: UpstreamRecipe, levelBonuses: number[]): Recipe {
+  const ingredientEnergy = recipe.ingredients.reduce((sum, item) => sum + item.ingredient.value * item.amount, 0);
+  return {
+    id: recipe.name,
+    name: recipe.displayName,
+    nameJa: RECIPE_JA[recipe.name] ?? recipe.displayName,
+    type: recipe.type,
+    ingredients: recipe.ingredients.map(ingredientDrop),
+    levelEnergies: levelBonuses.map((levelBonus) =>
+      Math.round(ingredientEnergy * levelBonus * (1 + recipe.bonus / 100))
+    )
+  };
+}
+
 async function main() {
   refreshUpstream();
 
-  const [{ COMPLETE_POKEDEX }, { INGREDIENTS_WITH_LOCKED }, { BERRIES }, { NATURES }, { SUBSKILLS }] =
+  const [{ COMPLETE_POKEDEX }, { INGREDIENTS_WITH_LOCKED }, { BERRIES }, { NATURES }, { SUBSKILLS }, { RECIPES }, { recipeLevelBonus }] =
     await Promise.all([
       importTs<{ COMPLETE_POKEDEX: UpstreamPokemon[] }>('common/src/types/pokemon/pokemon.ts'),
       importTs<{ INGREDIENTS_WITH_LOCKED: UpstreamIngredient[] }>('common/src/types/ingredient/ingredients.ts'),
       importTs<{ BERRIES: UpstreamBerry[] }>('common/src/types/berry/berries.ts'),
       importTs<{ NATURES: UpstreamNature[] }>('common/src/types/nature/nature.ts'),
-      importTs<{ SUBSKILLS: UpstreamSubskill[] }>('common/src/types/subskill/subskills.ts')
+      importTs<{ SUBSKILLS: UpstreamSubskill[] }>('common/src/types/subskill/subskills.ts'),
+      importTs<{ RECIPES: UpstreamRecipe[] }>('common/src/types/recipe/recipe.ts'),
+      importTs<{ recipeLevelBonus: Record<number, number> }>('common/src/utils/recipe-utils/recipe-utils.ts')
     ]);
 
   const pokemon = COMPLETE_POKEDEX.map(normalizePokemon).sort(
@@ -597,6 +667,10 @@ async function main() {
   const berries = BERRIES.map(normalizeBerry);
   const natures = NATURES.map(normalizeNature);
   const subskills = SUBSKILLS.map(normalizeSubskill);
+  const recipeLevelBonuses = Object.entries(recipeLevelBonus)
+    .sort(([a], [b]) => Number(a) - Number(b))
+    .map(([, bonus]) => bonus);
+  const recipes = RECIPES.filter((recipe) => recipe.ingredients.length > 0).map((recipe) => normalizeRecipe(recipe, recipeLevelBonuses));
   const firstIngredient = INGREDIENTS_WITH_LOCKED.find((ingredient) => ingredient.value > 0) ?? INGREDIENTS_WITH_LOCKED[0];
   const mainSkillMap = new Map<string, MainSkill>();
   for (const species of COMPLETE_POKEDEX) {
@@ -615,7 +689,8 @@ async function main() {
     berries,
     mainSkills: Array.from(mainSkillMap.values()).sort((a, b) => a.nameJa.localeCompare(b.nameJa, 'ja')),
     natures,
-    subskills
+    subskills,
+    recipes
   };
 
   writeFileSync(outputPath, `${JSON.stringify(dataset, null, 2)}\n`, 'utf8');

@@ -56,6 +56,22 @@ export interface Subskill {
   rarity: string;
 }
 
+export type RecipeType = 'curry' | 'salad' | 'dessert';
+
+export interface RecipeIngredient {
+  ingredientId: string;
+  amount: number;
+}
+
+export interface Recipe {
+  id: string;
+  name: string;
+  nameJa: string;
+  type: RecipeType;
+  ingredients: RecipeIngredient[];
+  levelEnergies: number[];
+}
+
 export interface PokemonSpecies {
   id: string;
   name: string;
@@ -89,6 +105,7 @@ export interface PokemonSleepDataset {
   mainSkills: MainSkill[];
   natures: Nature[];
   subskills: Subskill[];
+  recipes: Recipe[];
 }
 
 export type EnergyMode = 'normal' | 'morningPillow' | 'constant80';

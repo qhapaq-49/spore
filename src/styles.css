@@ -1447,6 +1447,19 @@ button:disabled {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.cooking-recipe-field {
+  grid-column: span 2;
+}
+
+.cooking-score-preview {
+  min-height: 0;
+  padding: 8px 10px;
+}
+
+.cooking-score-preview strong {
+  margin-top: 5px;
+}
+
 .cooking-source-list {
   display: grid;
   gap: 4px;

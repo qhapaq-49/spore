@@ -1071,7 +1071,7 @@ function HowToPanel() {
             </div>
             <ol>
               <li>Tasty Chance S users on the team are detected automatically.</li>
-              <li>Enter the in-game base meal score (including the current recipe level, capped at Lv70) to simulate 21 meals across one week.</li>
+              <li>Select a recipe and its level (Lv1-70), or enter a base meal score manually to simulate 21 meals across one week.</li>
               <li>Manual mode lets you enter triggers per day and effect percent directly.</li>
             </ol>
           </section>
@@ -1212,7 +1212,7 @@ function HowToPanel() {
           </div>
           <ol>
             <li>チーム内の料理チャンスS持ちは自動検出されます。</li>
-            <li>料理素点（現在のレシピLvを反映したゲーム内表示値。レシピLv上限70）を入力すると、1週間21食の料理スコア分布をMonte Carloで表示します。</li>
+            <li>料理名とレシピLv（上限70）を選ぶか、料理素点を手入力すると、1週間21食の料理スコア分布をMonte Carloで表示します。</li>
             <li>手入力に切り替えると、発動回数/日と効果量%を直接指定できます。</li>
           </ol>
           <p>
@@ -1476,7 +1476,16 @@ function WhistleSimulator({
   const [manualCookingTriggers, setManualCookingTriggers] = useState(1);
   const [manualCookingChance, setManualCookingChance] = useState(6);
   const [cookingTarget, setCookingTarget] = useState(8);
-  const [baseCookingScore, setBaseCookingScore] = useState(10_000);
+  const [mealScoreMode, setMealScoreMode] = useState<'recipe' | 'manual'>('recipe');
+  const [selectedRecipeId, setSelectedRecipeId] = useState(dataset.recipes[0]?.id ?? '');
+  const [recipeLevel, setRecipeLevel] = useState(60);
+  const [manualBaseCookingScore, setManualBaseCookingScore] = useState(10_000);
+  const selectedRecipe = useMemo(
+    () => dataset.recipes.find((recipe) => recipe.id === selectedRecipeId) ?? dataset.recipes[0],
+    [selectedRecipeId]
+  );
+  const baseCookingScore =
+    mealScoreMode === 'recipe' ? (selectedRecipe?.levelEnergies[recipeLevel - 1] ?? 0) : manualBaseCookingScore;
   const dailyRows = useMemo(
     () =>
       team.map((slot) => {
@@ -1624,8 +1633,15 @@ function WhistleSimulator({
               onManualChanceChange={setManualCookingChance}
               target={cookingTarget}
               onTargetChange={setCookingTarget}
+              mealScoreMode={mealScoreMode}
+              onMealScoreModeChange={setMealScoreMode}
+              selectedRecipeId={selectedRecipeId}
+              onSelectedRecipeIdChange={setSelectedRecipeId}
+              recipeLevel={recipeLevel}
+              onRecipeLevelChange={setRecipeLevel}
               baseScore={baseCookingScore}
-              onBaseScoreChange={setBaseCookingScore}
+              manualBaseScore={manualBaseCookingScore}
+              onManualBaseScoreChange={setManualBaseCookingScore}
               simulation={cookingSimulation}
             />
 
@@ -1693,8 +1709,15 @@ function CookingChancePanel({
   onManualChanceChange,
   target,
   onTargetChange,
+  mealScoreMode,
+  onMealScoreModeChange,
+  selectedRecipeId,
+  onSelectedRecipeIdChange,
+  recipeLevel,
+  onRecipeLevelChange,
   baseScore,
-  onBaseScoreChange,
+  manualBaseScore,
+  onManualBaseScoreChange,
   simulation
 }: {
   mode: 'team' | 'manual';
@@ -1706,8 +1729,15 @@ function CookingChancePanel({
   onManualChanceChange: (value: number) => void;
   target: number;
   onTargetChange: (value: number) => void;
+  mealScoreMode: 'recipe' | 'manual';
+  onMealScoreModeChange: (mode: 'recipe' | 'manual') => void;
+  selectedRecipeId: string;
+  onSelectedRecipeIdChange: (id: string) => void;
+  recipeLevel: number;
+  onRecipeLevelChange: (value: number) => void;
   baseScore: number;
-  onBaseScoreChange: (value: number) => void;
+  manualBaseScore: number;
+  onManualBaseScoreChange: (value: number) => void;
   simulation: ReturnType<typeof simulateCookingChanceWeek>;
 }) {
   const { language, t } = useI18n();
@@ -1746,7 +1776,44 @@ function CookingChancePanel({
             )}
           </div>
         )}
-        <NumberField label={t('baseMealScore')} value={baseScore} min={0} max={999999} onChange={onBaseScoreChange} />
+        <div className="field">
+          <label htmlFor="meal-score-mode">{t('mealScoreSource')}</label>
+          <select
+            id="meal-score-mode"
+            value={mealScoreMode}
+            onChange={(event) => onMealScoreModeChange(event.target.value as 'recipe' | 'manual')}
+          >
+            <option value="recipe">{t('fromRecipe')}</option>
+            <option value="manual">{t('manualInput')}</option>
+          </select>
+        </div>
+        {mealScoreMode === 'recipe' ? (
+          <>
+            <div className="field cooking-recipe-field">
+              <label htmlFor="cooking-recipe">{t('recipe')}</label>
+              <select id="cooking-recipe" value={selectedRecipeId} onChange={(event) => onSelectedRecipeIdChange(event.target.value)}>
+                {(['curry', 'salad', 'dessert'] as const).map((type) => (
+                  <optgroup key={type} label={t(type === 'curry' ? 'curry' : type === 'salad' ? 'salad' : 'dessert')}>
+                    {dataset.recipes
+                      .filter((recipe) => recipe.type === type)
+                      .map((recipe) => (
+                        <option key={recipe.id} value={recipe.id}>
+                          {language === 'ja' ? recipe.nameJa : recipe.name}
+                        </option>
+                      ))}
+                  </optgroup>
+                ))}
+              </select>
+            </div>
+            <NumberField label={t('recipeLevel')} value={recipeLevel} min={1} max={70} onChange={onRecipeLevelChange} />
+            <div className="metric cooking-score-preview">
+              <span>{t('baseMealScore')}</span>
+              <strong>{formatNumber(baseScore)}</strong>
+            </div>
+          </>
+        ) : (
+          <NumberField label={t('baseMealScore')} value={manualBaseScore} min={0} max={999999} onChange={onManualBaseScoreChange} />
+        )}
         <NumberField label={t('targetCritsWeek')} value={target} min={0} max={21} onChange={onTargetChange} />
       </div>
 

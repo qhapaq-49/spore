@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-18T11:11:40.695Z",
+  "generatedAt": "2026-08-25T01:29:29.428Z",
   "modelVersion": "all-species-monte-carlo-v2",
   "source": {
     "name": "Neroli's Lab",
     "url": "https://github.com/nerolis-lab/nerolis-lab.git",
-    "commit": "4482f92e8ce0b5370974017a1c83ed85b2928a2c"
+    "commit": "a033942b699854a80507e48b5246199afec17e01"
   },
   "simulation": {
     "seed": 1374560294,
@@ -29,6 +29,7 @@
       "ARBOK",
       "PIKACHU_HALLOWEEN",
       "PIKACHU",
+      "PIKACHU_CAPTAIN",
       "PIKACHU_HOLIDAY",
       "RAICHU",
       "SANDSHREW",
@@ -250,6 +251,9 @@
       "PAWMI",
       "PAWMO",
       "PAWMOT",
+      "TINKATINK",
+      "TINKATUFF",
+      "TINKATON",
       "CETODDLE",
       "CETITAN",
       "CLODSIRE"
@@ -522,6 +526,20 @@
         "PIKACHU-lv70-fav-off"
       ],
       "path": "species/PIKACHU.json"
+    },
+    "PIKACHU_CAPTAIN": {
+      "speciesId": "PIKACHU_CAPTAIN",
+      "scenarioIds": [
+        "PIKACHU_CAPTAIN-lv30-fav-on",
+        "PIKACHU_CAPTAIN-lv30-fav-off",
+        "PIKACHU_CAPTAIN-lv50-fav-on",
+        "PIKACHU_CAPTAIN-lv50-fav-off",
+        "PIKACHU_CAPTAIN-lv60-fav-on",
+        "PIKACHU_CAPTAIN-lv60-fav-off",
+        "PIKACHU_CAPTAIN-lv70-fav-on",
+        "PIKACHU_CAPTAIN-lv70-fav-off"
+      ],
+      "path": "species/PIKACHU_CAPTAIN.json"
     },
     "PIKACHU_HOLIDAY": {
       "speciesId": "PIKACHU_HOLIDAY",
@@ -3616,6 +3634,48 @@
         "PAWMOT-lv70-fav-off"
       ],
       "path": "species/PAWMOT.json"
+    },
+    "TINKATINK": {
+      "speciesId": "TINKATINK",
+      "scenarioIds": [
+        "TINKATINK-lv30-fav-on",
+        "TINKATINK-lv30-fav-off",
+        "TINKATINK-lv50-fav-on",
+        "TINKATINK-lv50-fav-off",
+        "TINKATINK-lv60-fav-on",
+        "TINKATINK-lv60-fav-off",
+        "TINKATINK-lv70-fav-on",
+        "TINKATINK-lv70-fav-off"
+      ],
+      "path": "species/TINKATINK.json"
+    },
+    "TINKATUFF": {
+      "speciesId": "TINKATUFF",
+      "scenarioIds": [
+        "TINKATUFF-lv30-fav-on",
+        "TINKATUFF-lv30-fav-off",
+        "TINKATUFF-lv50-fav-on",
+        "TINKATUFF-lv50-fav-off",
+        "TINKATUFF-lv60-fav-on",
+        "TINKATUFF-lv60-fav-off",
+        "TINKATUFF-lv70-fav-on",
+        "TINKATUFF-lv70-fav-off"
+      ],
+      "path": "species/TINKATUFF.json"
+    },
+    "TINKATON": {
+      "speciesId": "TINKATON",
+      "scenarioIds": [
+        "TINKATON-lv30-fav-on",
+        "TINKATON-lv30-fav-off",
+        "TINKATON-lv50-fav-on",
+        "TINKATON-lv50-fav-off",
+        "TINKATON-lv60-fav-on",
+        "TINKATON-lv60-fav-off",
+        "TINKATON-lv70-fav-on",
+        "TINKATON-lv70-fav-off"
+      ],
+      "path": "species/TINKATON.json"
     },
     "CETODDLE": {
       "speciesId": "CETODDLE",
