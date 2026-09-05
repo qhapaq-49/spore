@@ -75,6 +75,17 @@ describe('calculate', () => {
     expect(bfs.berryEnergy).toBeGreaterThan(base.berryEnergy);
   });
 
+  it('treats Mew as a berry specialist through its all specialty', () => {
+    const species = dataset.pokemon.find((pokemon) => pokemon.id === 'MEW') ?? dataset.pokemon[0];
+    const base = calculate(defaultInput(species));
+    const bfs = calculate({ ...defaultInput(species), subskillIds: ['Berry Finding S'] });
+
+    expect(species.id).toBe('MEW');
+    expect(species.specialty).toBe('all');
+    expect(base.berriesPerHelp).toBe(2);
+    expect(bfs.berriesPerHelp).toBe(3);
+  });
+
   it('applies the target pokemon Helping Bonus subskill to help speed', () => {
     const species = dataset.pokemon.find((pokemon) => pokemon.id === 'RAICHU') ?? dataset.pokemon[0];
     const base = calculate(defaultInput(species));

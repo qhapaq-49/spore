@@ -632,7 +632,8 @@ function expectedCappedPoisson(lambda: number, cap: number) {
 }
 
 function berriesPerDrop(specialty: string, subskillNames: Set<string>) {
-  return (specialty === 'berry' ? 2 : 1) + (subskillNames.has('Berry Finding S') ? 1 : 0);
+  return (specialty === 'berry' || specialty === 'all' ? 2 : 1) +
+    (subskillNames.has('Berry Finding S') ? 1 : 0);
 }
 
 function berryEnergyPerBerry(
